@@ -1,0 +1,219 @@
+@charset "utf-8";
+
+main{
+    width: 80%;
+    margin: auto;
+    background-color: lightgrey;
+}
+
+/* Fejléc */
+.header-container{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+header{
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    background-color: white;
+    border: 1px solid black;   
+}
+header h1{
+    text-align: center;
+    color: brown;
+    font-weight: bold;
+}
+#kereso{
+    height: 50%;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: lightgrey;
+    border: none;
+}
+#panel{
+    display: grid;
+    grid-template-columns: 1fr 1fr;    
+}
+#panel a{
+    text-decoration: none;
+    color: black;
+}
+
+/*Bejelentkezés, Regisztráció*/
+#belepes{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+}
+#regisztracio{
+    border: none;
+    border-left: 1px solid brown;
+    cursor: pointer;
+    background-color: white;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+
+}
+#regisztracio-panel, #belepes-panel{  
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
+/* Belépés és Regisztráció panel */
+.form-popup {
+    display: none;
+    position: fixed;
+    z-index: 9;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+}
+
+.form-container {
+    max-width: 500px;
+    padding: 10px;
+    background-color: white;
+}
+
+.form-container input[type=text], .form-container input[type=password] {
+    width: 80%;
+    padding: 15px;
+    margin: 11px 0 11px 0;
+    border: none;
+    background: lightgrey;
+}
+
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+.form-container .btn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+}
+.form-container label{
+    margin-top: auto;
+    margin-bottom: auto;
+
+}
+
+.form-container .btncancel {
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+    background-color: red;
+}
+/* Fejléc vége*/
+
+
+/* Navigáció */
+nav li{
+    list-style-type: none;
+    background-color: brown;
+    font-size: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+nav li:nth-child(-n+3){
+    border-right: 1px solid white;
+}
+#menu{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    text-align: center;
+}
+nav a{
+    text-decoration: none;
+    color: white;
+}
+/* Navigáció vége */
+
+
+/* Képgaléria */
+article{
+    text-align: center; 
+    color: brown;
+
+}
+#galeria{
+    mix-blend-mode: multiply;
+    display: grid;
+    grid-template-columns: 5% 30% 30% 30% 5%;
+}
+#galeria img{
+    width: 100%;
+}
+
+#balkep, #jobbkep{
+    width: 70%;
+    margin: auto;
+    opacity: 0.4;
+}
+
+#jobb, #bal{
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+    background-color: brown;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+/* Képgaléria vége */
+
+/*
+aside{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+}
+aside img{
+    width: 100px;
+}*/
+
+
+/* Táblázat */
+
+aside{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+td, th{
+    padding: 5px;
+    border: 1px solid grey; 
+}
+table{
+    border: 1px solid black;
+    background-color: white;
+    text-align: center;
+    width: 90%;
+    margin: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.szinek{
+    display: flex;
+    justify-content: space-evenly;
+}
+/* Táblázat vége */

@@ -13,7 +13,7 @@
     </head>
     <?php
     session_start();
-    include_once 'Ab.php';
+    include_once 'php/Ab.php';
     $ab = new Ab();
 
     if (isset($_POST["submit"])) {
@@ -36,20 +36,13 @@
             header("Location: index.php");
         }
 
-
-
-
-
-
-
-
         $ab->kapcsolatBezar();
     }
     ?>
     <body>
 
         <main>
-            <div class="tarolo-div">
+            
                 <div class="header-container">
                     <header>
                         <h1>B-Shop</h1>
@@ -63,13 +56,13 @@
                     <nav>
                         <div id="menu">
                             <li><a href="index.php">Főoldal</a></li>
-                            <li><a href="borondok.php">Bőröndök</a></li>
-                            <li><a href="Kapcsolat.php">Kapcsolat</a></li>
-                            <li><a href="kosar.php">Kosár</a></li>
+                            <li><a href="php/borondok.php">Bőröndök</a></li>
+                            <li><a href="php/kapcsolat.php">Kapcsolat</a></li>
+                            <li><a href="php/kosar.php">Kosár</a></li>
                         </div>
                     </nav>
                 </div>
-            </div>
+            
 
             <article>
 
@@ -117,10 +110,10 @@
                         <button type="button" class="btncancel" id ="btncancel">Vissza</button>
                     </form>
                 </div>  
-                <div class="tarolo-div">
+                <div class="kepTarolo-div">
 
                     <h2>Felkapottak</h2>
-                    <div id="galeria">
+                    <div id="kepGaleria">
                         <button id="bal"><</button>
 
                         <div id="balkep"></div>
@@ -134,10 +127,8 @@
             </article>
 
             <section>
-                <div class="tarolo-div">
-                    <div class="galeria">
-                        <img src="" alt="">
-                    </div>
+                <div class="galeria">
+                    <img src="" alt="">
                 </div>
             </section>
 
@@ -180,8 +171,170 @@
                                     </div>
                                 </td>
                             </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <thead>
                             <tr>
+                                <th>Méretei:</th>
+                                <th>Magasság</th>
+                                <th>Szélesség</th>
+                                <th>Mélység</th>
+                                <th>Űrmérték</th>
+                            </tr>
+                        </thead>
 
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td>100 cm</td>
+                                <td>50 cm</td>
+                                <td>30 cm</td>
+                                <td>50 l</td>
+                            </tr>
+
+                            <tr>
+                                <th>További színek:</th>
+                                <td colspan="4">
+                                    <div class="szinek">
+                                        <input type="button" value="Kék"> 
+                                        <input type="button" value="Kék"> 
+                                        <input type="button" value="Kék"> 
+                                        <input type="button" value="Kék"> 
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Méretei:</th>
+                                <th>Magasság</th>
+                                <th>Szélesség</th>
+                                <th>Mélység</th>
+                                <th>Űrmérték</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td>100 cm</td>
+                                <td>50 cm</td>
+                                <td>30 cm</td>
+                                <td>50 l</td>
+                            </tr>
+
+                            <tr>
+                                <th>További színek:</th>
+                                <td colspan="4">
+                                    <div class="szinek">
+                                        <input type="button" value="Kék"> 
+                                        <input type="button" value="Kék"> 
+                                        <input type="button" value="Kék"> 
+                                        <input type="button" value="Kék"> 
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Méretei:</th>
+                                <th>Magasság</th>
+                                <th>Szélesség</th>
+                                <th>Mélység</th>
+                                <th>Űrmérték</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td>100 cm</td>
+                                <td>50 cm</td>
+                                <td>30 cm</td>
+                                <td>50 l</td>
+                            </tr>
+
+                            <tr>
+                                <th>További színek:</th>
+                                <td colspan="4">
+                                    <div class="szinek">
+                                        <input type="button" value="Kék"> 
+                                        <input type="button" value="Kék"> 
+                                        <input type="button" value="Kék"> 
+                                        <input type="button" value="Kék"> 
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Méretei:</th>
+                                <th>Magasság</th>
+                                <th>Szélesség</th>
+                                <th>Mélység</th>
+                                <th>Űrmérték</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td>100 cm</td>
+                                <td>50 cm</td>
+                                <td>30 cm</td>
+                                <td>50 l</td>
+                            </tr>
+
+                            <tr>
+                                <th>További színek:</th>
+                                <td colspan="4">
+                                    <div class="szinek">
+                                        <input type="button" value="Kék"> 
+                                        <input type="button" value="Kék"> 
+                                        <input type="button" value="Kék"> 
+                                        <input type="button" value="Kék"> 
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Méretei:</th>
+                                <th>Magasság</th>
+                                <th>Szélesség</th>
+                                <th>Mélység</th>
+                                <th>Űrmérték</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td>100 cm</td>
+                                <td>50 cm</td>
+                                <td>30 cm</td>
+                                <td>50 l</td>
+                            </tr>
+
+                            <tr>
+                                <th>További színek:</th>
+                                <td colspan="4">
+                                    <div class="szinek">
+                                        <input type="button" value="Kék"> 
+                                        <input type="button" value="Kék"> 
+                                        <input type="button" value="Kék"> 
+                                        <input type="button" value="Kék"> 
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

@@ -10,3 +10,8 @@ class Galeria{
         this.kep.attr("src", "kepek/"+index+".jpg");
     }
 }
+
+
+class Kep{
+    
+}

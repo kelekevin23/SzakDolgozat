@@ -9,6 +9,7 @@ main{
 /* Fejléc */
 .header-container{
     position: sticky;
+    position: -webkit-sticky;
     top: 0;
     z-index: 1;
 }
@@ -68,8 +69,7 @@ header h1{
 .form-popup {
     display: none;
     position: fixed;
-    z-index: 9;
-    position: absolute;
+    z-index: 1;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -154,17 +154,17 @@ article{
     color: brown;
 
 }
-#galeria{
+#kepGaleria{
     mix-blend-mode: multiply;
     display: grid;
     grid-template-columns: 5% 30% 30% 30% 5%;
 }
-#galeria img{
-    width: 100%;
+#kepGaleria img{
+    width: 80%;
 }
 
 #balkep, #jobbkep{
-    width: 70%;
+    width: 60%;
     margin: auto;
     opacity: 0.4;
 }

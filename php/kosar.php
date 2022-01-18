@@ -6,11 +6,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Szakdolgozat</title>
-        <script src="js/jquery-3.6.0.min.js"></script>
-        <script src="js/proba.js"></script>
-        <script src="js/script.js"></script>
-        <script src="js/galeria.js"></script>
-        <link rel="stylesheet" href="css/szerkezet.css">
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/proba.js"></script>
+        <script src="../js/script.js"></script>
+        <script src="../js/galeria.js"></script>
+        <link rel="stylesheet" href="../css/szerkezet.css">
     </head>
 
     <body>
@@ -29,9 +29,9 @@
 
                 <nav>
                     <div id="menu">
-                        <li><a href="index.php">Főoldal</a></li>
+                        <li><a href="../index.php">Főoldal</a></li>
                         <li><a href="borondok.php">Bőröndök</a></li>
-                        <li><a href="Kapcsolat.php">Kapcsolat</a></li>
+                        <li><a href="kapcsolat.php">Kapcsolat</a></li>
                         <li><a href="kosar.php">Kosár</a></li>
                     </div>
                 </nav>

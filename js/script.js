@@ -8,10 +8,10 @@ $(function () {
 
 
     /*const szuloElem = $("aside");
-    for (let index = 1; index < 10; index++) {
-        const ujElem = sablonElem.clone().appendTo(szuloElem);
-        const galeria = new Galeria(ujElem, index);
-    }*/
+     for (let index = 1; index < 10; index++) {
+     const ujElem = sablonElem.clone().appendTo(szuloElem);
+     const galeria = new Galeria(ujElem, index);
+     }*/
 
     console.log(Math.abs(index - 10) - 1);
     console.log(Math.abs(index - 10));
@@ -34,12 +34,11 @@ $(function () {
     $("#jobb").on("click", function () {
         index--;
         console.log("index: " + index);
-        
-        
+
+
         if (index === 0) {
             index = 9;
         }
-
         if (index === 9) {
             balGaleria.kepBeallit(index);
             console.log(index);
@@ -64,13 +63,12 @@ $(function () {
     $("#bal").on("click", function () {
         index++;
         console.log("index: " + index);
-        
-        console.log(index-10);
-        
+
+        console.log(index - 10);
+
         if (index === 10) {
             index = 1;
         }
-
         if (index === 1) {
             jobbGaleria.kepBeallit(index);
             console.log(index);
@@ -78,7 +76,7 @@ $(function () {
             jobbGaleria.kepBeallit(Math.abs(index - 10) + 1);
             console.log(Math.abs(index - 10) + 1);
         }
-
+        
         foGaleria.kepBeallit(Math.abs(index - 10));
         console.log(Math.abs(index - 10));
 
@@ -94,32 +92,46 @@ $(function () {
 
     $("#belepes").on("click", () => {
         $(".tarolo-div").css("filter", "blur(2px)");
-        $(".tarolo-div").css("pointer-events","none");
+        $(".tarolo-div").css("pointer-events", "none");
+        $(".kepTarolo-div").css("filter", "blur(2px)");
+        $(".kepTarolo-div").css("mix-blend-mode", "multiply");
+        $(".header-container").css("filter", "blur(2px)");
+        $(".header-container").css("pointer-events", "none");
 
         $("#bejelentkezoForm").css("display", "block");
         $("#regisztracioForm").css("display", "none");
-        
+
     });
-    
-    
+
+
     $(".btncancel").on("click", () => {
-        $(".tarolo-div").css("filter", "blur(0px)");
-        $(".tarolo-div").css("pointer-events","auto");
         
+        hatter(".tarolo-div");
+        hatter(".kepTarolo-div");
+        hatter(".header-container");
+ 
         $("#bejelentkezoForm").css("display", "none");
         $("#regisztracioForm").css("display", "none");
     });
-    
-    
+
+    function hatter(helye){
+        $(helye).css("filter", "blur(0px)");
+        $(helye).css("pointer-events", "auto");
+    }
+
     $("#regisztracio").on("click", () => {
         $(".tarolo-div").css("filter", "blur(2px)");
-         $(".tarolo-div").css("pointer-events","none");
-         
+        $(".tarolo-div").css("pointer-events", "none");
+        $(".header-container").css("filter", "blur(2px)");
+        $(".header-container").css("pointer-events", "none");
+        $(".kepTarolo-div").css("filter", "blur(2px)");
+        $(".kepTarolo-div").css("mix-blend-mode", "multiply");
+
         $("#regisztracioForm").css("display", "block");
         $("#bejelentkezoForm").css("display", "none");
     });
-    
-    
 
-    
+
+
+
 });

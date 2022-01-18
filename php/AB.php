@@ -34,4 +34,5 @@ class Ab {
         $this->kapcsolat->close();
         //echo "Kapcsolat zárva.";
     }
+    
 }

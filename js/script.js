@@ -1,135 +1,82 @@
 $(function () {
 
-    const sablonElem = $(".galeria");
-
-    var index = 5;
-    sablonElem.remove();
 
 
 
-    /*const szuloElem = $("aside");
-     for (let index = 1; index < 10; index++) {
-     const ujElem = sablonElem.clone().appendTo(szuloElem);
-     const galeria = new Galeria(ujElem, index);
-     }*/
-
-    console.log(Math.abs(index - 10) - 1);
-    console.log(Math.abs(index - 10));
-    console.log(Math.abs(index - 10) + 1);
-
-    const balKep = $("#balkep");
-    const balElem = sablonElem.clone().appendTo(balKep);
-
-    const foKep = $("#fokep");
-    const foElem = sablonElem.clone().appendTo(foKep);
-
-    const jobbKep = $("#jobbkep");
-    const jobbElem = sablonElem.clone().appendTo(jobbKep);
-
-    const balGaleria = new Galeria(balElem, index - 1);
-    const foGaleria = new Galeria(foElem, index);
-    const jobbGaleria = new Galeria(jobbElem, index + 1);
+//nav li:nth-child(-n+3){
+    //  border-right: 1px solid white;
+//}
 
 
-    $("#jobb").on("click", function () {
-        index--;
-        console.log("index: " + index);
+    for (var i = 0; i < $("nav li").length - 1; i++) {
+        $("nav li").eq(i).css("border-right", "1px solid white");
+    }
+
+    $("#menu").css("grid-template-columns", "repeat(" + $("nav li").length + ", 1fr)");
 
 
-        if (index === 0) {
-            index = 9;
-        }
-        if (index === 9) {
-            balGaleria.kepBeallit(index);
-            console.log(index);
-        } else {
-            balGaleria.kepBeallit(Math.abs(index - 10) - 1);
-            console.log(Math.abs(index - 10) - 1);
-        }
-
-        foGaleria.kepBeallit(Math.abs(index - 10));
-        console.log(Math.abs(index - 10));
-
-        if (index === 1) {
-            jobbGaleria.kepBeallit(index);
-            console.log(index);
-            index = 10;
-        } else {
-            jobbGaleria.kepBeallit(Math.abs(index - 10) + 1);
-            console.log(Math.abs(index - 10) + 1);
-        }
-    });
-
-    $("#bal").on("click", function () {
-        index++;
-        console.log("index: " + index);
-
-        console.log(index - 10);
-
-        if (index === 10) {
-            index = 1;
-        }
-        if (index === 1) {
-            jobbGaleria.kepBeallit(index);
-            console.log(index);
-        } else {
-            jobbGaleria.kepBeallit(Math.abs(index - 10) + 1);
-            console.log(Math.abs(index - 10) + 1);
-        }
-        
-        foGaleria.kepBeallit(Math.abs(index - 10));
-        console.log(Math.abs(index - 10));
-
-        if (index === 9) {
-            balGaleria.kepBeallit(index);
-            console.log(index);
-            index = 0;
-        } else {
-            balGaleria.kepBeallit(Math.abs(index - 10) - 1);
-            console.log(Math.abs(index - 10) - 1);
-        }
-    });
+    const galeria = new Galeria();
 
     $("#belepes").on("click", () => {
-        $(".tarolo-div").css("filter", "blur(2px)");
-        $(".tarolo-div").css("pointer-events", "none");
+        hatterHomalyosit(".tarolo-div");
+        hatterHomalyosit(".header-container");
+
         $(".kepTarolo-div").css("filter", "blur(2px)");
         $(".kepTarolo-div").css("mix-blend-mode", "multiply");
-        $(".header-container").css("filter", "blur(2px)");
-        $(".header-container").css("pointer-events", "none");
 
-        $("#bejelentkezoForm").css("display", "block");
-        $("#regisztracioForm").css("display", "none");
+        panelDisplay("#bejelentkezoForm", "block");
+        panelDisplay("#regisztracioForm", "none");
 
     });
 
 
     $(".btncancel").on("click", () => {
-        
-        hatter(".tarolo-div");
-        hatter(".kepTarolo-div");
-        hatter(".header-container");
- 
-        $("#bejelentkezoForm").css("display", "none");
-        $("#regisztracioForm").css("display", "none");
+        hatterVisszaAllit(".tarolo-div");
+        hatterVisszaAllit(".kepTarolo-div");
+        hatterVisszaAllit(".header-container");
+
+        panelDisplay("#bejelentkezoForm", "none");
+        panelDisplay("#regisztracioForm", "none");
     });
 
-    function hatter(helye){
+
+    $("#regisztracio").on("click", () => {
+        hatterHomalyosit(".tarolo-div");
+        hatterHomalyosit(".header-container");
+
+
+        $(".kepTarolo-div").css("filter", "blur(2px)");
+        $(".kepTarolo-div").css("mix-blend-mode", "multiply");
+
+        panelDisplay("#regisztracioForm", "block");
+        panelDisplay("#bejelentkezoForm", "none");
+    });
+
+    function hatterVisszaAllit(helye) {
         $(helye).css("filter", "blur(0px)");
         $(helye).css("pointer-events", "auto");
     }
 
-    $("#regisztracio").on("click", () => {
-        $(".tarolo-div").css("filter", "blur(2px)");
-        $(".tarolo-div").css("pointer-events", "none");
-        $(".header-container").css("filter", "blur(2px)");
-        $(".header-container").css("pointer-events", "none");
-        $(".kepTarolo-div").css("filter", "blur(2px)");
-        $(".kepTarolo-div").css("mix-blend-mode", "multiply");
+    function hatterHomalyosit(helye) {
+        $(helye).css("filter", "blur(2px)");
+        $(helye).css("pointer-events", "none");
+    }
 
-        $("#regisztracioForm").css("display", "block");
-        $("#bejelentkezoForm").css("display", "none");
-    });
+    function panelDisplay(mit, mire) {
+        $(mit).css("display", mire);
+    }
+
+
+
+
+
+    
+
+
+
+
+
+
 
 
 

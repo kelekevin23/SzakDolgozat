@@ -136,11 +136,12 @@ nav li{
 nav li:nth-child(-n+3){
     border-right: 1px solid white;
 }
+
 #menu{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
     text-align: center;
 }
+
 nav a{
     text-decoration: none;
     color: white;
@@ -201,19 +202,22 @@ aside{
 
 td, th{
     padding: 5px;
-    border: 1px solid grey; 
+}
+table tr{
+    background-color: white;
 }
 table{
-    border: 1px solid black;
-    background-color: white;
+    border: 2px solid brown;
     text-align: center;
     width: 90%;
     margin: auto;
-    padding-top: 10px;
-    padding-bottom: 10px;
 }
 .szinek{
     display: flex;
     justify-content: space-evenly;
+}
+.szinek button{
+    width: 20px;
+    height: 20px;
 }
 /* Táblázat vége */

@@ -1,0 +1,85 @@
+{
+    "borondok":[
+        {
+            "id": 1,
+            "magassag":50,
+            "szelesseg":30,
+            "melyseg":20,
+            "urmertek":70,
+            "szinek": 5,
+            "eleres": "kepek/1.jpg"
+        },
+        {
+            "id": 2,
+            "magassag":51,
+            "szelesseg":31,
+            "melyseg":21,
+            "urmertek":71,
+            "szinek": 6,
+            "eleres": "kepek/2.jpg"
+        },
+        {
+            "id": 3,
+            "magassag":52,
+            "szelesseg":32,
+            "melyseg":22,
+            "urmertek":72,
+            "szinek": 1,
+            "eleres": "kepek/3.jpg"
+        },
+        {
+            "id": 4,
+            "magassag":53,
+            "szelesseg":33,
+            "melyseg":23,
+            "urmertek":73,
+            "szinek": 7 ,
+            "eleres": "kepek/4.jpg"
+        },
+        {
+            "id": 5,
+            "magassag":55,
+            "szelesseg":35,
+            "melyseg":25,
+            "urmertek":75,
+            "szinek": 5,
+            "eleres": "kepek/5.jpg"
+        },
+        {
+            "id": 6,
+            "magassag":50,
+            "szelesseg":30,
+            "melyseg":20,
+            "urmertek":70,
+            "szinek": 3,
+            "eleres": "kepek/6.jpg"
+        },
+        {
+            "id": 7,
+            "magassag":50,
+            "szelesseg":30,
+            "melyseg":20,
+            "urmertek":70,
+            "szinek": 5,
+            "eleres": "kepek/7.jpg"
+        },
+        {
+            "id": 8,
+            "magassag":58,
+            "szelesseg":38,
+            "melyseg":28,
+            "urmertek":78,
+            "szinek": 2,
+            "eleres": "kepek/8.jpg"
+        },
+        {
+            "id": 9,
+            "magassag":59,
+            "szelesseg":39,
+            "melyseg":29,
+            "urmertek":79,
+            "szinek": 9,
+            "eleres": "kepek/9.jpg"
+        }  
+    ]
+}

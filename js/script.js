@@ -21,6 +21,7 @@ $(function () {
         hatterHomalyosit(".tarolo-div");
         hatterHomalyosit(".header-container");
 
+
         $(".kepTarolo-div").css("filter", "blur(2px)");
         $(".kepTarolo-div").css("mix-blend-mode", "multiply");
 
@@ -35,6 +36,7 @@ $(function () {
         hatterVisszaAllit(".kepTarolo-div");
         hatterVisszaAllit(".header-container");
 
+
         panelDisplay("#bejelentkezoForm", "none");
         panelDisplay("#regisztracioForm", "none");
     });
@@ -43,6 +45,7 @@ $(function () {
     $("#regisztracio").on("click", () => {
         hatterHomalyosit(".tarolo-div");
         hatterHomalyosit(".header-container");
+        
 
 
         $(".kepTarolo-div").css("filter", "blur(2px)");

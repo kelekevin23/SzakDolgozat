@@ -11,6 +11,7 @@
         <script src="../js/script.js"></script>
         <script src="../js/galeria.js"></script>
         <link rel="stylesheet" href="../css/szerkezet.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
     <body>
@@ -20,10 +21,13 @@
             <div class="header-container">
                 <header>
                     <h1>B-Shop</h1>
-                    <input type="text" placeholder="Keresés..." name="kereso" , id="kereso">
+                    <div class="kereso-panel">
+                        <input type="text" placeholder="Keresés..." name="kereso" id="kereso">
+                        <button type="submit" id="kereso-gomb"><i class="fa fa-search" ></i></button>
+                    </div>
                     <div id="panel">
-                       <button id="belepes">Belépés</button>
-                       <button id="regisztracio">Regisztráció</button>
+                        <button id="belepes">Belépés</button>
+                        <button id="regisztracio">Regisztráció</button>
                     </div>
                 </header>
 
@@ -38,12 +42,15 @@
             </div>
 
             <article>
-                
+                <?php
+                include_once 'form.php';
+                ?>
+
 
             </article>
 
             <section>
-                
+
             </section>
 
             <aside class="adatok">

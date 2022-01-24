@@ -24,12 +24,30 @@ header h1{
     color: brown;
     font-weight: bold;
 }
-#kereso{
+.kereso-panel{
     height: 50%;
+    width: 100%;
     margin-top: auto;
     margin-bottom: auto;
+}
+#kereso{    
+    height: 95%;
+    width: 87%;   
     background-color: lightgrey;
     border: none;
+}
+
+.kereso-panel #kereso-gomb{
+    float: left;
+    height: 100%;
+    width: 10%;
+    border: none;
+    background-color: lightgrey;
+    cursor: pointer;
+    text-align: center;
+}
+.kereso-panel #kereso-gomb:hover{
+    background: #ccc;
 }
 #panel{
     display: grid;
@@ -42,6 +60,9 @@ header h1{
 
 /*Bejelentkezés, Regisztráció*/
 #belepes{
+    float: right;
+    padding: 0;
+    
     border: none;
     background-color: white;
     cursor: pointer;
@@ -221,3 +242,12 @@ table{
     height: 20px;
 }
 /* Táblázat vége */
+
+#terkep{
+    border: none;
+    width:650px; 
+    height:450px;
+    padding-top: 30px;
+}
+
+

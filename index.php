@@ -11,6 +11,8 @@
         <script src="js/script.js"></script>
         <script src="js/galeria.js"></script>
         <link rel="stylesheet" href="css/szerkezet.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
     </head>
     <?php
     session_start();
@@ -47,70 +49,28 @@
             <div class="header-container">
                 <header>
                     <h1>B-Shop</h1>
+                    <div class="kereso-panel">
                     <input type="text" placeholder="Keresés..." name="kereso" id="kereso">
+                    <button type="submit" id="kereso-gomb"><i class="fa fa-search" ></i></button>
+                    </div>
                     <div id="panel">
                         <button id="belepes">Belépés</button>
                         <button id="regisztracio">Regisztráció</button>                        
                     </div>
                 </header>
-
                 <nav>
-                    <div id="menu">
-                        <li><a href="index.php">Főoldal</a></li>
-                        <li><a href="php/borondok.php">Bőröndök</a></li>
-                        <li><a href="php/kapcsolat.php">Kapcsolat</a></li>
-                        <li><a href="php/kosar.php">Kosár</a></li>
-                    </div>
+                <?php
+                    include_once 'php/nav.php';
+                ?>
                 </nav>
             </div>
 
-
             <article>
+                
+                <?php
+                    include_once 'php/form.php';
+                ?>
 
-                <div class="form-popup" id="bejelentkezoForm">
-                    <form class="form-container" method="post">
-                        <h1>Bejelentkezés</h1>
-
-                        <div id="belepes-panel">
-
-                            <label for="email"><b>E-mail:</b></label>
-                            <input type="text" placeholder="E-mail cím" name="emailB" required>
-
-                            <label for="psw"><b>Jelszó:</b></label>
-                            <input type="password" placeholder="Jelszó megadása" name="jelszo" required>
-
-                        </div>
-                        <button type="submit" class="btn" name="login">Bejelentkezés</button>
-                        <button type="button" class="btncancel" name="vissza">Vissza</button>
-                    </form>
-                </div>
-
-                <div class="form-popup" id="regisztracioForm">
-                    <form class="form-container" method="post">
-
-                        <h1>Regisztráció</h1>
-                        <div id="regisztracio-panel">
-
-                            <label for="email"><b>Vezetéknév:</b></label>
-                            <input type="text" placeholder="Vezetéknév" name="vnev" required>
-
-                            <label for="email"><b>Keresztnév:</b></label>
-                            <input type="text" placeholder="Keresztnév" name="knev" required>
-
-                            <label for="email"><b>E-mail cím:</b></label>
-                            <input type="text" placeholder="E-mail cím" name="emailR" required>
-
-                            <label for="psw"><b>Jelszó:</b></label>
-                            <input type="password" placeholder="Jelszó" name="jelszo1" required>
-
-                            <label for="psw"><b>Jelszó megerősítése:</b></label>
-                            <input type="password" placeholder="Jelszó megerősítése" name="jelszo2" required>
-                        </div>
-
-                        <button type="submit" class="btn" name="submit">Regisztráció</button>
-                        <button type="button" class="btncancel" id ="btncancel">Vissza</button>
-                    </form>
-                </div>  
                 <div class="kepTarolo-div">
 
                     <h2>Felkapottak</h2>

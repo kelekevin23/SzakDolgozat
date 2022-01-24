@@ -11,6 +11,7 @@
         <script src="../js/script.js"></script>
         <script src="../js/galeria.js"></script>
         <link rel="stylesheet" href="../css/szerkezet.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
     <body>
@@ -20,10 +21,13 @@
             <div class="header-container">
                 <header>
                     <h1>B-Shop</h1>
-                    <input type="text" placeholder="Keresés..." name="kereso" , id="kereso">
+                    <div class="kereso-panel">
+                        <input type="text" placeholder="Keresés..." name="kereso" id="kereso">
+                        <button type="submit" id="kereso-gomb"><i class="fa fa-search" ></i></button>
+                    </div>
                     <div id="panel">
-                       <button id="belepes">Belépés</button>
-                       <button id="regisztracio">Regisztráció</button>
+                        <button id="belepes">Belépés</button>
+                        <button id="regisztracio">Regisztráció</button>
                     </div>
                 </header>
 
@@ -38,12 +42,17 @@
             </div>
 
             <article>
-                
 
+                <?php
+                include_once 'form.php';
+                ?>
+                <div class="tarolo-div">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1348.006404621573!2d19.072705537020642!3d47.48966382960781!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741dc58db93ef53%3A0x45683f828d1abf24!2zSmF2w610w7MgQ2VudHJ1bSBCdC50w6Fza2EgamF2w610w6Fz!5e0!3m2!1shu!2shu!4v1643033248570!5m2!1shu!2shu" id="terkep"></iframe>
+                </div>
             </article>
 
             <section>
-                
+
             </section>
 
             <aside class="adatok">

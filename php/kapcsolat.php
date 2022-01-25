@@ -10,7 +10,9 @@
         <script src="../js/proba.js"></script>
         <script src="../js/script.js"></script>
         <script src="../js/galeria.js"></script>
-        <link rel="stylesheet" href="../css/szerkezet.css">
+        <script src="../js/bejelentkezes_regisztracio.js"></script>
+        <link href="../css/szerkezet.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/tartalom.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
@@ -22,7 +24,7 @@
                 <header>
                     <h1>B-Shop</h1>
                     <div class="kereso-panel">
-                        <input type="text" placeholder="Keresés..." name="kereso" id="kereso">
+                        <input type="text" placeholder="Keresés..." name="kereso" id="keresosav">
                         <button type="submit" id="kereso-gomb"><i class="fa fa-search" ></i></button>
                     </div>
                     <div id="panel">
@@ -32,12 +34,11 @@
                 </header>
 
                 <nav>
-                    <div id="menu">
-                        <li><a href="../index.php">Főoldal</a></li>
-                        <li><a href="borondok.php">Bőröndök</a></li>
-                        <li><a href="kapcsolat.php">Kapcsolat</a></li>
-                        <li><a href="kosar.php">Kosár</a></li>
-                    </div>
+                    <?php
+                    include_once 'nav.php';
+                    $menu = new Menu();
+                    $menu->navOldalak();
+                    ?>
                 </nav>
             </div>
 

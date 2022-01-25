@@ -6,13 +6,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Szakdolgozat</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/jquery-3.6.0.min.js"></script>
         <script src="js/script.js"></script>
         <script src="js/galeria.js"></script>
-        <link rel="stylesheet" href="css/szerkezet.css">
+        <script src="js/bejelentkezes_regisztracio.js"></script>
+        <link href="css/szerkezet.css" rel="stylesheet" type="text/css"/>
+        <link href="css/tartalom.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        
+
     </head>
     <?php
     session_start();
@@ -38,10 +39,10 @@
         } else {
             header("Location: index.php");
         }
-
         $ab->kapcsolatBezar();
     }
     ?>
+
     <body>
 
         <main>
@@ -50,8 +51,8 @@
                 <header>
                     <h1>B-Shop</h1>
                     <div class="kereso-panel">
-                    <input type="text" placeholder="Keresés..." name="kereso" id="kereso">
-                    <button type="submit" id="kereso-gomb"><i class="fa fa-search" ></i></button>
+                        <input type="text" placeholder="Keresés..." name="kereso" id="keresosav">
+                        <button type="submit" id="kereso-gomb"><i class="fa fa-search" ></i></button>
                     </div>
                     <div id="panel">
                         <button id="belepes">Belépés</button>
@@ -59,20 +60,21 @@
                     </div>
                 </header>
                 <nav>
-                <?php
+                    <?php
                     include_once 'php/nav.php';
-                ?>
+                    $menu = new Menu();
+                    $menu->navIndex();
+                    ?>
                 </nav>
             </div>
 
             <article>
-                
+
                 <?php
-                    include_once 'php/form.php';
+                include_once 'php/form.php';
                 ?>
 
                 <div class="kepTarolo-div">
-
                     <h2>Felkapottak</h2>
                     <div id="kepGaleria">
                         <button id="bal"><</button>
@@ -92,11 +94,6 @@
                     <img src="" alt="">
                 </div>
             </section>
-
-
-<!--<section>
-<button id="kattint">Ide kattints</button>
-</section>-->
 
             <aside class="adatok">
                 <div class="tarolo-div">
@@ -129,12 +126,10 @@
                     </table>
 
                 </div>
-
-
             </aside>
 
             <footer>
-
+                <h3>Készítette: Helyes Márton, Nagy Domonkos, Kelemen Kevin</h3>
             </footer>
         </main>
 

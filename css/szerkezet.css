@@ -19,25 +19,7 @@ header{
     background-color: white;
     border: 1px solid black;   
 }
-header h1{
-    text-align: center;
-    color: brown;
-    font-weight: bold;
-}
-.kereso-panel{
-    height: 50%;
-    width: 100%;
-    margin-top: auto;
-    margin-bottom: auto;
-}
-#kereso{    
-    height: 95%;
-    width: 87%;   
-    background-color: lightgrey;
-    border: none;
-}
-
-.kereso-panel #kereso-gomb{
+#kereso-gomb{
     float: left;
     height: 100%;
     width: 10%;
@@ -46,45 +28,19 @@ header h1{
     cursor: pointer;
     text-align: center;
 }
-.kereso-panel #kereso-gomb:hover{
-    background: #ccc;
-}
+/* Fejléc vége */
+
+/*Bejelentkezés, Regisztráció gombok */
 #panel{
     display: grid;
     grid-template-columns: 1fr 1fr;    
-}
-#panel a{
-    text-decoration: none;
-    color: black;
-}
-
-/*Bejelentkezés, Regisztráció*/
-#belepes{
-    float: right;
-    padding: 0;
-    
-    border: none;
-    background-color: white;
-    cursor: pointer;
-    margin-top: auto;
-    margin-bottom: auto;
-    text-align: center;
-}
-#regisztracio{
-    border: none;
-    border-left: 1px solid brown;
-    cursor: pointer;
-    background-color: white;
-    margin-top: auto;
-    margin-bottom: auto;
-    text-align: center;
-
 }
 #regisztracio-panel, #belepes-panel{  
     display: grid;
     grid-template-columns: 1fr 1fr;
 
 }
+/*Bejelentkezés, Regisztráció gombok vége*/
 
 /* Belépés és Regisztráció panel */
 .form-popup {
@@ -96,13 +52,6 @@ header h1{
     transform: translate(-50%, -50%);
     border: 1px solid black;
 }
-
-.form-container {
-    max-width: 500px;
-    padding: 10px;
-    background-color: white;
-}
-
 .form-container input[type=text], .form-container input[type=password] {
     width: 80%;
     padding: 15px;
@@ -110,14 +59,7 @@ header h1{
     border: none;
     background: lightgrey;
 }
-
-.form-container input[type=text]:focus, .form-container input[type=password]:focus {
-    background-color: #ddd;
-    outline: none;
-}
-
-.form-container .btn {
-    background-color: #04AA6D;
+.form-container .btn, .form-container .btncancel{
     color: white;
     padding: 16px 20px;
     border: none;
@@ -126,56 +68,11 @@ header h1{
     margin-bottom:10px;
     opacity: 0.8;
 }
-.form-container label{
-    margin-top: auto;
-    margin-bottom: auto;
 
-}
-
-.form-container .btncancel {
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom:10px;
-    opacity: 0.8;
-    background-color: red;
-}
-/* Fejléc vége*/
-
-
-/* Navigáció */
-nav li{
-    list-style-type: none;
-    background-color: brown;
-    font-size: 25px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-
-}
-nav li:nth-child(-n+3){
-    border-right: 1px solid white;
-}
-
-#menu{
-    display: grid;
-    text-align: center;
-}
-
-nav a{
-    text-decoration: none;
-    color: white;
-}
-/* Navigáció vége */
+/* Belépés és Regisztráció panel vége */
 
 
 /* Képgaléria */
-article{
-    text-align: center; 
-    color: brown;
-
-}
 #kepGaleria{
     mix-blend-mode: multiply;
     display: grid;
@@ -184,49 +81,9 @@ article{
 #kepGaleria img{
     width: 80%;
 }
-
-#balkep, #jobbkep{
-    width: 60%;
-    margin: auto;
-    opacity: 0.4;
-}
-
-#jobb, #bal{
-    margin: auto;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    width: 100%;
-    background-color: brown;
-    color: white;
-    font-size: 50px;
-    font-weight: bold;
-}
-
 /* Képgaléria vége */
 
-/*
-aside{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
-}
-aside img{
-    width: 100px;
-}*/
-
-
 /* Táblázat */
-
-aside{
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
-td, th{
-    padding: 5px;
-}
-table tr{
-    background-color: white;
-}
 table{
     border: 2px solid brown;
     text-align: center;
@@ -237,17 +94,5 @@ table{
     display: flex;
     justify-content: space-evenly;
 }
-.szinek button{
-    width: 20px;
-    height: 20px;
-}
+
 /* Táblázat vége */
-
-#terkep{
-    border: none;
-    width:650px; 
-    height:450px;
-    padding-top: 30px;
-}
-
-

@@ -8,7 +8,7 @@
             <input type="text" placeholder="E-mail cím" name="emailB" required>
 
             <label for="psw"><b>Jelszó:</b></label>
-            <input type="password" placeholder="Jelszó megadása" name="jelszo" required>
+            <input type="password" placeholder="Jelszó" name="jelszo" required>
 
         </div>
         <button type="submit" class="btn" name="login">Bejelentkezés</button>

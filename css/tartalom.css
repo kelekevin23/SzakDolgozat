@@ -1,0 +1,135 @@
+@charset "utf-8";
+
+/* Fejléc */
+header h1{
+    text-align: center;
+    color: brown;
+    font-weight: bold;
+}
+.kereso-panel{
+    height: 50%;
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+#keresosav{    
+    height: 95%;
+    width: 87%;   
+    background-color: lightgrey;
+    border: none;
+}
+#kereso-gomb:hover{
+    background: #ccc;
+}
+/* Fejléc vége */
+
+/*Bejelentkezés, Regisztráció gombok */
+#belepes, #regisztracio{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+}
+#regisztracio{
+    border-left: 1px solid brown;
+}
+/*Bejelentkezés, Regisztráció gombok vége*/
+
+/* Belépés és Regisztráció panel */
+.form-container {
+    max-width: 500px;
+    padding: 10px;
+    background-color: white;
+}
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+.form-container label{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.form-container .btn{
+    background-color: #04AA6D;
+}
+.form-container .btncancel {
+    background-color: red;
+}
+/* Belépés és Regisztráció panel vége*/
+
+/* Navigáció */
+nav li{
+    list-style-type: none;
+    background-color: brown;
+    font-size: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+#menu{
+    display: grid;
+    text-align: center;
+}
+
+nav a{
+    text-decoration: none;
+    color: white;
+}
+/* Navigáció vége */
+
+/* Képgaléria */
+article{
+    text-align: center; 
+    color: brown;
+}
+#balkep, #jobbkep{
+    width: 60%;
+    margin: auto;
+    opacity: 0.4;
+}
+#jobb, #bal{
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+    background-color: brown;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+}
+/* Képgaléria vége */
+
+/* Táblázat */
+aside{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+td, th{
+    padding: 5px;
+}
+table tr{
+    background-color: white;
+}
+.szinek button{
+    width: 20px;
+    height: 20px;
+}
+/* Táblázat vége */
+
+/* Footer */
+footer{
+    text-align: center;
+    color: brown;
+}
+/* Footer vége*/
+
+/* Térkép */
+#terkep{
+    border: none;
+    width:650px; 
+    height:450px;
+    padding-top: 30px;
+}
+/* Térkép vége */

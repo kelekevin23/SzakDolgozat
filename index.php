@@ -17,30 +17,84 @@
     </head>
     <?php
     session_start();
+    session_destroy();
+    session_start();
     include_once 'php/Ab.php';
     $ab = new Ab();
+    $knevErr = $vnevErr = $emailErr = $jelszoErr = "";
+    $knev = $vnev = $email = $jelszo = "";
+
+    function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
 
     if (isset($_POST["submit"])) {
-        $ab->getKapcsolat();
-
-        $vnev = mysqli_real_escape_string($ab->getKapcsolat(), $_POST['vnev']);
-        $knev = mysqli_real_escape_string($ab->getKapcsolat(), $_POST['knev']);
-        $emailR = mysqli_real_escape_string($ab->getKapcsolat(), $_POST['emailR']);
-        $jelszo1 = md5(mysqli_real_escape_string($ab->getKapcsolat(), $_POST['jelszo1']));
-        $jelszo2 = md5(mysqli_real_escape_string($ab->getKapcsolat(), $_POST['jelszo2']));
-
-        if ($jelszo1 == $jelszo2) {
-            $sql2 = "INSERT INTO felhasznalok(knev, vnev, email, jelszo, fstatusz) VALUES ('$knev','$vnev','$emailR','$jelszo1','f')";
+        $error = "";
+        if (empty($_POST["vnev"])) {
+            $vnevErr = "Vezetéknév megadása kötelező!";
+            
+        } else {
+            $vnev = test_input($_POST["vnev"]);
+            $_SESSION['vnev'] = $_POST['vnev'];
+        }
+        if (empty($_POST["knev"])) {
+            $knevErr = "Keresztnév megadása kötelező!";
+        } else {
+            $knev = test_input($_POST["knev"]);
+            $_SESSION['knev'] = $_POST['knev'];
+        }
+        if (empty($_POST["emailR"])) {
+            $emailErr = "Email is required";
+        } else {
+            $email = test_input($_POST["emailR"]);
+            // check if e-mail address is well-formed
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $emailErr = "Érvénytelen email cím";
+            }else{
+                $_SESSION['emailR'] = $_POST['emailR'];
+            }
+        }
+        if (empty($_POST["jelszo1"]) || empty($_POST["jelszo2"])) {
+            $jelszoErr = "Ismételd meg a jelszót!";
+        } elseif ($_POST["jelszo1"] != $_POST["jelszo2"]) {
+            $jelszoErr = "A két jelszó nem egyezik!";
+        } else {
+            $jelszo = test_input($_POST["jelszo1"]);
+        }
+        $error .= $vnevErr;
+        $error .= $knevErr;
+        $error .= $emailErr;
+        $error .= $jelszoErr;
+        if (strlen($error) > 0) {
+            echo '<style type="text/css">
+        #regisztracioForm {
+            display: block;
+            }
+        .tarolo-div, .header-container{
+                filter: blur(2px);
+                pointer-events: none;
+            }
+        .kepTarolo-div{
+                filter: blur(2px);
+                mix-blend-mode: multiply;
+            }
+        
+        </style>';
+        } else {
+            $ab->getKapcsolat();
+            $sql2 = "INSERT INTO felhasznalok(knev, vnev, email, jelszo, fstatusz) VALUES ('$knev','$vnev','$email','$jelszo','f')";
             if ($ab->getKapcsolat()->query($sql2) === TRUE) {
                 header("Location: index.php");
             } else {
                 echo "Error: Valami hiba történt ";
             }
-        } else {
-            header("Location: index.php");
+            $ab->kapcsolatBezar();
         }
-        $ab->kapcsolatBezar();
     }
+
     ?>
 
     <body>
@@ -69,11 +123,9 @@
             </div>
 
             <article>
-
                 <?php
                 include_once 'php/form.php';
                 ?>
-
                 <div class="kepTarolo-div">
                     <h2>Felkapottak</h2>
                     <div id="kepGaleria">

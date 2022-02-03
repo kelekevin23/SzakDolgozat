@@ -7,9 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Szakdolgozat</title>
         <script src="../js/jquery-3.6.0.min.js"></script>
-        <script src="../js/proba.js"></script>
-        <script src="../js/script.js"></script>
-        <script src="../js/galeria.js"></script>
+        <script src="../js/menu.js"></script>
         <script src="../js/bejelentkezes_regisztracio.js"></script>
         <link href="../css/szerkezet.css" rel="stylesheet" type="text/css"/>
         <link href="../css/tartalom.css" rel="stylesheet" type="text/css"/>

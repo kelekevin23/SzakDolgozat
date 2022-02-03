@@ -35,10 +35,19 @@ header{
     display: grid;
     grid-template-columns: 1fr 1fr;    
 }
-#regisztracio-panel, #belepes-panel{  
+#regisztracio-panel{  
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 
+}
+
+#belepes-panel{  
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+.error{
+    text-align: left;
 }
 /*Bejelentkezés, Regisztráció gombok vége*/
 

@@ -5,6 +5,45 @@ main{
     margin: auto;
     background-color: lightgrey;
 }
+.borondok{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: lightgrey;
+    text-align: center;
+    margin: auto;
+}
+.borondok img{
+    mix-blend-mode: multiply;
+    
+}
+.borond-kep{
+    text-align: center;
+}
+#adatok_tarolo{
+    background-color: white;
+    padding-bottom: 10px;
+    border: 3px solid brown;
+    font-size: 20px;
+    margin: auto;
+    width: 90%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+}
+.szures{
+    background-color: white;
+    border: 3px solid brown;
+    
+    
+}
+.dorondok-oldalszerkezet{
+    display: grid;
+    grid-template-columns: 25% 75%; 
+}
+#adatok_tarolo p{
+    height: 20px;
+}
+
 
 /* Fejléc */
 .header-container{

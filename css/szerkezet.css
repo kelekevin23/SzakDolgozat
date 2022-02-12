@@ -5,6 +5,7 @@ main{
     margin: auto;
     background-color: lightgrey;
 }
+/* Bőrönd oldal */
 .borondok{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -36,14 +37,14 @@ main{
     
     
 }
-.dorondok-oldalszerkezet{
+.borondok-oldalszerkezet{
     display: grid;
     grid-template-columns: 25% 75%; 
 }
 #adatok_tarolo p{
     height: 20px;
 }
-
+/* Bőrönd oldal vége */
 
 /* Fejléc */
 .header-container{
@@ -144,3 +145,4 @@ table{
 }
 
 /* Táblázat vége */
+

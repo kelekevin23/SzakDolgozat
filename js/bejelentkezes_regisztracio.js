@@ -4,7 +4,6 @@ $(function () {
         hatterHomalyosit(".tarolo-div");
         hatterHomalyosit(".header-container");
 
-
         $(".kepTarolo-div").css("filter", "blur(2px)");
         $(".kepTarolo-div").css("mix-blend-mode", "multiply");
 
@@ -28,7 +27,6 @@ $(function () {
     $("#regisztracio").on("click", () => {
         hatterHomalyosit(".tarolo-div");
         hatterHomalyosit(".header-container");
-
 
 
         $(".kepTarolo-div").css("filter", "blur(2px)");

@@ -62,7 +62,7 @@ session_start();
             $jelszoErr = "A két jelszó nem egyezik!";
         } else {
             $jelszo = test_input($_POST["jelszo1"]);
-            $jelszo = md5($jelszo);
+            //$jelszo = md5($jelszo);
         }
         $error .= $vnevErr;
         $error .= $knevErr;
@@ -84,14 +84,7 @@ session_start();
         
         </style>';
         } else {
-            $ab->getKapcsolat();
-            $sql2 = "INSERT INTO felhasznalok(knev, vnev, email, jelszo, fstatusz) VALUES ('$knev','$vnev','$email','$jelszo','f')";
-            if ($ab->getKapcsolat()->query($sql2) === TRUE) {
-                header("Location: ../index.php");
-            } else {
-                echo "Error: Valami hiba történt ";
-            }
-            $ab->kapcsolatBezar();
+            $ab->insert("Felhasznalok", "(felhasznalonev, vezeteknev, keresztnev, email, jelszo, fstatusz)", "'Domonkos', '$vnev','$knev','$email','$jelszo','f'");
         }
     }
 

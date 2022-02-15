@@ -9,8 +9,8 @@ class Ab {
       private $kapcsolat;
      */
 
-//    private $serverName = "DESKTOP-HFFA4M4";
-    private $serverName = "WIN10X64HUN61\SQLEXPRESS";
+    private $serverName = "DESKTOP-HFFA4M4";
+ //   private $serverName = "WIN10X64HUN61\SQLEXPRESS";
     private $connectionInfo = array("Database" => "Szakdoga_adattal");
     private $kapcsolat;
 
@@ -70,8 +70,8 @@ class Ab {
 
         $sql = "INSERT INTO " . $tablaNeve . " " . $oszlopok . " VALUES (" . $ertekek . ")";
 
-        echo $sql;
-        echo '<br>Ellenőrzés<br>';
+        //echo $sql;
+        //echo '<br>Ellenőrzés<br>';
         $result = sqlsrv_query($this->kapcsolat, $sql);
         /* $vmi = sqlsrv_query($this->kapcsolat, $sql);
 

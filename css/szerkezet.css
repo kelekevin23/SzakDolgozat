@@ -5,46 +5,7 @@ main{
     margin: auto;
     background-color: lightgrey;
 }
-/* Bőrönd oldal */
-.borondok{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    background-color: lightgrey;
-    text-align: center;
-    margin: auto;
-}
-.borondok img{
-    mix-blend-mode: multiply;
-    
-}
-.borond-kep{
-    text-align: center;
-}
-#adatok_tarolo{
-    background-color: white;
-    padding-bottom: 10px;
-    border: 3px solid brown;
-    font-size: 20px;
-    margin: auto;
-    width: 90%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    
-}
-.szures{
-    background-color: white;
-    border: 3px solid brown;
-    
-    
-}
-.borondok-oldalszerkezet{
-    display: grid;
-    grid-template-columns: 25% 75%; 
-}
-#adatok_tarolo p{
-    height: 20px;
-}
-/* Bőrönd oldal vége */
+
 
 /* Fejléc */
 .header-container{
@@ -78,13 +39,11 @@ header{
 #regisztracio-panel{  
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-
 }
 
 #belepes-panel{  
     display: grid;
     grid-template-columns: 1fr 1fr;
-
 }
 .error{
     text-align: left;
@@ -99,7 +58,6 @@ header{
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    border: 1px solid black;
 }
 .form-container input[type=text], .form-container input[type=password] {
     width: 80%;
@@ -146,3 +104,23 @@ table{
 
 /* Táblázat vége */
 
+/* Bőrönd oldal */
+.borondok-oldalszerkezet{
+    display: grid;
+    grid-template-columns: 25% 75%; 
+}
+.termek{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: auto;
+}
+.borond-kep{
+    text-align: center;
+}
+#adatok_tarolo{
+    margin: auto;
+    width: 90%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;  
+}
+/* Bőrönd oldal vége */

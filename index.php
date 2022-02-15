@@ -10,7 +10,6 @@
         <script src="js/menu.js"></script>
         <script src="js/script.js"></script>
         <script src="js/galeria.js"></script>
-        <script src="js/proba.js"></script>
         <script src="js/bejelentkezes_regisztracio.js"></script>
         <link href="css/szerkezet.css" rel="stylesheet" type="text/css"/>
         <link href="css/tartalom.css" rel="stylesheet" type="text/css"/>
@@ -105,7 +104,7 @@
             </aside>
 
             <footer>
-                <h3>Készítette: Helyes Márton, Nagy Domonkos, Kelemen Kevin</h3>
+
             </footer>
         </main>
 

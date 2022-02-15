@@ -133,3 +133,35 @@ footer{
     padding-top: 30px;
 }
 /* Térkép vége */
+
+/* Bőrönd oldal */
+.termek{
+    background-color: lightgrey;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid brown;
+}
+.termek img{
+    mix-blend-mode: multiply;
+    width: 50%;
+}
+.borond-kep{
+    text-align: center;
+}
+#adatok_tarolo{
+    background-color: white;
+    padding-bottom: 10px;
+    border: 3px solid brown;
+    font-size: 20px;
+}
+.szures{
+    background-color: white;
+    border-bottom: 1px solid brown;
+    border-left: 1px solid brown;
+    border-right: 1px solid brown; 
+}
+#adatok_tarolo p{
+    height: 20px;
+}
+/* Bőrönd oldal vége */

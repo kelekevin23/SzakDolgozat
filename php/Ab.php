@@ -9,7 +9,8 @@ class Ab {
       private $kapcsolat;
      */
 
-    private $serverName = "DESKTOP-HFFA4M4";
+//    private $serverName = "DESKTOP-HFFA4M4";
+    private $serverName = "WIN10X64HUN61\SQLEXPRESS";
     private $connectionInfo = array("Database" => "Szakdoga_adattal");
     private $kapcsolat;
 
@@ -39,12 +40,13 @@ class Ab {
         sqlsrv_close($this->kapcsolat);
     }
 
-    public function select($tablaNeve, $where) {
+    //public function select($tablaNeve, $where) {
+    public function select() {
         /* $sql = "SELECT * FROM " . $tablaNeve . " WHERE " . $where;
           $sql = $this->kapcsolat->query($sql);
           return $sql; */
 
-        if ($where === "") {
+     /*   if ($where === "") {
             $sql = "SELECT * FROM " . $tablaNeve;
         } else {
             $sql = "SELECT * FROM " . $tablaNeve . " WHERE " . $where;
@@ -60,8 +62,8 @@ class Ab {
                 // echo $row['modell'] . ", " . $row['marka'] . "<br />";
                 array_push($adatok, $row['felhasznalonev'] . ", " . $row['vezeteknev'] . "<br />");
             }
-        }
-        return $adatok;
+        }*/
+        return "hello";
     }
 
     public function insert($tablaNeve, $oszlopok, $ertekek) {

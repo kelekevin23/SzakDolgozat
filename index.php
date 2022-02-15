@@ -10,6 +10,7 @@
         <script src="js/menu.js"></script>
         <script src="js/script.js"></script>
         <script src="js/galeria.js"></script>
+        <script src="js/proba.js"></script>
         <script src="js/bejelentkezes_regisztracio.js"></script>
         <link href="css/szerkezet.css" rel="stylesheet" type="text/css"/>
         <link href="css/tartalom.css" rel="stylesheet" type="text/css"/>
@@ -24,7 +25,6 @@
     <body>
 
         <main>
-
             <div class="header-container">
                 <header>
                     <h1>B-Shop</h1>

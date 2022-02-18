@@ -18,7 +18,11 @@
 
     </head>
     <?php
-    
+    /* select top 10 * from Cikk
+      order by keszlet desc */
+    include_once 'php/Ab.php';
+    $ab = new Ab();
+    $ab->select('top 10 *', 'Cikk', 'order by keszlet desc');
     ?>
 
     <body>

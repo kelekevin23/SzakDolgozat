@@ -2,17 +2,23 @@ class Galeria {
     constructor() {
 
         let adatok = [];
-        $.ajax(
+
+        /*$.ajax(
                 {
-                    url: "js/adatok.json",
+                    type: "GET",
+                    url: "php/Ab.php",
+                    dataType: 'json',
+                    data: {functionname: 'select', arguments: ['top 10 *', 'Cikk', 'order by keszlet desc']},
                     success: function (result) {
+
                         result.borondok.forEach((value) => {
                             adatok.push(value);
                         });
+                        console.log(adatok);
                         kepeketFelvesz(adatok);
                     }
                 }
-        );
+        );*/
 
         const sablonElem = $(".galeria");
         var index = 4;
@@ -104,7 +110,7 @@ class Kep {
     kepBeallit(obj) {
         this.kep.attr("src", obj.eleres);
     }
-    
+
     tablazatKiir(obj) {
         $("#adatok").empty();
         $("#adatok").append("<th>Méret:</th>");

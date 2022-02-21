@@ -18,11 +18,9 @@
 
     </head>
     <?php
-    /* select top 10 * from Cikk
-      order by keszlet desc */
     include_once 'php/Ab.php';
     $ab = new Ab();
-    $ab->select('top 10 *', 'Cikk', 'order by keszlet desc');
+    $ab->select('top 9 c.*, m.marka', 'Cikk c inner join Modell m on c.modell = m.modell', "order by keszlet desc");
     ?>
 
     <body>
@@ -55,6 +53,7 @@
                 ?>
                 <div class="kepTarolo-div">
                     <h2>Felkapottak</h2>
+
                     <div id="kepGaleria">
                         <button id="bal"><</button>
 
@@ -70,6 +69,7 @@
 
             <section>
                 <div class="galeria">
+                    <h3 class="marka"></h3>
                     <img src="" alt="">
                 </div>
             </section>
@@ -85,6 +85,7 @@
                                 <th>Szélesség</th>
                                 <th>Mélység</th>
                                 <th>Űrmérték</th>
+                                <th>Szín</th>
                             </tr>
                         </thead>
 
@@ -95,7 +96,7 @@
 
                             <tr>
                                 <th>További színek:</th>
-                                <td colspan="4">
+                                <td colspan="5">
                                     <div class="szinek">
 
                                     </div>

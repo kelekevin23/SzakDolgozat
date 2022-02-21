@@ -9,8 +9,8 @@ class Ab {
       private $kapcsolat;
      */
 
-    //private $serverName = "DESKTOP-HFFA4M4";
-    private $serverName = "WIN10X64HUN61\SQLEXPRESS";
+    private $serverName = "DESKTOP-HFFA4M4";
+    //  private $serverName = "WIN10X64HUN61\SQLEXPRESS";
     private $connectionInfo = array("Database" => "Szakdoga_adattal");
     private $kapcsolat;
 
@@ -21,6 +21,7 @@ class Ab {
     public function __construct() {
 
         $this->kapcsolat = sqlsrv_connect($this->serverName, $this->connectionInfo);
+
         /* $this->kapcsolat = new mysqli($this->host, $this->felhasznalonev, $this->jelszo, $this->abNev);
           $szoveg = "";
           if ($this->kapcsolat->connect_error) {
@@ -45,16 +46,12 @@ class Ab {
         //$sql = "SELECT * FROM " . $tablaNeve . " WHERE " . $where;
         //$sql = $this->kapcsolat->query($sql);
 
-
-        $oszlopok = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'Cikk'";
-
+        $oszlopok = "SELECT distinct COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS where TABLE_NAME like 'Cikk' or TABLE_NAME like 'Modell'";
         $oszlopLekerdezes = sqlsrv_query($this->kapcsolat, $oszlopok);
         $oszlopNevek = array();
 
-        echo '<br>';
         while ($row = sqlsrv_fetch_array($oszlopLekerdezes, SQLSRV_FETCH_ASSOC)) {
-            array_push($oszlopNevek, $row['COLUMN_NAME'] . "<br />");
-            //var_dump($row['COLUMN_NAME']);
+            array_push($oszlopNevek, $row['COLUMN_NAME']);
         }
 
         if ($where === "") {
@@ -62,26 +59,28 @@ class Ab {
         } else {
             $sql = "SELECT " . $mit . " FROM " . $tablaNeve . " " . $where;
         }
+        $tomb = array();
 
-        $lekerdezes = sqlsrv_query($this->kapcsolat, $sql);
-        $adatok = array();
 
-        if (sqlsrv_query($this->kapcsolat, $sql)) {
+        $adatok = sqlsrv_query($this->kapcsolat, $sql, array(), array("Scrollable" => "buffered"));
 
-            while ($row = sqlsrv_fetch_array($lekerdezes, SQLSRV_FETCH_ASSOC)) {
-                // echo $row['modell'] . ", " . $row['marka'] . "<br />";
-                
-                //array_push($adatok, $row . "<br />");
+        if (sqlsrv_num_rows($adatok) > 0) {
+            while ($row = sqlsrv_fetch_array($adatok, SQLSRV_FETCH_ASSOC)) {
+                for ($index = 0; $index < count($oszlopNevek); $index++) {
+                    $seged[$oszlopNevek[$index]] = $row[$oszlopNevek[$index]];
+                    // var_dump($seged);
+                }
+               // array_push($tomb, $seged);
+                $tomb[] = array_map('utf8_encode', $seged); 
             }
         }
-        for ($index = 0; $index < count($adatok); $index++) {
-            echo $adatok[$index];
-        }
+
+                $myJSON = json_encode($tomb, JSON_UNESCAPED_UNICODE);
+          $bytes = file_put_contents("top10.json", $myJSON); 
 
 
-        var_dump($oszlopNevek);
-        var_dump($adatok);
-        return json_encode($adatok);
+        //return json_encode($tomb);       
+        return $tomb;
     }
 
     public function insert($tablaNeve, $oszlopok, $ertekek) {

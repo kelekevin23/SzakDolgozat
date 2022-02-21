@@ -1,9 +1,7 @@
 @charset "utf-8";
 
 @media screen and (max-width:1100px){
-    #jobb, #bal{
-        font-size: 40px;
-    }
+
 }
 @media screen and (max-width:1000px){
     header{
@@ -12,9 +10,7 @@
         background-color: white;
         border: 1px solid black;   
     }   
-    #jobb, #bal{
-        font-size: 30px;
-    }
+
     #panel{
         grid-column: 1 / 4;
         padding-top: 10px;
@@ -23,40 +19,18 @@
         width: 90%;
         margin: auto;
     }
-}
-
-@media screen and (max-width:900px){
-    #terkep{
-        width: 550px;
-    }
-}
-
-@media screen and (max-width:800px){
-    #jobb, #bal{
-        font-size: 25px;
-    }
-}
-
-@media screen and (max-width:750px){
-    #terkep{
-        width: 400px;
-    }
-    #jobb, #bal{
+    
+    nav li{
         font-size: 20px;
-    } 
-}
-
-@media screen and (max-width:650px){
-    #jobb, #bal{
-        font-size: 15px; 
-        margin: auto;
     }
 }
 
+@media screen and (max-width:700px){
+    main{
+        width: 100%;
+    }
+}
 @media screen and (max-width:600px){
-    #jobb, #bal{
-        font-size: 15px; 
-    }
     table{
         font-size: 12px;
     }
@@ -67,13 +41,5 @@
         width: 350px;
         height: 250px;
     }
-    main{
-        width: 100%;
-    }
-}
 
-@media screen and (max-width:550px){
-    #jobb, #bal{
-        font-size: 10px; 
-    }
 }

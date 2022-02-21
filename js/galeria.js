@@ -3,22 +3,19 @@ class Galeria {
 
         let adatok = [];
 
-        /*$.ajax(
+        $.ajax(
                 {
-                    type: "GET",
-                    url: "php/Ab.php",
-                    dataType: 'json',
-                    data: {functionname: 'select', arguments: ['top 10 *', 'Cikk', 'order by keszlet desc']},
+                    url: "top10.json",
                     success: function (result) {
 
-                        result.borondok.forEach((value) => {
+                        result.forEach((value) => {
                             adatok.push(value);
                         });
                         console.log(adatok);
                         kepeketFelvesz(adatok);
                     }
                 }
-        );*/
+        );
 
         const sablonElem = $(".galeria");
         var index = 4;
@@ -101,6 +98,7 @@ class Kep {
     constructor(elem, obj) {
         this.elem = elem;
         this.kep = this.elem.children("img");
+        this.marka = this.elem.children(".marka");
 
         this.obj = obj;
         this.kepBeallit(this.obj);
@@ -108,7 +106,11 @@ class Kep {
     }
 
     kepBeallit(obj) {
-        this.kep.attr("src", obj.eleres);
+        this.marka.html(obj.marka);
+
+        obj.szin = obj.szin.replace(new RegExp(/[û]/g), "ű");
+        this.kep.attr("src", "kepek/" + obj.marka.substring(0, 2) + '/' + obj.modell + obj.kepElerese + obj.szin + "1.jpg");
+
     }
 
     tablazatKiir(obj) {
@@ -118,12 +120,12 @@ class Kep {
         $("#adatok").append("<td>" + obj.szelesseg + " cm</td>");
         $("#adatok").append("<td>" + obj.melyseg + " cm</td>");
         $("#adatok").append("<td>" + obj.urmertek + " l</td>");
+        $("#adatok").append("<td>" + obj.szin + "</td>");
 
         $(".szinek").empty();
         for (var i = 0; i < obj.szinek; i++) {
             $(".szinek").append("<button id=" + i + "></button>");
             $(".szinek button").eq(i).css("background-color", "blue");
-
         }
     }
 }

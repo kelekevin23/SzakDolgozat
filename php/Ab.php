@@ -41,27 +41,27 @@ class Ab {
         sqlsrv_close($this->kapcsolat);
     }
 
-    public function select($mit, $tablaNeve, $where) {
+    public function select($mit, $tablaNeve, $honnan, $where, $segedTabla) {
 
-        //$sql = "SELECT * FROM " . $tablaNeve . " WHERE " . $where;
-        //$sql = $this->kapcsolat->query($sql);
-
-        $oszlopok = "SELECT distinct COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS where TABLE_NAME like 'Cikk' or TABLE_NAME like 'Modell'";
+        if ($segedTabla === "") {
+           $oszlopok = "SELECT distinct COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS where TABLE_NAME like '" . $tablaNeve . "'";
+        } else {
+            $oszlopok = "SELECT distinct COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS where TABLE_NAME like '" . $tablaNeve . "' or TABLE_NAME like '" . $segedTabla . "'";
+        }
+        
         $oszlopLekerdezes = sqlsrv_query($this->kapcsolat, $oszlopok);
         $oszlopNevek = array();
-
         while ($row = sqlsrv_fetch_array($oszlopLekerdezes, SQLSRV_FETCH_ASSOC)) {
             array_push($oszlopNevek, $row['COLUMN_NAME']);
         }
 
         if ($where === "") {
-            $sql = "SELECT " . $mit . " FROM " . $tablaNeve;
+            $sql = "SELECT " . $mit . " FROM " . $honnan;
         } else {
-            $sql = "SELECT " . $mit . " FROM " . $tablaNeve . " " . $where;
+            $sql = "SELECT " . $mit . " FROM " . $honnan . " " . $where;
         }
+        
         $tomb = array();
-
-
         $adatok = sqlsrv_query($this->kapcsolat, $sql, array(), array("Scrollable" => "buffered"));
 
         if (sqlsrv_num_rows($adatok) > 0) {
@@ -70,14 +70,13 @@ class Ab {
                     $seged[$oszlopNevek[$index]] = $row[$oszlopNevek[$index]];
                     // var_dump($seged);
                 }
-               // array_push($tomb, $seged);
-                $tomb[] = array_map('utf8_encode', $seged); 
+                // array_push($tomb, $seged);
+                $tomb[] = array_map('utf8_encode', $seged);
             }
         }
 
-                $myJSON = json_encode($tomb, JSON_UNESCAPED_UNICODE);
-          $bytes = file_put_contents("top10.json", $myJSON); 
-
+        $myJSON = json_encode($tomb, JSON_UNESCAPED_UNICODE);
+        $bytes = file_put_contents("top10.json", $myJSON);
 
         //return json_encode($tomb);       
         return $tomb;

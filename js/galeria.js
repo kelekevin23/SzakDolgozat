@@ -120,7 +120,7 @@ class Kep {
         $("#adatok").append("<td>" + obj.szelesseg + " cm</td>");
         $("#adatok").append("<td>" + obj.melyseg + " cm</td>");
         $("#adatok").append("<td>" + obj.urmertek + " l</td>");
-        $("#adatok").append("<td>" + obj.szin + "</td>");
+        //$("#adatok").append("<td>" + obj.szin + "</td>");
 
         $(".szinek").empty();
         for (var i = 0; i < obj.szinek; i++) {

@@ -96,7 +96,8 @@ article{
     width: 100%;
     background-color: brown;
     color: white;
-    font-size: 50px;
+    /*font-size: 50px;*/
+    font-size: larger;
     font-weight: bold;
 }
 /* Képgaléria vége */
@@ -106,15 +107,17 @@ aside{
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
 td, th{
     padding: 5px;
+    margin: auto;
 }
 table tr{
     background-color: white;
 }
 .szinek button{
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
 }
 /* Táblázat vége */
 

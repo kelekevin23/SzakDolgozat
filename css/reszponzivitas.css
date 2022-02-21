@@ -1,8 +1,5 @@
 @charset "utf-8";
 
-@media screen and (max-width:1100px){
-
-}
 @media screen and (max-width:1000px){
     header{
         display: grid;
@@ -19,21 +16,37 @@
         width: 90%;
         margin: auto;
     }
-    
     nav li{
         font-size: 20px;
     }
+    table{
+        font-size: 12px; 
+    }
+    td, th{
+        padding: 2px;
+    }
 }
 
+@media screen and (max-width:800px){
+    nav li{
+        font-size: 16px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+    #belepes, #regisztracio{
+        font-size: 12px;  
+    }
+}
 @media screen and (max-width:700px){
     main{
         width: 100%;
     }
+    table{
+        font-size: 10px;
+    }
 }
 @media screen and (max-width:600px){
-    table{
-        font-size: 12px;
-    }
+    
     td, th{
         padding: 0px;
     }
@@ -42,4 +55,11 @@
         height: 250px;
     }
 
+}
+@media screen and (max-width:400px){
+    nav li{
+        font-size: 12px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
 }

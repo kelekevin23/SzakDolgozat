@@ -86,7 +86,7 @@ header{
     grid-template-columns: 5% 30% 30% 30% 5%;
 }
 #kepGaleria img{
-    width: 80%;
+    width: 70%;
 }
 /* Képgaléria vége */
 
@@ -97,6 +97,7 @@ table{
     width: 90%;
     margin: auto;
 }
+
 .szinek{
     display: flex;
     justify-content: space-evenly;

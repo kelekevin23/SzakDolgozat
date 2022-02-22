@@ -18,9 +18,9 @@
 
     </head>
     <?php
-    include_once 'php/Ab.php';
+   /* include_once 'php/Ab.php';
     $ab = new Ab();
-    $ab->select("top 9 c.*, m.marka", "Cikk", "Cikk c inner join Modell m on c.modell = m.modell" , "order by keszlet desc", "Modell");
+    $ab->select("top 9 c.*, m.marka", "Cikk", "Cikk c inner join Modell m on c.modell = m.modell", "order by keszlet desc", "Modell");*/
     ?>
 
     <body>
@@ -85,7 +85,7 @@
                                 <th>Szélesség</th>
                                 <th>Mélység</th>
                                 <th>Űrmérték</th>
-                                
+
                             </tr>
                         </thead>
 

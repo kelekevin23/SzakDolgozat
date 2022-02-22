@@ -48,13 +48,13 @@ class Ab {
         } else {
             $oszlopok = "SELECT distinct COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS where TABLE_NAME like '" . $tablaNeve . "' or TABLE_NAME like '" . $segedTabla . "'";
         }
-        
+            
         $oszlopLekerdezes = sqlsrv_query($this->kapcsolat, $oszlopok);
         $oszlopNevek = array();
         while ($row = sqlsrv_fetch_array($oszlopLekerdezes, SQLSRV_FETCH_ASSOC)) {
             array_push($oszlopNevek, $row['COLUMN_NAME']);
         }
-
+        
         if ($where === "") {
             $sql = "SELECT " . $mit . " FROM " . $honnan;
         } else {
@@ -75,11 +75,12 @@ class Ab {
             }
         }
 
-        $myJSON = json_encode($tomb, JSON_UNESCAPED_UNICODE);
-        $bytes = file_put_contents("top10.json", $myJSON);
+      /*  $myJSON = json_encode($tomb, JSON_UNESCAPED_UNICODE);
+        $bytes = file_put_contents("top10.json", $myJSON);*/
 
-        //return json_encode($tomb);       
+        //return json_encode($tomb);  
         return $tomb;
+        
     }
 
     public function insert($tablaNeve, $oszlopok, $ertekek) {

@@ -3,20 +3,27 @@ class Galeria {
 
         let adatok = [];
 
-        $.ajax(
-                {
-                    url: "top10.json",
-                    success: function (result) {
+        $.ajax({
+            type: "GET",
+            url: 'php/feldolgoz.php',
+            data: {
+                mit: "top 9 c.*, m.marka",
+                tablaNeve: "Cikk",
+                honnan: "Cikk c inner join Modell m on c.modell = m.modell",
+                where: "order by keszlet desc",
+                segedTabla: "Modell"
+            },
+            datatype: "text",
 
-                        result.forEach((value) => {
-                            adatok.push(value);
-                        });
-                        console.log(adatok);
-                        kepeketFelvesz(adatok);
-                    }
-                }
-        );
-
+            success: function (data) {
+                const obj = JSON.parse(data);
+                obj.forEach((value) => {
+                    adatok.push(value);
+                });
+                kepeketFelvesz(adatok);
+            }
+        });
+        
         const sablonElem = $(".galeria");
         var index = 4;
         sablonElem.remove();

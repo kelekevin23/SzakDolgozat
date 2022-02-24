@@ -9,7 +9,7 @@ class Ab {
       private $kapcsolat;
      */
 
-    private $serverName = "DESKTOP-HFFA4M4";
+    private $serverName = "DESKTOP-U3RI1HA";
     private $connectionInfo = array("Database" => "Szakdoga_adattal");
     private $kapcsolat;
 

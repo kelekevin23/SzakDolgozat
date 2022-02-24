@@ -1,3 +1,25 @@
+
+<?php
+include_once 'Ab.php';
+$ab = new Ab();
+if (isset($_POST["login"])) {
+    $loginMail = $_POST["emailB"];
+    $loginJelszo = $_POST["jelszo"];
+    
+    $vanUser = $ab->marciselect("felhasznalonev", "felhasznalok", "where email like '$loginMail' and jelszo like '$loginJelszo'");
+    
+    if (count($vanUser)==1) {
+        $felhasznalo = $vanUser['felhasznalonev'];
+        $userAdatok= $ab->marciselect("*", "felhasznalok", "where felhasznalonev like '$felhasznalo' ");
+        $_SESSION['felhasznalonev'] = $felhasznalo;
+        
+        $_SESSION['fstatusz'] = $userAdatok['fstatusz'];
+        $_SESSION['keresztnev'] = $userAdatok['keresztnev'];
+        
+        header('location: index.php');
+    }
+}
+?>
 <div class="form-popup" id="bejelentkezoForm">
     <form class="form-container" method="post">
         <h1>Bejelentkezés</h1>
@@ -16,60 +38,63 @@
     </form>
 </div>
 <?php
-    session_start();
-    session_destroy();
-    session_start();
-    include_once 'Ab.php';
-    $ab = new Ab();
-    $knevErr = $vnevErr = $emailErr = $jelszoErr = "";
-    $knev = $vnev = $email = $jelszo = "";
 
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
+
+$knevErr = $vnevErr = $emailErr = $jelszoErr = "";
+$knev = $vnev = $email = $jelszo = "";
+
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+if (isset($_POST["submit"])) {
+    $error = "";
+    if (empty($_POST["vnev"])) {
+        $vnevErr = "Vezetéknév megadása kötelező!";
+    } else {
+        $vnev = test_input($_POST["vnev"]);
+        $_SESSION['vnev'] = $_POST['vnev'];
     }
-
-    if (isset($_POST["submit"])) {
-        $error = "";
-        if (empty($_POST["vnev"])) {
-            $vnevErr = "Vezetéknév megadása kötelező!";
+    if (empty($_POST["knev"])) {
+        $knevErr = "Keresztnév megadása kötelező!";
+    } else {
+        $knev = test_input($_POST["knev"]);
+        $_SESSION['knev'] = $_POST['knev'];
+    }
+    if (empty($_POST["emailR"])) {
+        $emailErr = "Email cím megadása kötelező";
+    } else {
+        $email = test_input($_POST["emailR"]);
+        
+//        $vanemail = $ab->selectmit("email", "felhasznalok", "email= '$email'");
+        $vanemail= $ab->marciselect("email", "felhasznalok", "where email like '$email'");
+        
+        //$vanemail = mysqli_query($ab->getKapcsolat(), "SELECT `email` FROM `felhasznalok` WHERE `email` = '".$_POST['emailR']."'");
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailErr = "Érvénytelen email cím";
             
-        } else {
-            $vnev = test_input($_POST["vnev"]);
-            $_SESSION['vnev'] = $_POST['vnev'];
-        }
-        if (empty($_POST["knev"])) {
-            $knevErr = "Keresztnév megadása kötelező!";
-        } else {
-            $knev = test_input($_POST["knev"]);
-            $_SESSION['knev'] = $_POST['knev'];
-        }
-        if (empty($_POST["emailR"])) {
-            $emailErr = "Email cím megadása kötelező";
-        } else {
-            $email = test_input($_POST["emailR"]);
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $emailErr = "Érvénytelen email cím";
-            }else{
-                $_SESSION['emailR'] = $_POST['emailR'];
-            }
-        }
-        if (empty($_POST["jelszo1"]) || empty($_POST["jelszo2"])) {
-            $jelszoErr = "Ismételd meg a jelszót!";
-        } elseif ($_POST["jelszo1"] != $_POST["jelszo2"]) {
-            $jelszoErr = "A két jelszó nem egyezik!";
-        } else {
-            $jelszo = test_input($_POST["jelszo1"]);
-            //$jelszo = md5($jelszo);
-        }
-        $error .= $vnevErr;
-        $error .= $knevErr;
-        $error .= $emailErr;
-        $error .= $jelszoErr;
-        if (strlen($error) > 0) {
-            echo '<style type="text/css">
+            
+        } else if (count($vanemail) > 0) {
+            $emailErr = "Ezt az email címet már használják";
+        } 
+    }
+    if (empty($_POST["jelszo1"]) || empty($_POST["jelszo2"])) {
+        $jelszoErr = "Ismételd meg a jelszót!";
+    } elseif ($_POST["jelszo1"] != $_POST["jelszo2"]) {
+        $jelszoErr = "A két jelszó nem egyezik!";
+    } else {
+        $jelszo = test_input($_POST["jelszo1"]);
+        //$jelszo = md5($jelszo);
+    }
+    $error .= $vnevErr;
+    $error .= $knevErr;
+    $error .= $emailErr;
+    $error .= $jelszoErr;
+    if (strlen($error) > 0) {
+        echo '<style type="text/css">
         #regisztracioForm {
             display: block;
             }
@@ -83,11 +108,14 @@
             }
         
         </style>';
-        } else {
-            $ab->insert("Felhasznalok", "(felhasznalonev, vezeteknev, keresztnev, email, jelszo, fstatusz)", "'Domonkos', '$vnev','$knev','$email','$jelszo','f'");
-        }
+    } else {
+        $vez = substr("$vnev", 0, 3);
+        $ker = strtolower(substr("$knev", 0, 3));
+        $kod = rand(100, 999);
+        $felhasznalonev = $vez . $ker . $kod;
+        $ab->insert("Felhasznalok", "(felhasznalonev, vezeteknev, keresztnev, email, jelszo, fstatusz)", "'$felhasznalonev', '$vnev','$knev','$email','$jelszo','f'");
     }
-
+}
 ?>
 
 <div class="form-popup" id="regisztracioForm">
@@ -97,21 +125,27 @@
         <div id="regisztracio-panel">
 
             <label for="vnev"><b>Vezetéknév:</b></label>
-            <input type="text" placeholder="Vezetéknév" name="vnev" value="<?php if(isset($_SESSION['vnev'])){ echo $_SESSION['vnev'];}?>" >
+            <input type="text" placeholder="Vezetéknév" name="vnev" value="<?php if (isset($_SESSION['vnev'])) {
+    echo $_SESSION['vnev'];
+} ?>" >
             <span class="error">* <?php echo $vnevErr; ?></span>
 
             <label for="knev"><b>Keresztnév:</b></label>
-            <input type="text" placeholder="Keresztnév" name="knev" value="<?php if(isset($_SESSION['knev'])){ echo $_SESSION['knev'];}?>" >
+            <input type="text" placeholder="Keresztnév" name="knev" value="<?php if (isset($_SESSION['knev'])) {
+    echo $_SESSION['knev'];
+} ?>" >
             <span class="error">* <?php echo $knevErr; ?></span>
 
             <label for="emailR"><b>E-mail cím:</b></label>
-            <input type="text" placeholder="E-mail cím" name="emailR" value="<?php if(isset($_SESSION['emailR'])){ echo $_SESSION['emailR'];}?>">
+            <input type="text" placeholder="E-mail cím" name="emailR" value="<?php if (isset($_SESSION['emailR'])) {
+    echo $_SESSION['emailR'];
+} ?>">
             <span class="error">* <?php echo $emailErr; ?></span>
 
             <label for="psw"><b>Jelszó:</b></label>
             <input type="password" placeholder="Jelszó" name="jelszo1" >
-            <span class="error">* <?php echo $jelszoErr;?></span>
-            
+            <span class="error">* <?php echo $jelszoErr; ?></span>
+
             <label for="psw"><b>Jelszó megerősítése:</b></label>
             <input type="password" placeholder="Jelszó megerősítése" name="jelszo2" >
         </div>

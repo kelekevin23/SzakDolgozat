@@ -18,9 +18,11 @@
 
     </head>
     <?php
+    include_once 'php/session.php';
    /* include_once 'php/Ab.php';
     $ab = new Ab();
     $ab->select("top 9 c.*, m.marka", "Cikk", "Cikk c inner join Modell m on c.modell = m.modell", "order by keszlet desc", "Modell");*/
+    
     ?>
 
     <body>
@@ -33,10 +35,11 @@
                         <input type="text" placeholder="Keresés..." name="kereso" id="keresosav">
                         <button type="submit" id="kereso-gomb"><i class="fa fa-search" ></i></button>
                     </div>
-                    <div id="panel">
-                        <button id="belepes">Belépés</button>
-                        <button id="regisztracio">Regisztráció</button>                        
-                    </div>
+                    
+                    <?php
+                        include_once 'php/udvozlo.php';
+                    ?>
+                    
                 </header>
                 <nav>
                     <?php

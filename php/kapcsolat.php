@@ -26,10 +26,10 @@
                         <input type="text" placeholder="Keresés..." name="kereso" id="keresosav">
                         <button type="submit" id="kereso-gomb"><i class="fa fa-search" ></i></button>
                     </div>
-                    <div id="panel">
-                        <button id="belepes">Belépés</button>
-                        <button id="regisztracio">Regisztráció</button>
-                    </div>
+                    <?php
+                    include_once 'session.php';
+                        include_once 'udvozlo.php';
+                    ?>
                 </header>
 
                 <nav>

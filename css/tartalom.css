@@ -24,7 +24,7 @@ header h1{
 /* Fejléc vége */
 
 /*Bejelentkezés, Regisztráció gombok */
-#belepes, #regisztracio{
+#belepes, #regisztracio, #kijelentkezes{
     border: none;
     background-color: white;
     cursor: pointer;
@@ -32,7 +32,7 @@ header h1{
     margin-bottom: auto;
     text-align: center;
 }
-#regisztracio{
+#regisztracio, #kijelentkezes{
     border-left: 1px solid brown;
 }
 /*Bejelentkezés, Regisztráció gombok vége*/

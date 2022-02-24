@@ -9,9 +9,8 @@ class Ab {
       private $kapcsolat;
      */
 
-    private $serverName = "DESKTOP-HFFA4M4";
-    //  private $serverName = "WIN10X64HUN61\SQLEXPRESS";
-    private $connectionInfo = array("Database" => "Szakdoga_adattal");
+    private $serverName = "DESKTOP-MARCI";
+    private $connectionInfo = array("Database" => "Szakdoga_elso");
     private $kapcsolat;
 
     function getKapcsolat() {
@@ -41,26 +40,55 @@ class Ab {
         sqlsrv_close($this->kapcsolat);
     }
 
-    public function select($mit, $tablaNeve, $honnan, $where, $segedTabla) {
+    public function marciselect($mit, $tablaNeve, $where) {
+        $oszlopok = "SELECT distinct COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS where TABLE_NAME like '" . $tablaNeve . "'";
+        $sql = "SELECT " . $mit . " FROM " . $tablaNeve . " " . $where;
+        $tomb = array();
+        $adatok = sqlsrv_query($this->kapcsolat, $sql);
 
-        if ($segedTabla === "") {
-           $oszlopok = "SELECT distinct COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS where TABLE_NAME like '" . $tablaNeve . "'";
-        } else {
-            $oszlopok = "SELECT distinct COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS where TABLE_NAME like '" . $tablaNeve . "' or TABLE_NAME like '" . $segedTabla . "'";
-        }
-            
         $oszlopLekerdezes = sqlsrv_query($this->kapcsolat, $oszlopok);
         $oszlopNevek = array();
         while ($row = sqlsrv_fetch_array($oszlopLekerdezes, SQLSRV_FETCH_ASSOC)) {
             array_push($oszlopNevek, $row['COLUMN_NAME']);
         }
-        
+
+        if ($mit == "*") {
+            while ($row = sqlsrv_fetch_array($adatok, SQLSRV_FETCH_ASSOC)) {
+                //$tomb[$mit]=$row[$mit];
+                for ($index = 0; $index < count($oszlopNevek); $index++) {
+                    $tomb[$oszlopNevek[$index]] = $row[$oszlopNevek[$index]];
+                }
+            }
+        } else {
+            while ($row = sqlsrv_fetch_array($adatok, SQLSRV_FETCH_ASSOC)) {
+                $tomb[$mit] = $row[$mit];
+            }
+        }
+
+
+        return $tomb;
+    }
+
+    public function select($mit, $tablaNeve, $honnan, $where, $segedTabla) {
+
+        if ($segedTabla === "") {
+            $oszlopok = "SELECT distinct COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS where TABLE_NAME like '" . $tablaNeve . "'";
+        } else {
+            $oszlopok = "SELECT distinct COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS where TABLE_NAME like '" . $tablaNeve . "' or TABLE_NAME like '" . $segedTabla . "'";
+        }
+
+        $oszlopLekerdezes = sqlsrv_query($this->kapcsolat, $oszlopok);
+        $oszlopNevek = array();
+        while ($row = sqlsrv_fetch_array($oszlopLekerdezes, SQLSRV_FETCH_ASSOC)) {
+            array_push($oszlopNevek, $row['COLUMN_NAME']);
+        }
+
         if ($where === "") {
             $sql = "SELECT " . $mit . " FROM " . $honnan;
         } else {
             $sql = "SELECT " . $mit . " FROM " . $honnan . " " . $where;
         }
-        
+
         $tomb = array();
         $adatok = sqlsrv_query($this->kapcsolat, $sql, array(), array("Scrollable" => "buffered"));
 
@@ -75,20 +103,17 @@ class Ab {
             }
         }
 
-      /*  $myJSON = json_encode($tomb, JSON_UNESCAPED_UNICODE);
-        $bytes = file_put_contents("top10.json", $myJSON);*/
+        /*  $myJSON = json_encode($tomb, JSON_UNESCAPED_UNICODE);
+          $bytes = file_put_contents("top10.json", $myJSON); */
 
         //return json_encode($tomb);  
         return $tomb;
-        
     }
 
     public function insert($tablaNeve, $oszlopok, $ertekek) {
 
         $sql = "INSERT INTO " . $tablaNeve . " " . $oszlopok . " VALUES (" . $ertekek . ")";
 
-        //echo $sql;
-        //echo '<br>Ellenőrzés<br>';
         $result = sqlsrv_query($this->kapcsolat, $sql);
         /* $vmi = sqlsrv_query($this->kapcsolat, $sql);
 

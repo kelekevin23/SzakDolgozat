@@ -24,7 +24,7 @@ header h1{
 /* Fejléc vége */
 
 /*Bejelentkezés, Regisztráció gombok */
-#belepes, #regisztracio, #kijelentkezes{
+#belepes, #regisztracio{
     border: none;
     background-color: white;
     cursor: pointer;
@@ -32,7 +32,7 @@ header h1{
     margin-bottom: auto;
     text-align: center;
 }
-#regisztracio, #kijelentkezes{
+#regisztracio{
     border-left: 1px solid brown;
 }
 /*Bejelentkezés, Regisztráció gombok vége*/
@@ -168,3 +168,58 @@ footer{
     height: 20px;
 }
 /* Bőrönd oldal vége */
+#szures_form{
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 200%;
+}
+#urmertek_csuszka{
+    margin: auto;
+}
+#szures-gomb{
+    color: white;
+    margin: auto;
+    width: 100%;
+    background-color: brown;
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: brown;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: brown;
+  cursor: pointer;
+}
+#slider_ertek{
+    text-align: center;
+}
+
+#szinek_tarolo label{
+    padding-left: 20px;
+}

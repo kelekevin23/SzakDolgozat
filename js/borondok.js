@@ -1,19 +1,40 @@
 $(function () {
+
+    $('.slider').on('change', function () {
+        let val = $(this).val();
+        $('#slider_ertek').html("Jelenlegi érték: " + val);
+    });
+
+    let adatok = [];
+
+
+
+    $.ajax({
+        type: "GET",
+        url: 'feldolgoz.php',
+        data: {
+            mit: "*",
+            tablaNeve: "Szin",
+            honnan: "",
+            where: "where besorolas is null",
+            segedTabla: ""
+        },
+        datatype: "text",
+
+        success: function (data) {
+            const obj = JSON.parse(data);
+            obj.forEach((value) => {
+                adatok.push(value);
+            });
+            radio(adatok);
+        }
+    });
+    
+
     const szuloElem = $("section");
     const sablonElem = $(".termek");
     const termekek = [];
-    $.ajax(
-            {
-                url: "../js/adatok.json",
-                success: function (result)
-                {
-                    result.borondok.forEach((value) => {
-                        termekek.push(value);
-                    });
-                    termeketFelvesz(termekek);
-                }
-            }
-    );
+
 
 
     function termeketFelvesz(adatok) {
@@ -27,7 +48,17 @@ $(function () {
 
 
     }
-    class Termek {
+    function radio(adatok) {
+
+        for (var i = 0; i < adatok.length; i++) {
+            $("#szinek_tarolo").append("<input type=checkbox id=szin"+ i + "name=szin"+ i + "value="+adatok[i].szin + ">");
+            $("#szinek_tarolo").append("<label for=szin" + i + ">"+ adatok[i].szin +"</label><br>");
+        }
+
+       
+    }
+    class Termek
+    {
 
         constructor(elem, obj) {
             this.elem = elem;
@@ -48,6 +79,7 @@ $(function () {
         }
 
     }
+
 });
 
 

@@ -9,8 +9,8 @@ class Ab {
       private $kapcsolat;
      */
 
-    private $serverName = "DESKTOP-MARCI";
-    private $connectionInfo = array("Database" => "Szakdoga_elso");
+    private $serverName = "DESKTOP-U3RI1HA";
+    private $connectionInfo = array("Database" => "Szakdoga_adattal");
     private $kapcsolat;
 
     function getKapcsolat() {
@@ -26,12 +26,10 @@ class Ab {
           if ($this->kapcsolat->connect_error) {
           $szoveg = "<p>Hiba: " . $this->kapcsolat->connect_error . ".</p>";
           }
-
           //ékezetes betűk
           $this->kapcsolat->query("SET NAMES UTF8");
           $this->kapcsolat->query("set character set UTF8");
           $this->kapcsolat->query("set collation_connection='utf8_hungary_ci'");
-
           echo $szoveg; */
     }
 
@@ -84,9 +82,9 @@ class Ab {
         }
 
         if ($where === "") {
-            $sql = "SELECT " . $mit . " FROM " . $honnan;
+            $sql = "SELECT " . $mit . " FROM " . $tablaNeve;
         } else {
-            $sql = "SELECT " . $mit . " FROM " . $honnan . " " . $where;
+            $sql = "SELECT " . $mit . " FROM " . $tablaNeve . " " . $where;
         }
 
         $tomb = array();
@@ -116,7 +114,6 @@ class Ab {
 
         $result = sqlsrv_query($this->kapcsolat, $sql);
         /* $vmi = sqlsrv_query($this->kapcsolat, $sql);
-
           if (sqlsrv_query($this->kapcsolat, $sql)) {
           echo 'valami';
           while ($row = sqlsrv_fetch_array($vmi, SQLSRV_FETCH_ASSOC)) {

@@ -27,10 +27,10 @@
                         <input type="text" placeholder="Keresés..." name="kereso" id="keresosav">
                         <button type="submit" id="kereso-gomb"><i class="fa fa-search" ></i></button>
                     </div>
-                    <?php
-                    include_once 'session.php';
-                        include_once 'udvozlo.php';
-                    ?>
+                    <div id="panel">
+                        <button id="belepes">Belépés</button>
+                        <button id="regisztracio">Regisztráció</button>
+                    </div>
                 </header>
 
                 <nav>
@@ -52,40 +52,35 @@
                 <aside class="szures">
                     <form id="szures_form">
 
-                        <p>Márkák:</p>
+                        <fieldset>
+                            <legend>Márkák:</legend>
                           <input type="radio" id="Samsonite" name="marka" value="Samsonite">
                           <label for="html">Samsonite</label><br>
                           <input type="radio" id="American_Tourister" name="marka" value="American_Tourister">
                           <label for="css">American Tourister</label><br>
                           <input type="radio" id="Tommy_Hilfiger" name="marka" value="Tommy_Hilfiger">
                           <label for="javascript">Tommy Hilfiger</label>
-                        <br><br>
+                        </fieldset>
+                        <br>
 
 
-                        <p>Űrmérték:</p>
-                        0
-                        <input type="range" id="a" name="a" value="50">
-                        100
-                        <br><br>
+                        <fieldset>
+                            <legend>Űrmérték:</legend>
+                        
+                        <input type="range" min="1" max="150" value="75" class="slider">
+                        <p id="slider_ertek">Jelenlegi érték: 75</p>
+                        </fieldset>
+                        <br>
 
 
-                        <p>Színek:</p>
-                        <input type="checkbox" id="szin1" name="szin1" value="Piros">
-                        <label for="szin1"> Piros</label><br>
-                        <input type="checkbox" id="szin2" name="szin2" value="Fehér">
-                        <label for="szin2"> Fehér</label><br>
-                        <input type="checkbox" id="szin3" name="szin3" value="Kék">
-                        <label for="szin3"> Kék</label><br>
-                        <input type="checkbox" id="szin4" name="szin4" value="Zöld">
-                        <label for="szin4"> Zöld</label><br>
-                        <input type="checkbox" id="szin5" name="szin5" value="Sárga">
-                        <label for="szin5"> Sárga</label><br>
-                        <input type="checkbox" id="szin6" name="szin6" value="Fekete">
-                        <label for="szin6"> Fekete</label><br>
-                        <input type="checkbox" id="szin7" name="szin7" value="Rózsaszín">
-                        <label for="szin7"> Rózsaszín</label><br>
-                        <input type="checkbox" id="szin8" name="szin8" value="Barna">
-                        <label for="szin8"> Barna</label><br><br>
+                        <fieldset>
+                            <legend>Színek:</legend>
+                        <div id="szinek_tarolo">
+
+                        </div>
+                        
+                         </fieldset>
+                        <br>
 
 
                         <button type="submit" id="szures-gomb">Szűrés</button>

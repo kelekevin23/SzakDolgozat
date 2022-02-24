@@ -9,7 +9,7 @@ class Ab {
       private $kapcsolat;
      */
 
-    private $serverName = "DESKTOP-U3RI1HA";
+    private $serverName = "DESKTOP-HFFA4M4";
     private $connectionInfo = array("Database" => "Szakdoga_adattal");
     private $kapcsolat;
 
@@ -38,7 +38,7 @@ class Ab {
         sqlsrv_close($this->kapcsolat);
     }
 
-    public function marciselect($mit, $tablaNeve, $where) {
+    public function select($mit, $tablaNeve, $where) {
         $oszlopok = "SELECT distinct COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS where TABLE_NAME like '" . $tablaNeve . "'";
         $sql = "SELECT " . $mit . " FROM " . $tablaNeve . " " . $where;
         $tomb = array();
@@ -67,7 +67,7 @@ class Ab {
         return $tomb;
     }
 
-    public function select($mit, $tablaNeve, $honnan, $where, $segedTabla) {
+    public function selectTobbtablas($mit, $tablaNeve, $honnan, $where, $segedTabla) {
 
         if ($segedTabla === "") {
             $oszlopok = "SELECT distinct COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS where TABLE_NAME like '" . $tablaNeve . "'";
@@ -82,11 +82,15 @@ class Ab {
         }
 
         if ($where === "") {
-            $sql = "SELECT " . $mit . " FROM " . $tablaNeve;
+            $sql = "SELECT " . $mit . " FROM " . $honnan;
         } else {
+            $sql = "SELECT " . $mit . " FROM " . $honnan . " " . $where;
+        }
+        
+        if ($honnan === "" and  $segedTabla === "") {
             $sql = "SELECT " . $mit . " FROM " . $tablaNeve . " " . $where;
         }
-
+        
         $tomb = array();
         $adatok = sqlsrv_query($this->kapcsolat, $sql, array(), array("Scrollable" => "buffered"));
 
@@ -103,7 +107,7 @@ class Ab {
 
         /*  $myJSON = json_encode($tomb, JSON_UNESCAPED_UNICODE);
           $bytes = file_put_contents("top10.json", $myJSON); */
-
+        
         //return json_encode($tomb);  
         return $tomb;
     }

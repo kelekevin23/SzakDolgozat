@@ -6,11 +6,12 @@ if (isset($_POST["login"])) {
     $loginMail = $_POST["emailB"];
     $loginJelszo = $_POST["jelszo"];
     
-    $vanUser = $ab->marciselect("felhasznalonev", "felhasznalok", "where email like '$loginMail' and jelszo like '$loginJelszo'");
+    $vanUser = $ab->select("felhasznalonev", "felhasznalok", "where email like '$loginMail' and jelszo like '$loginJelszo'");
     
     if (count($vanUser)==1) {
         $felhasznalo = $vanUser['felhasznalonev'];
-        $userAdatok= $ab->marciselect("*", "felhasznalok", "where felhasznalonev like '$felhasznalo' ");
+        echo $felhasznalo;
+      $userAdatok= $ab->select("*", "felhasznalok", "where felhasznalonev like '$felhasznalo' ");
         $_SESSION['felhasznalonev'] = $felhasznalo;
         
         $_SESSION['fstatusz'] = $userAdatok['fstatusz'];
@@ -70,7 +71,7 @@ if (isset($_POST["submit"])) {
         $email = test_input($_POST["emailR"]);
         
 //        $vanemail = $ab->selectmit("email", "felhasznalok", "email= '$email'");
-        $vanemail= $ab->marciselect("email", "felhasznalok", "where email like '$email'");
+        $vanemail= $ab->select("email", "felhasznalok", "where email like '$email'");
         
         //$vanemail = mysqli_query($ab->getKapcsolat(), "SELECT `email` FROM `felhasznalok` WHERE `email` = '".$_POST['emailR']."'");
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {

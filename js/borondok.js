@@ -5,31 +5,22 @@ $(function () {
         $('#slider_ertek').html("Jelenlegi érték: " + val);
     });
 
+
+
+    const ajax = new Ajax();
     let adatok = [];
 
 
 
-    $.ajax({
-        type: "GET",
-        url: 'feldolgoz.php',
-        data: {
-            mit: "*",
-            tablaNeve: "Szin",
-            honnan: "",
-            where: "where besorolas is null",
-            segedTabla: ""
-        },
-        datatype: "text",
 
-        success: function (data) {
-            const obj = JSON.parse(data);
-            obj.forEach((value) => {
-                adatok.push(value);
-            });
-            radio(adatok);
-        }
-    });
-    
+    let data = {
+        mit: "*",
+        tablaNeve: "Szin",
+        honnan: "",
+        where: "where besorolas is null",
+        segedTabla: ""
+    };
+    ajax.getAjax('feldolgoz.php', adatok, data, radio);
 
     const szuloElem = $("section");
     const sablonElem = $(".termek");
@@ -45,17 +36,15 @@ $(function () {
         }
         sablonElem.remove();
 
-
-
     }
     function radio(adatok) {
-
+       
         for (var i = 0; i < adatok.length; i++) {
-            $("#szinek_tarolo").append("<input type=checkbox id=szin"+ i + "name=szin"+ i + "value="+adatok[i].szin + ">");
-            $("#szinek_tarolo").append("<label for=szin" + i + ">"+ adatok[i].szin +"</label><br>");
+            $("#szinek_tarolo").append("<input type=checkbox id=szin" + i + "name=szin" + i + "value=" + adatok[i].szin + ">");
+            $("#szinek_tarolo").append("<label for=szin" + i + ">" + adatok[i].szin + "</label><br>");
         }
 
-       
+
     }
     class Termek
     {

@@ -13,7 +13,7 @@ function my_func($mit, $tablaNeve, $honnan, $where, $segedTabla) {
     
     include_once 'Ab.php';
     $ab = new Ab();
-    $lista = $ab->select($mit, $tablaNeve, $honnan, $where, $segedTabla);
+    $lista = $ab->selectTobbtablas($mit, $tablaNeve, $honnan, $where, $segedTabla);
     
     echo json_encode($lista);
     //var_dump($lista);

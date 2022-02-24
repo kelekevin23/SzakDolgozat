@@ -1,29 +1,29 @@
+$(function () {
+
+    const galeria = new Galeria();
+
+
+});
+
+
 class Galeria {
     constructor() {
 
+        const ajax = new Ajax();
         let adatok = [];
 
-        $.ajax({
-            type: "GET",
-            url: 'php/feldolgoz.php',
-            data: {
-                mit: "top 9 c.*, m.marka",
-                tablaNeve: "Cikk",
-                honnan: "Cikk c inner join Modell m on c.modell = m.modell",
-                where: "order by keszlet desc",
-                segedTabla: "Modell"
-            },
-            datatype: "text",
 
-            success: function (data) {
-                const obj = JSON.parse(data);
-                obj.forEach((value) => {
-                    adatok.push(value);
-                });
-                kepeketFelvesz(adatok);
-            }
-        });
-        
+
+
+        let data = {
+            mit: "top 9 c.*, m.marka",
+            tablaNeve: "Cikk",
+            honnan: "Cikk c inner join Modell m on c.modell = m.modell",
+            where: "order by keszlet desc",
+            segedTabla: "Modell"
+        };
+        ajax.getAjax('php/feldolgoz.php', adatok, data, kepeketFelvesz);
+
         const sablonElem = $(".galeria");
         var index = 4;
         sablonElem.remove();
@@ -106,14 +106,18 @@ class Kep {
         this.elem = elem;
         this.kep = this.elem.children("img");
         this.marka = this.elem.children(".marka");
+        this.modell = this.elem.children(".modell");
 
         this.obj = obj;
         this.kepBeallit(this.obj);
+
+
 
     }
 
     kepBeallit(obj) {
         this.marka.html(obj.marka);
+        this.modell.html(obj.modell);
 
         obj.szin = obj.szin.replace(new RegExp(/[û]/g), "ű");
         this.kep.attr("src", "kepek/" + obj.marka.substring(0, 2) + '/' + obj.modell + obj.kepElerese + obj.szin + "1.jpg");
@@ -130,9 +134,36 @@ class Kep {
         //$("#adatok").append("<td>" + obj.szin + "</td>");
 
         $(".szinek").empty();
-        for (var i = 0; i < obj.szinek; i++) {
-            $(".szinek").append("<button id=" + i + "></button>");
-            $(".szinek button").eq(i).css("background-color", "blue");
+
+
+        let szinek = [];
+        const ajax = new Ajax();
+
+        let data = {
+            mit: "*",
+            tablaNeve: "Cikk",
+            honnan: "Cikk c inner join Szin sz on c.szin = sz.szin",
+            //where: "where modell like 'AIRCONIC SPINNER' and kepElerese like '/67-44.5-26-67/'",
+            where: "where modell like '" + obj.modell + "' and kepElerese like '" + obj.kepElerese + "'",
+            segedTabla: "Szin"
+        };
+        ajax.getAjax('php/feldolgoz.php', szinek, data, this.szineketMegjelenit);
+
+
+
+
+    }
+    szineketMegjelenit(szin) {
+        for (var i = 0; i < szin.length; i++) {
+            $(".szinek").append("<button class=gombok id=" + i + "></button>");
+            $(".szinek button").eq(i).css("background-color", szin[i].szinKod);
         }
+
+        let marka = $(".galeria .marka").eq(1).text();
+        
+        $(".gombok").on("click", function () {
+            szin[this.id].szin = szin[this.id].szin.replace(new RegExp(/[û]/g), "ű");
+            $("#fokep img").attr("src", "kepek/" + marka.substring(0, 2) + '/' + szin[this.id].modell + szin[this.id].kepElerese + szin[this.id].szin + "1.jpg");
+        });
     }
 }

@@ -82,9 +82,13 @@ if (isset($_POST["submit"])) {
         $email = test_input($_POST["emailR"]);
 
 //        $vanemail = $ab->selectmit("email", "felhasznalok", "email= '$email'");
-
+<<<<<<< Updated upstream
         $vanemail= $ab->select("email", "felhasznalok", "where email like '$email'");
+        
+=======
+        $vanemail = $ab->marciselect("email", "felhasznalok", "where email like '$email'");
 
+>>>>>>> Stashed changes
         //$vanemail = mysqli_query($ab->getKapcsolat(), "SELECT `email` FROM `felhasznalok` WHERE `email` = '".$_POST['emailR']."'");
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $emailErr = "Érvénytelen email cím";

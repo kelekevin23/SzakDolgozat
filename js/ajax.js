@@ -12,11 +12,11 @@ class Ajax{
             datatype: "text",
 
             success: function (data) {
+                //console.log(data);
                 const obj = JSON.parse(data);
                 obj.forEach((value) => {
                     tomb.push(value);
                 });
-                console.log(tomb);
                 myCallback(tomb);
             }
         });

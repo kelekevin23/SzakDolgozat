@@ -9,7 +9,7 @@ class Ab {
       private $kapcsolat;
      */
 
-    private $serverName = "DESKTOP-MARCI";
+    private $serverName = "DESKTOP-HFFA4M4";
     private $connectionInfo = array("Database" => "Szakdoga_adattal");
     private $kapcsolat;
 
@@ -68,7 +68,7 @@ class Ab {
     }
 
     public function selectTobbtablas($mit, $tablaNeve, $honnan, $where, $segedTabla) {
-
+          
         if ($segedTabla === "") {
             $oszlopok = "SELECT distinct COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS where TABLE_NAME like '" . $tablaNeve . "'";
         } else {
@@ -80,7 +80,7 @@ class Ab {
         while ($row = sqlsrv_fetch_array($oszlopLekerdezes, SQLSRV_FETCH_ASSOC)) {
             array_push($oszlopNevek, $row['COLUMN_NAME']);
         }
-
+           
         if ($where === "") {
             $sql = "SELECT " . $mit . " FROM " . $honnan;
         } else {

@@ -115,13 +115,24 @@ table{
     grid-template-columns: 1fr 1fr;
     margin: auto;
 }
-.borond-kep{
-    text-align: center;
-}
+
 #adatok_tarolo{
     margin: auto;
     width: 90%;
     display: grid;
     grid-template-columns: 1fr 1fr;  
 }
+
+#adatok_tarolo p{
+    font-size: 16px;
+    
+}
 /* Bőrönd oldal vége */
+
+/* Lapozás */
+.lapoz{
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+/* Lapozás vége */

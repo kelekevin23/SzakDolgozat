@@ -91,6 +91,7 @@ class Ab {
             $sql = "SELECT " . $mit . " FROM " . $tablaNeve . " " . $where;
         }
         
+    //    echo $sql;
         $tomb = array();
         $adatok = sqlsrv_query($this->kapcsolat, $sql, array(), array("Scrollable" => "buffered"));
 
@@ -108,6 +109,7 @@ class Ab {
         /*  $myJSON = json_encode($tomb, JSON_UNESCAPED_UNICODE);
           $bytes = file_put_contents("top10.json", $myJSON); */
         
+        //var_dump($tomb);
         //return json_encode($tomb);  
         return $tomb;
     }

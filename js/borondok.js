@@ -1,6 +1,7 @@
 class Borond {
     constructor(elem, obj) {
         this.elem = elem;
+        this.termekMarka = this.elem.children("#adatok_tarolo").children(".termek_marka");
         this.termekModell = this.elem.children("#adatok_tarolo").children(".termek_modell");
         this.termekMagassag = this.elem.children("#adatok_tarolo").children(".termek_magassag");
         this.termekSzelesseg = this.elem.children("#adatok_tarolo").children(".termek_szelesseg");
@@ -11,6 +12,7 @@ class Borond {
         this.termekBeallit(this.obj);
     }
     termekBeallit(obj) {
+        this.termekMarka.html(obj.marka);
         this.termekModell.html(obj.modell);
         this.termekMagassag.html(obj.magassag + " cm");
         this.termekSzelesseg.html(obj.szelesseg + " cm");

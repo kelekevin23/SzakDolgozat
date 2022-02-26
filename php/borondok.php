@@ -53,16 +53,16 @@
 
             <div class="borondok-oldalszerkezet">
                 <aside class="szures">
+                    <button id="szures-gomb">Szűrés</button>
                     <form id="szures_form">
-
                         <fieldset>
                             <legend>Márkák:</legend>
+                              <input type="radio" id="AmericanTourister" name="marka" value="American Tourister">
+                              <label for="AmericanTourister">American Tourister</label><br>
                               <input type="radio" id="Samsonite" name="marka" value="Samsonite">
-                              <label for="html">Samsonite</label><br>
-                              <input type="radio" id="American_Tourister" name="marka" value="American_Tourister">
-                              <label for="css">American Tourister</label><br>
-                              <input type="radio" id="Tommy_Hilfiger" name="marka" value="Tommy_Hilfiger">
-                              <label for="javascript">Tommy Hilfiger</label>
+                              <label for="Samsonite">Samsonite</label><br>
+                              <input type="radio" id="TommyHilfiger" name="marka" value="Tommy_Hilfiger">
+                              <label for="TommyHilfiger">Tommy Hilfiger</label>
                         </fieldset>
                         <br>
 
@@ -83,10 +83,10 @@
                             </div>
 
                         </fieldset>
-                        <br>
 
 
-                        <button type="submit" id="szures-gomb">Szűrés</button>
+
+
 
                     </form> 
                 </aside>
@@ -97,7 +97,7 @@
                     </div>
 
                     <div class="adatFeltolt">
-                        
+
                     </div>
                     <div class="termek">
                         <div class="borond-kep">
@@ -105,6 +105,8 @@
                         </div>
 
                         <div id="adatok_tarolo">
+                            <p>Marka:</p>
+                            <p class="termek_marka"></p>
                             <p>Modell:</p>
                             <p class="termek_modell"></p>
                             <p>Magasság:</p>

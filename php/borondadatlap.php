@@ -51,55 +51,10 @@
                 ?>
             </article>
 
-            <div class="borondok-oldalszerkezet">
-                <aside class="szures">
-                    <button id="szures-gomb">Szűrés</button>
-                    <form id="szures_form">
-                        <fieldset>
-                            <legend>Márkák:</legend>
-                              <input type="radio" id="AmericanTourister" name="marka" value="American Tourister">
-                              <label for="AmericanTourister">American Tourister</label><br>
-                              <input type="radio" id="Samsonite" name="marka" value="Samsonite">
-                              <label for="Samsonite">Samsonite</label><br>
-                              <input type="radio" id="TommyHilfiger" name="marka" value="Tommy_Hilfiger">
-                              <label for="TommyHilfiger">Tommy Hilfiger</label>
-                        </fieldset>
-                        <br>
-
-
-                        <fieldset>
-                            <legend>Űrmérték:</legend>
-
-                            <input type="range" min="1" max="150" value="75" class="slider">
-                            <p id="slider_ertek">Jelenlegi érték: 75</p>
-                        </fieldset>
-                        <br>
-
-
-                        <fieldset>
-                            <legend>Színek:</legend>
-                            <div id="szinek_tarolo">
-
-                            </div>
-
-                        </fieldset>
-
-
-
-
-
-                    </form> 
-                </aside>
-
+            <div class="borondok-adatlap">
+                
                 <section >
-                    <div class="lapoz">
-
-                    </div>
-
-                    <div class="adatFeltolt">
-
-                    </div>
-                    <div class="termek">
+                    <div class="termek2">
                         <div class="borond-kep">
                             <p class="termek_marka"></p>
                             <p class="termek_modell"></p>
@@ -118,11 +73,9 @@
                             <p>Ár:</p>
                             <p class="termek_ar"></p>
                         </div>
-                        <div></div>
-                        <button class="info"></button>
+                     
+                        
                     </div>
-
-
                 </section>
 
 

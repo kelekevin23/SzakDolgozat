@@ -154,9 +154,9 @@ footer{
 }
 #adatok_tarolo{
     background-color: white;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
     border: 3px solid brown;
-    font-size: 20px;
+    font-size: 12px;
 }
 .szures{
     background-color: white;
@@ -167,7 +167,7 @@ footer{
 #adatok_tarolo p{
     height: 20px;
 }
-/* Bőrönd oldal vége */
+
 #szures_form{
     font-size: 20px;
     padding-left: 10px;
@@ -179,7 +179,6 @@ footer{
 }
 #szures-gomb{
     color: white;
-    margin: auto;
     width: 100%;
     background-color: brown;
     font-size: 20px;
@@ -223,3 +222,20 @@ footer{
 #szinek_tarolo label{
     padding-left: 20px;
 }
+/* Bőrönd oldal vége */
+
+
+/* Bőrönd adatlap */
+.lapozElem{
+    background: brown;
+    color: white;
+}
+.info a{
+     text-decoration: none;
+     color: black;
+}
+.info {
+    margin: auto;
+    padding: 10px;
+}
+/* Bőrönd adatlap vége */

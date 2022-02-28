@@ -56,6 +56,10 @@ $(function () {
         if (checked.length > 0) {
 
             for (var i = 0; i < checked.length; i++) {
+                checked[i] = checked[i].replace(new RegExp(/[áéöóí]/g), "%");
+            }
+
+            for (var i = 0; i < checked.length; i++) {
                 if (i === (checked.length) - 1) {
                     whereSzin += " s.szin like '" + checked[i] + "'";
                 } else {
@@ -72,7 +76,6 @@ $(function () {
                 }
             }
         }
-        console.log(whereSzin);
         let radioValue = $("input[name='marka']:checked").val();
         let where = "";
 
@@ -90,7 +93,8 @@ $(function () {
             }
         }
 
-        console.log(where);
+        //console.log(where);
+
         let data2 = {
             mit: "*",
             tablaNeve: "Cikk",
@@ -106,7 +110,7 @@ $(function () {
     const szuloElem = $(".adatFeltolt");
     const sablonElem = $(".termek");
     function termeketFelvesz(adatok) {
-        console.log(adatok);
+        //  console.log(adatok.length);
         $(".adatFeltolt").empty();
         for (var index = indexLapozas; index < indexLapozas + 10; index++) {
             if (index < adatok.length) {
@@ -140,11 +144,23 @@ $(function () {
 
         $('.lapozElem').on('click', function () {
             let id = this.id;
+//            $('.lapozElem').css("background-color", "white");
+//            $('.lapozElem').css("color", "brown");
             indexLapozas = (id * 10) - 10;
             termeketFelvesz(termekek);
 
         });
     }
+
+    $(window).on("gombKattintas", (event) => {
+        //console.log(event.detail);
+        let adathalmaz = JSON.stringify(event.detail);
+        localStorage.setItem("adatlap", adathalmaz);
+
+        const sablonElem = $(".termek2");
+        const termek = new BorondAdatlap(sablonElem, event.detail);
+
+    });
 
 });
 

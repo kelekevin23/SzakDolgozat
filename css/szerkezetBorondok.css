@@ -1,0 +1,56 @@
+@charset "utf-8";
+
+/* Bőrönd oldal */
+.borondok-oldalszerkezet{
+    display: grid;
+    grid-template-columns: 25% 75%; 
+}
+.termek{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: auto;
+}
+
+#adatok_tarolo{
+    margin: auto;
+    width: 90%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;  
+}
+
+#adatok_tarolo p{
+    font-size: 16px;
+}
+/* Bőrönd oldal vége */
+
+/* Lapozás */
+.lapoz{
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+/* Lapozás vége */
+
+/* Bőrönd adatlap */
+.adatlap-oldalszerkezet{
+    display: grid;
+    grid-template-columns: 1fr 1fr;  
+    padding-top: 20px;
+}
+#kezdoKep{
+    text-align: center;
+    border-bottom: 1px solid brown;
+}
+.borondKepek{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 5px;
+    
+}
+.borondKepek img{
+    width: 100%;
+}
+.borondKepek img:nth-child(2){
+    border-right: 1px solid brown;
+}
+/* Bőrönd adatlap vége */

@@ -6,7 +6,6 @@ main{
     background-color: lightgrey;
 }
 
-
 /* Fejléc */
 .header-container{
     position: sticky;
@@ -75,64 +74,4 @@ header{
     margin-bottom:10px;
     opacity: 0.8;
 }
-
 /* Belépés és Regisztráció panel vége */
-
-
-/* Képgaléria */
-#kepGaleria{
-    mix-blend-mode: multiply;
-    display: grid;
-    grid-template-columns: 5% 30% 30% 30% 5%;
-}
-#kepGaleria img{
-    width: 70%;
-}
-/* Képgaléria vége */
-
-/* Táblázat */
-table{
-    border: 2px solid brown;
-    text-align: center;
-    width: 90%;
-    margin: auto;
-}
-
-.szinek{
-    display: flex;
-    justify-content: space-evenly;
-}
-
-/* Táblázat vége */
-
-/* Bőrönd oldal */
-.borondok-oldalszerkezet{
-    display: grid;
-    grid-template-columns: 25% 75%; 
-}
-.termek{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin: auto;
-}
-
-#adatok_tarolo{
-    margin: auto;
-    width: 90%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;  
-}
-
-#adatok_tarolo p{
-    font-size: 16px;
-    
-}
-/* Bőrönd oldal vége */
-
-/* Lapozás */
-.lapoz{
-    padding-top: 10px;
-    display: flex;
-    justify-content: space-evenly;
-}
-/* Lapozás vége */

@@ -9,11 +9,13 @@
         <script src="../js/jquery-3.6.0.min.js"></script>
         <script src="../js/menu.js"></script>
         <script src="../js/borondok.js"></script>
-        <script src="../js/borondKezeles.js"></script>
+        <script src="../js/borondadatlap.js"></script>
         <script src="../js/ajax.js"></script>
         <script src="../js/bejelentkezes_regisztracio.js"></script>
         <link href="../css/szerkezet.css" rel="stylesheet" type="text/css"/>
         <link href="../css/tartalom.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/szerkezetBorondok.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/tartalomBorondok.css" rel="stylesheet" type="text/css"/>
         <link href="../css/reszponzivitas.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
@@ -51,40 +53,50 @@
                 ?>
             </article>
 
-            <div class="borondok-adatlap">
-                
-                <section >
-                    <div class="termek2">
-                        <div class="borond-kep">
-                            <p class="termek_marka"></p>
-                            <p class="termek_modell"></p>
-                            <img class="termek_eleres" src="" alt="">
-                        </div>
+            <div class="adatlap-oldalszerkezet">
+                <div class="nagyGaleria">
 
-                        <div id="adatok_tarolo">
-                            <p>Magasság:</p>
-                            <p class="termek_magassag"></p>
-                            <p>Szélesség:</p>
-                            <p class="termek_szelesseg"></p>
-                            <p>Mélység:</p>
-                            <p class="termek_melyseg"></p>
-                            <p>Űrmérték:</p>
-                            <p class="termek_urmertek"></p>
-                            <p>Ár:</p>
-                            <p class="termek_ar"></p>
-                        </div>
-                     
+                    <div id="kezdoKep">
                         
                     </div>
-                </section>
+
+                    <article>
+
+                        <div class="borondKepek"></div>
+
+
+                    </article>
+                    <div class="galeria">
+                        <img src="" alt="">
+                    </div>
+                </div>
+
+                <div class="borondok-adatlap">
+
+                    <section >
+                        <div class="termek2">
+                            <div id="adatok_tarolo2">
+                                <p>Magasság:</p>
+                                <p class="termek_magassag"></p>
+                                <p>Szélesség:</p>
+                                <p class="termek_szelesseg"></p>
+                                <p>Mélység:</p>
+                                <p class="termek_melyseg"></p>
+                                <p>Űrmérték:</p>
+                                <p class="termek_urmertek"></p>
+                                <p>Ár:</p>
+                                <p class="termek_ar"></p>
+                            </div>
+
+
+                        </div>
+                    </section>
+                </div>
 
 
 
             </div>
 
-            <footer>
-
-            </footer>
         </main>
 
 

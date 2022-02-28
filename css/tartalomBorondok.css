@@ -1,0 +1,74 @@
+@charset "utf-8";
+
+/* Bőrönd oldal */
+.termek{
+    background-color: lightgrey;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid brown;
+}
+.termek img{
+    mix-blend-mode: multiply;
+    width: 50%;
+}
+.borond-kep{
+    text-align: center;
+}
+#adatok_tarolo{
+    background-color: white;
+    padding-bottom: 5px;
+    border: 3px solid brown;
+    font-size: 12px;
+}
+.szures{
+    background-color: white;
+    border-bottom: 1px solid brown;
+    border-left: 1px solid brown;
+    border-right: 1px solid brown; 
+}
+#adatok_tarolo p{
+    height: 20px;
+}
+
+#szures_form{
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 200%;
+}
+#urmertek_csuszka{
+    margin: auto;
+}
+#szures-gomb{
+    color: white;
+    width: 100%;
+    background-color: brown;
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#szinek_tarolo label{
+    padding-left: 20px;
+}
+.lapozElem{
+    background: brown;
+    color: white;
+}
+.info a{
+     text-decoration: none;
+     color: black;
+}
+.info {
+    margin: auto;
+    padding: 10px;
+}
+
+/* Bőrönd oldal vége */
+
+
+/* Bőrönd adatlap */
+.adatlap-oldalszerkezet img {
+    mix-blend-mode: multiply;
+}
+/* Bőrönd adatlap vége */

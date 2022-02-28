@@ -3,16 +3,6 @@ $(function () {
     const ajax = new Ajax();
     let indexLapozas = 0;
 
-
-    $('.slider').on('change', function () {
-        let val = $(this).val();
-        $('#slider_ertek').html("Jelenlegi érték: " + val);
-    });
-
-
-
-
-
     let adatok = [];
     let data = {
         mit: "*",
@@ -24,10 +14,6 @@ $(function () {
     ajax.getAjax('feldolgoz.php', adatok, data, checkbox);
 
 
-
-
-
-
     let termekek = [];
     let data2 = {
         mit: "*",
@@ -35,11 +21,7 @@ $(function () {
         honnan: "Cikk c inner join Modell m on c.modell = m.modell",
         where: "order by c.modell, c.magassag",
         segedTabla: "Modell"
-//        mit: "*",
-//        tablaNeve: "Cikk",
-//        honnan: "(select row_number() OVER (order by modell, magassag) AS ROWINDEX,* from Cikk ) c inner join Modell m on c.modell = m.modell",
-//        where: "WHERE c.ROWINDEX between 1 and 10",
-//        segedTabla: "Modell"
+
     };
     ajax.getAjax('feldolgoz.php', termekek, data2, termeketFelvesz);
 
@@ -144,21 +126,21 @@ $(function () {
 
         $('.lapozElem').on('click', function () {
             let id = this.id;
-//            $('.lapozElem').css("background-color", "white");
-//            $('.lapozElem').css("color", "brown");
             indexLapozas = (id * 10) - 10;
             termeketFelvesz(termekek);
 
         });
+        $(".lapozElem").click(function () {
+            let id = this.id;
+            $('.lapozElem').eq(id - 1).css("background-color", "white");
+            $('.lapozElem').eq(id - 1).css("color", "brown");
+        });
     }
 
     $(window).on("gombKattintas", (event) => {
-        //console.log(event.detail);
         let adathalmaz = JSON.stringify(event.detail);
         localStorage.setItem("adatlap", adathalmaz);
 
-        const sablonElem = $(".termek2");
-        const termek = new BorondAdatlap(sablonElem, event.detail);
 
     });
 

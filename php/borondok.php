@@ -14,6 +14,8 @@
         <script src="../js/bejelentkezes_regisztracio.js"></script>
         <link href="../css/szerkezet.css" rel="stylesheet" type="text/css"/>
         <link href="../css/tartalom.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/szerkezetBorondok.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/tartalomBorondok.css" rel="stylesheet" type="text/css"/>
         <link href="../css/reszponzivitas.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
@@ -51,87 +53,77 @@
                 ?>
             </article>
 
-            <div class="borondok-oldalszerkezet">
-                <aside class="szures">
-                    <button id="szures-gomb">Szűrés</button>
-                    <form id="szures_form">
-                        <fieldset>
-                            <legend>Márkák:</legend>
-                              <input type="radio" id="AmericanTourister" name="marka" value="American Tourister">
-                              <label for="AmericanTourister">American Tourister</label><br>
-                              <input type="radio" id="Samsonite" name="marka" value="Samsonite">
-                              <label for="Samsonite">Samsonite</label><br>
-                              <input type="radio" id="TommyHilfiger" name="marka" value="Tommy_Hilfiger">
-                              <label for="TommyHilfiger">Tommy Hilfiger</label>
-                        </fieldset>
+            <div class="tarolo-div">
+                <div class="borondok-oldalszerkezet">
+                    <aside class="szures">
                         <br>
+                        <button id="szures-gomb">Szűrés</button>
+                        <form id="szures_form">
+                            <fieldset>
+                                <legend>Márkák:</legend>
+                                  <input type="radio" id="AmericanTourister" name="marka" value="American Tourister">
+                                  <label for="AmericanTourister">American Tourister</label><br>
+                                  <input type="radio" id="Samsonite" name="marka" value="Samsonite">
+                                  <label for="Samsonite">Samsonite</label><br>
+                                  <input type="radio" id="TommyHilfiger" name="marka" value="Tommy_Hilfiger">
+                                  <label for="TommyHilfiger">Tommy Hilfiger</label>
+                            </fieldset>
+                            <br>
+
+                            <fieldset>
+                                <legend>Színek:</legend>
+                                <div id="szinek_tarolo">
+
+                                </div>
+
+                            </fieldset>
 
 
-                        <fieldset>
-                            <legend>Űrmérték:</legend>
-
-                            <input type="range" min="1" max="150" value="75" class="slider">
-                            <p id="slider_ertek">Jelenlegi érték: 75</p>
-                        </fieldset>
-                        <br>
 
 
-                        <fieldset>
-                            <legend>Színek:</legend>
-                            <div id="szinek_tarolo">
 
+                        </form> 
+                    </aside>
+
+                    <section >
+                        <div class="lapoz">
+
+                        </div>
+
+                        <div class="adatFeltolt">
+
+                        </div>
+                        <div class="termek">
+                            <div class="borond-kep">
+                                <p class="termek_marka"></p>
+                                <p class="termek_modell"></p>
+                                <img class="termek_eleres" src="" alt="">
                             </div>
 
-                        </fieldset>
-
-
-
-
-
-                    </form> 
-                </aside>
-
-                <section >
-                    <div class="lapoz">
-
-                    </div>
-
-                    <div class="adatFeltolt">
-
-                    </div>
-                    <div class="termek">
-                        <div class="borond-kep">
-                            <p class="termek_marka"></p>
-                            <p class="termek_modell"></p>
-                            <img class="termek_eleres" src="" alt="">
+                            <div id="adatok_tarolo">
+                                <p>Magasság:</p>
+                                <p class="termek_magassag"></p>
+                                <p>Szélesség:</p>
+                                <p class="termek_szelesseg"></p>
+                                <p>Mélység:</p>
+                                <p class="termek_melyseg"></p>
+                                <p>Űrmérték:</p>
+                                <p class="termek_urmertek"></p>
+                                <p>Ár:</p>
+                                <p class="termek_ar"></p>
+                            </div>
+                            <div></div>
+                            <button class="info"></button>
                         </div>
 
-                        <div id="adatok_tarolo">
-                            <p>Magasság:</p>
-                            <p class="termek_magassag"></p>
-                            <p>Szélesség:</p>
-                            <p class="termek_szelesseg"></p>
-                            <p>Mélység:</p>
-                            <p class="termek_melyseg"></p>
-                            <p>Űrmérték:</p>
-                            <p class="termek_urmertek"></p>
-                            <p>Ár:</p>
-                            <p class="termek_ar"></p>
-                        </div>
-                        <div></div>
-                        <button class="info"></button>
-                    </div>
+
+                    </section>
 
 
-                </section>
 
-
+                </div>
 
             </div>
-
-            <footer>
-
-            </footer>
         </main>
 
 

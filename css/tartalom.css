@@ -79,55 +79,6 @@ nav a{
 }
 /* Navigáció vége */
 
-/* Képgaléria */
-article{
-    text-align: center; 
-    color: brown;
-}
-#balkep, #jobbkep{
-    width: 60%;
-    margin: auto;
-    opacity: 0.4;
-}
-#jobb, #bal{
-    margin: auto;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    width: 100%;
-    background-color: brown;
-    color: white;
-    /*font-size: 50px;*/
-    font-size: larger;
-    font-weight: bold;
-}
-/* Képgaléria vége */
-
-/* Táblázat */
-aside{
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
-td, th{
-    padding: 5px;
-    margin: auto;
-}
-table tr{
-    background-color: white;
-}
-.szinek button{
-    width: 15px;
-    height: 15px;
-}
-/* Táblázat vége */
-
-/* Footer */
-footer{
-    text-align: center;
-    color: brown;
-}
-/* Footer vége*/
-
 /* Térkép */
 #terkep{
     border: none;
@@ -137,105 +88,9 @@ footer{
 }
 /* Térkép vége */
 
-/* Bőrönd oldal */
-.termek{
-    background-color: lightgrey;
+/* Footer */
+footer{
     text-align: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid brown;
+    color: brown;
 }
-.termek img{
-    mix-blend-mode: multiply;
-    width: 50%;
-}
-.borond-kep{
-    text-align: center;
-}
-#adatok_tarolo{
-    background-color: white;
-    padding-bottom: 5px;
-    border: 3px solid brown;
-    font-size: 12px;
-}
-.szures{
-    background-color: white;
-    border-bottom: 1px solid brown;
-    border-left: 1px solid brown;
-    border-right: 1px solid brown; 
-}
-#adatok_tarolo p{
-    height: 20px;
-}
-
-#szures_form{
-    font-size: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
-    line-height: 200%;
-}
-#urmertek_csuszka{
-    margin: auto;
-}
-#szures-gomb{
-    color: white;
-    width: 100%;
-    background-color: brown;
-    font-size: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-.slider {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 25px;
-  background: #d3d3d3;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-}
-
-.slider:hover {
-  opacity: 1;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 25px;
-  height: 25px;
-  background: brown;
-  cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  background: brown;
-  cursor: pointer;
-}
-#slider_ertek{
-    text-align: center;
-}
-
-#szinek_tarolo label{
-    padding-left: 20px;
-}
-/* Bőrönd oldal vége */
-
-
-/* Bőrönd adatlap */
-.lapozElem{
-    background: brown;
-    color: white;
-}
-.info a{
-     text-decoration: none;
-     color: black;
-}
-.info {
-    margin: auto;
-    padding: 10px;
-}
-/* Bőrönd adatlap vége */
+/* Footer vége*/

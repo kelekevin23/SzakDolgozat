@@ -40,25 +40,41 @@ class Borond {
 }
 
 class BorondAdatlap {
-    constructor(elem, obj) {
+    constructor(elem, obj, index) {
         this.elem = elem;
+        this.obj = obj;
+        this.index = index;
 //        this.kep = this.elem.children(".kep");
 //
 //        this.gomb = this.elem.children(".kosarba");
 //        this.gomb.html("Kosárba");
 //        this.termekBeallit(this.elem);
+        
+        this.termekKep = this.elem.children(".galeria img");
 
-        let tomb = localStorage.getItem("adatlap");
-        console.log(tomb);
-        this.termekBeallit(obj);
+        this.termekBeallit(this.obj, this.index);
+        this.termekKep.on("click", () => {
+            this.kattintasTrigger();
+        });
+
     }
+    kattintasTrigger(){
+        let esemeny = new CustomEvent("kepKattintas", {detail:this.index});
+        window.dispatchEvent(esemeny);
 
+    }
+    
+    termekBeallit(obj, index) {
+        this.index = index;
+        obj.szin = obj.szin.replace(new RegExp(/[û]/g), "ű");
+        this.termekKep.attr("src", "../kepek/" + obj.marka.substring(0, 2) + '/' + obj.modell + obj.kepElerese + obj.szin + index + ".jpg");
+    }
 }
 class BorondRendszergazda extends Borond {
     constructor(elem, obj) {
         super(elem, obj);
 
-        this.beallit(this.adat);
+        //this.beallit(this.adat);
 
         /*this.torlesElem = this.elem.children("td").children(".torol");
          this.modositElem = this.elem.children("td").children(".modosit");

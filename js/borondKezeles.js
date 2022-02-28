@@ -89,11 +89,11 @@ $(function () {
             if (whereSzin === "") {
                 where += "where m.marka like '" + radioValue + "' order by c.modell, c.magassag";
             } else {
-                where += "where m.marka like '" + radioValue + "' and" + whereSzin + " order by c.modell, c.magassag";
+                where += "where m.marka like '" + radioValue + "' and (" + whereSzin + ") order by c.modell, c.magassag";
             }
         }
 
-        //console.log(where);
+        console.log(where);
 
         let data2 = {
             mit: "*",

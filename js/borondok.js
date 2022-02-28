@@ -44,30 +44,84 @@ class BorondAdatlap {
         this.elem = elem;
         this.obj = obj;
         this.index = index;
-//        this.kep = this.elem.children(".kep");
-//
-//        this.gomb = this.elem.children(".kosarba");
-//        this.gomb.html("Kosárba");
-//        this.termekBeallit(this.elem);
-        
+        this.kosarba = $(".kosarba");
         this.termekKep = this.elem.children(".galeria img");
-
         this.termekBeallit(this.obj, this.index);
+        
         this.termekKep.on("click", () => {
             this.kattintasTrigger();
         });
 
-    }
-    kattintasTrigger(){
-        let esemeny = new CustomEvent("kepKattintas", {detail:this.index});
-        window.dispatchEvent(esemeny);
+        let markaTomb = localStorage.getItem("adatlap_marka");
+        let marka = JSON.parse(markaTomb);
 
+        let adatok = ['modell', 'cikkszam', 'magassag', 'szelesseg', 'melyseg', 'urmertek', 'szin', 'keszlet', 'ar'];
+        $(".adatlap_tarolo").empty();
+        $(".adatlap_tarolo").append("<tr><th>marka</th><td>" + marka + "</td></tr>");
+        
+        let keszlet = this.obj['keszlet'];
+        if (keszlet === "0") {
+            $(".kosarba").prop("disabled", true);
+        } else{
+            $(".kosarba").prop("disabled", false);
+        }
+        
+        for (var i = 0; i < adatok.length; i++) {
+            for (var item in this.obj) {
+                if (adatok[i] === item) {
+                    $(".adatlap_tarolo").append("<tr><th>" + item + "</th><td>" + this.obj[item] + "</td></tr>");
+                }
+            }
+        }
+        
+        let szinek = [];
+        const ajax = new Ajax();
+
+        let data = {
+            mit: "*",
+            tablaNeve: "Cikk",
+            honnan: "Cikk c inner join Szin sz on c.szin = sz.szin",
+            where: "where modell like '" + this.obj.modell + "' and kepElerese like '" + this.obj.kepElerese + "'",
+            segedTabla: "Szin"
+        };
+        ajax.getAjax('feldolgoz.php', szinek, data, this.szineketMegjelenit);
+        
+        this.kosarba.on("click", ()=>{
+            this.kosarKattintas();
+        });
     }
-    
+
+    kattintasTrigger() {
+        let esemeny = new CustomEvent("kepKattintas", {detail: {data: this.index, data2: this.obj}});
+        window.dispatchEvent(esemeny);
+    }
+    kosarKattintas() {
+        let darab = $("#menny").val();
+        let esemeny = new CustomEvent("kosarKattintas", {detail: {tomb: this.obj, menny: darab}});
+        window.dispatchEvent(esemeny);
+    }
+
     termekBeallit(obj, index) {
+        this.kosarba.html("Kosárba");
         this.index = index;
         obj.szin = obj.szin.replace(new RegExp(/[û]/g), "ű");
-        this.termekKep.attr("src", "../kepek/" + obj.marka.substring(0, 2) + '/' + obj.modell + obj.kepElerese + obj.szin + index + ".jpg");
+        let markaTomb = localStorage.getItem("adatlap_marka");
+        let marka = JSON.parse(markaTomb);
+
+        this.termekKep.attr("src", "../kepek/" + marka.substring(0, 2) + '/' + obj.modell + obj.kepElerese + obj.szin + index + ".jpg");
+    }
+    szineketMegjelenit(szinek) {
+        //console.log(szinek);
+        $(".szinek").empty();
+        for (var i = 0; i < szinek.length; i++) {
+            $(".szinek").append("<div class=adatlapSzinek><p>" + szinek[i].szin + "</p><button class=adatlapGombok id=" + i + "></button></div>");
+            $(".szinek button").eq(i).css("background-color", szinek[i].szinKod);
+        }
+
+        $(".adatlapGombok").on("click", function () {
+            let esemeny = new CustomEvent("szinKattintas", {detail: {data: szinek[this.id]}});
+            window.dispatchEvent(esemeny);
+        });
     }
 }
 class BorondRendszergazda extends Borond {

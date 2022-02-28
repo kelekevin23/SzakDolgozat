@@ -57,7 +57,7 @@
                 <div class="nagyGaleria">
 
                     <div id="kezdoKep">
-                        
+
                     </div>
 
                     <article>
@@ -71,30 +71,30 @@
                     </div>
                 </div>
 
-                <div class="borondok-adatlap">
 
-                    <section >
-                        <div class="termek2">
-                            <div id="adatok_tarolo2">
-                                <p>Magasság:</p>
-                                <p class="termek_magassag"></p>
-                                <p>Szélesség:</p>
-                                <p class="termek_szelesseg"></p>
-                                <p>Mélység:</p>
-                                <p class="termek_melyseg"></p>
-                                <p>Űrmérték:</p>
-                                <p class="termek_urmertek"></p>
-                                <p>Ár:</p>
-                                <p class="termek_ar"></p>
-                            </div>
 
+                <section>
+                    <div id="kosarbaGomb">   
+                        <form>
+                            <label for="menny">Mennyiség:</label>
+                            <input type="number" id="menny" name="menny" min="1" value="1">
+                            <button class="kosarba"></button>
+                        </form>
+                    </div>
+
+                    <div class="termek_adatlap">
+                        <table class="adatlap_tarolo">
+
+                        </table>
+                    </div>
+
+                    <div id="adatlap_szinek">
+                        <h3>Elérhető szinek:</h3>
+                        <div class="szinek">
 
                         </div>
-                    </section>
-                </div>
-
-
-
+                    </div>
+                </section>
             </div>
 
         </main>

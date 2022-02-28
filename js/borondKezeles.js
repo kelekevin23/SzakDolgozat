@@ -140,8 +140,6 @@ $(function () {
     $(window).on("gombKattintas", (event) => {
         let adathalmaz = JSON.stringify(event.detail);
         localStorage.setItem("adatlap", adathalmaz);
-
-
     });
 
 });

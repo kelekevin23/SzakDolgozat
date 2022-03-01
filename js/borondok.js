@@ -41,13 +41,17 @@ class Borond {
 
 class BorondAdatlap {
     constructor(elem, obj, index) {
+
         this.elem = elem;
         this.obj = obj;
+
         this.index = index;
-        this.kosarba = $(".kosarba");
+        let aktualisObj = JSON.stringify(this.obj);
+        localStorage.setItem("aktualisObj", aktualisObj);
+
         this.termekKep = this.elem.children(".galeria img");
         this.termekBeallit(this.obj, this.index);
-        
+
         this.termekKep.on("click", () => {
             this.kattintasTrigger();
         });
@@ -58,14 +62,9 @@ class BorondAdatlap {
         let adatok = ['modell', 'cikkszam', 'magassag', 'szelesseg', 'melyseg', 'urmertek', 'szin', 'keszlet', 'ar'];
         $(".adatlap_tarolo").empty();
         $(".adatlap_tarolo").append("<tr><th>marka</th><td>" + marka + "</td></tr>");
-        
-        let keszlet = this.obj['keszlet'];
-        if (keszlet === "0") {
-            $(".kosarba").prop("disabled", true);
-        } else{
-            $(".kosarba").prop("disabled", false);
-        }
-        
+
+
+
         for (var i = 0; i < adatok.length; i++) {
             for (var item in this.obj) {
                 if (adatok[i] === item) {
@@ -73,7 +72,7 @@ class BorondAdatlap {
                 }
             }
         }
-        
+
         let szinek = [];
         const ajax = new Ajax();
 
@@ -85,9 +84,11 @@ class BorondAdatlap {
             segedTabla: "Szin"
         };
         ajax.getAjax('feldolgoz.php', szinek, data, this.szineketMegjelenit);
-        
-        this.kosarba.on("click", ()=>{
-            this.kosarKattintas();
+
+        $(".kosarba").on("click", function () {
+            let darab = $("#menny").val();
+            //let aktualisObj = JSON.stringify(this.obj);
+            localStorage.setItem("aktualisDarab", darab);
         });
     }
 
@@ -95,14 +96,8 @@ class BorondAdatlap {
         let esemeny = new CustomEvent("kepKattintas", {detail: {data: this.index, data2: this.obj}});
         window.dispatchEvent(esemeny);
     }
-    kosarKattintas() {
-        let darab = $("#menny").val();
-        let esemeny = new CustomEvent("kosarKattintas", {detail: {tomb: this.obj, menny: darab}});
-        window.dispatchEvent(esemeny);
-    }
 
     termekBeallit(obj, index) {
-        this.kosarba.html("Kosárba");
         this.index = index;
         obj.szin = obj.szin.replace(new RegExp(/[û]/g), "ű");
         let markaTomb = localStorage.getItem("adatlap_marka");

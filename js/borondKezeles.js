@@ -60,20 +60,49 @@ $(function () {
         }
         let radioValue = $("input[name='marka']:checked").val();
         let where = "";
-
+        let meret = $("input[name='meret']:checked").val();
         if (radioValue === undefined) {
-            if (whereSzin === "") {
-                where += "order by c.modell, c.magassag";
+            if (meret === undefined) {
+                if (whereSzin === "") {
+                    where += "order by c.modell, c.magassag";
+                } else {
+                    where += "where" + whereSzin + " order by c.modell, c.magassag";
+                }
             } else {
-                where += "where" + whereSzin + " order by c.modell, c.magassag";
+                if (whereSzin === "") {
+                    where += "where c.urmertek " + meret + "order by c.modell, c.magassag";
+                } else {
+                    where += "where" + whereSzin + "and c.urmertek " + meret + " order by c.modell, c.magassag";
+                }
             }
         } else {
-            if (whereSzin === "") {
-                where += "where m.marka like '" + radioValue + "' order by c.modell, c.magassag";
+            if (meret === undefined) {
+                if (whereSzin === "") {
+                    where += "where m.marka like '" + radioValue + "' order by c.modell, c.magassag";
+                } else {
+                    where += "where m.marka like '" + radioValue + "' and (" + whereSzin + ") order by c.modell, c.magassag";
+                }
             } else {
-                where += "where m.marka like '" + radioValue + "' and (" + whereSzin + ") order by c.modell, c.magassag";
+                if (whereSzin === "") {
+                    where += "where m.marka like '" + radioValue + "' " + "and c.urmertek " + meret + " order by c.modell, c.magassag";
+                } else {
+                    where += "where m.marka like '" + radioValue + "' " + "and c.urmertek " + meret + " and (" + whereSzin + ") order by c.modell, c.magassag";
+                }
             }
         }
+        /*if (radioValue === undefined) {
+         if (whereSzin === "") {
+         where += "order by c.modell, c.magassag";
+         } else {
+         where += "where" + whereSzin + " order by c.modell, c.magassag";
+         }
+         } else {
+         if (whereSzin === "") {
+         where += "where m.marka like '" + radioValue + "' order by c.modell, c.magassag";
+         } else {
+         where += "where m.marka like '" + radioValue + "' and (" + whereSzin + ") order by c.modell, c.magassag";
+         }
+         }*/
 
         console.log(where);
 

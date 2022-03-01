@@ -42,11 +42,12 @@
 }
 #szures-gomb{
     color: white;
-    width: 100%;
+    width: 92%;
+    margin-left: 10px;
+    margin-right: 10px;
     background-color: brown;
     font-size: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px;
 }
 #szinek_tarolo label{
     padding-left: 20px;
@@ -103,7 +104,7 @@
     background: limegreen;
     color: white;
     font-size: 25px;
-    
+
 }
 #kosarbaGomb{
     text-align: center;

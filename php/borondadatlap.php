@@ -10,6 +10,7 @@
         <script src="../js/menu.js"></script>
         <script src="../js/borondok.js"></script>
         <script src="../js/borondadatlap.js"></script>
+        <script src="../js/kosar.js"></script>
         <script src="../js/ajax.js"></script>
         <script src="../js/bejelentkezes_regisztracio.js"></script>
         <link href="../css/szerkezet.css" rel="stylesheet" type="text/css"/>
@@ -56,16 +57,12 @@
             <div class="adatlap-oldalszerkezet">
                 <div class="nagyGaleria">
 
-                    <div id="kezdoKep">
-
-                    </div>
+                    <div id="kezdoKep"></div>
 
                     <article>
-
                         <div class="borondKepek"></div>
-
-
                     </article>
+                    
                     <div class="galeria">
                         <img src="" alt="">
                     </div>
@@ -78,8 +75,8 @@
                         <form>
                             <label for="menny">Mennyiség:</label>
                             <input type="number" id="menny" name="menny" min="1" value="1">
-                            <button class="kosarba"></button>
                         </form>
+                            <button class="kosarba"></button>
                     </div>
 
                     <div class="termek_adatlap">

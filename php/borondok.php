@@ -71,6 +71,16 @@
                             <br>
 
                             <fieldset>
+                                <legend>Űrmérték:</legend>
+                                <input type="radio" name="meret" value="between 30 and 50">
+                                <label for="kicsi">30-50</label><br>
+                                <input type="radio" name="meret" value="between 50 and 85">
+                                <label for="közepes">50-85</label><br>
+                                <input type="radio" name="meret" value="between 85 and 125">
+                                <label for="nagy">85-125</label><br> 
+                            </fieldset>
+                            <br>
+                            <fieldset>
                                 <legend>Színek:</legend>
                                 <div id="szinek_tarolo">
 

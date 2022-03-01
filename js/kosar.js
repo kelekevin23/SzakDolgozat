@@ -2,28 +2,29 @@ class Kosar {
 
     constructor() {
         this.kosarTomb = [];
-        this.valami = JSON.parse(localStorage.getItem("kulcs"));
+        /*this.valami = JSON.parse(localStorage.getItem("kosar"));
 
         this.osszelem = $("#osszAr");
 
         if (this.valami != null) {
             this.kosarTomb = this.valami;
-            this.megjelenit();
-        }
+            //  this.megjelenit();
+        }*/
 
 
     }
 
-    setAdatok(termekNev, ar) {
+    setAdatok(obj, db) {
         this.tombbe = [];
-        this.tombbe.push(termekNev);
-        this.tombbe.push(ar);
+        this.tombbe.push(obj);
+        this.tombbe.push(db);
         this.kosarTomb.push(this.tombbe);
 
         let adathalmaz = JSON.stringify(this.kosarTomb);
-        localStorage.setItem("kulcs", adathalmaz);
+        localStorage.setItem("kosar", adathalmaz);
 
-        this.megjelenit();
+        console.log(this.kosarTomb);
+        //this.megjelenit();
     }
 
     megjelenit() {
@@ -35,11 +36,11 @@ class Kosar {
 
         for (let index = 0; index < this.kosarTomb.length; index++) {
             /*this.osszeg += this.kosarTomb[index][1];
-            tablazat += "<tr>";
-            tablazat += "<td>" + this.kosarTomb[index][0] + "</td>";
-            tablazat += "<td></td>";
-            tablazat += "<td class=jobb>" + this.kosarTomb[index][1] + "Ft</td>";
-            tablazat += "<td><button class=gombok id=" + index + ">X</button></td></tr>";*/
+             tablazat += "<tr>";
+             tablazat += "<td>" + this.kosarTomb[index][0] + "</td>";
+             tablazat += "<td></td>";
+             tablazat += "<td class=jobb>" + this.kosarTomb[index][1] + "Ft</td>";
+             tablazat += "<td><button class=gombok id=" + index + ">X</button></td></tr>";*/
 
             //localStorage.removeItem("lastname");
             //Adat = Localstorage.getItem("kulcs");

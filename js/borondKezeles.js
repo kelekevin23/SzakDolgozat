@@ -66,13 +66,13 @@ $(function () {
                 if (whereSzin === "") {
                     where += "order by c.modell, c.magassag";
                 } else {
-                    where += "where" + whereSzin + " order by c.modell, c.magassag";
+                    where += "where (" + whereSzin + " ) order by c.modell, c.magassag";
                 }
             } else {
                 if (whereSzin === "") {
                     where += "where c.urmertek " + meret + "order by c.modell, c.magassag";
                 } else {
-                    where += "where" + whereSzin + "and c.urmertek " + meret + " order by c.modell, c.magassag";
+                    where += "where (" + whereSzin + ") and c.urmertek " + meret + " order by c.modell, c.magassag";
                 }
             }
         } else {
@@ -84,9 +84,9 @@ $(function () {
                 }
             } else {
                 if (whereSzin === "") {
-                    where += "where m.marka like '" + radioValue + "' " + "and c.urmertek " + meret + " order by c.modell, c.magassag";
+                    where += "where m.marka like '" + radioValue + "' " + " and c.urmertek " + meret + " order by c.modell, c.magassag";
                 } else {
-                    where += "where m.marka like '" + radioValue + "' " + "and c.urmertek " + meret + " and (" + whereSzin + ") order by c.modell, c.magassag";
+                    where += "where m.marka like '" + radioValue + "' " + " and c.urmertek " + meret + " and (" + whereSzin + ") order by c.modell, c.magassag";
                 }
             }
         }
@@ -153,6 +153,9 @@ $(function () {
             $(".lapoz").append("<button class=lapozElem id=" + i + ">" + i + "</button>");
         }
 
+        $('.lapozElem').eq(0).css("background-color", "white");
+        $('.lapozElem').eq(0).css("color", "brown");
+        
         $('.lapozElem').on('click', function () {
             let id = this.id;
             indexLapozas = (id * 10) - 10;
@@ -161,6 +164,8 @@ $(function () {
         });
         $(".lapozElem").click(function () {
             let id = this.id;
+            $('.lapozElem').eq(0).css("background-color", "brown");
+            $('.lapozElem').eq(0).css("color", "white");
             $('.lapozElem').eq(id - 1).css("background-color", "white");
             $('.lapozElem').eq(id - 1).css("color", "brown");
         });

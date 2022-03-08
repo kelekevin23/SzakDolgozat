@@ -25,11 +25,10 @@
                     <h1>B-Shop</h1>
                     <div class="kereso-panel">
                         <input type="text" placeholder="Keresés..." name="kereso" id="keresosav">
-                        <button type="submit" id="kereso-gomb"><i class="fa fa-search" ></i></button>
                     </div>
                     <?php
                     include_once 'session.php';
-                        include_once 'udvozlo.php';
+                    include_once 'udvozlo.php';
                     ?>
                 </header>
 
@@ -46,21 +45,13 @@
                 <?php
                 include_once 'form.php';
                 ?>
-
-
             </article>
 
-            <section>
 
-            </section>
-
-            <aside class="adatok">
+            <aside class="kosarAdatok">
 
             </aside>
 
-            <footer>
-
-            </footer>
         </main>
 
 

@@ -13,8 +13,8 @@ header h1{
     margin-bottom: auto;
 }
 #keresosav{    
-    height: 95%;
-    width: 87%;   
+    height: 100%;
+    width: 99%;   
     background-color: lightgrey;
     border: none;
 }
@@ -24,7 +24,11 @@ header h1{
 /* Fejléc vége */
 
 /*Bejelentkezés, Regisztráció gombok */
-#belepes, #regisztracio{
+article{
+    text-align: center; 
+    color: brown;
+}
+#belepes, #regisztracio, #kijelentkezes{
     border: none;
     background-color: white;
     cursor: pointer;
@@ -34,6 +38,19 @@ header h1{
 }
 #regisztracio{
     border-left: 1px solid brown;
+}
+#udvozles{
+    text-align: center;
+    color: brown;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 20px;
+}
+#kijelentkezesForm{
+    border-left: 1px solid brown;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 /*Bejelentkezés, Regisztráció gombok vége*/
 
@@ -66,7 +83,6 @@ nav li{
     font-size: 25px;
     padding-top: 10px;
     padding-bottom: 10px;
-
 }
 #menu{
     display: grid;
@@ -77,13 +93,21 @@ nav a{
     text-decoration: none;
     color: white;
 }
+
+nav button{
+    border: none;
+    background-color: brown;
+    cursor: pointer;
+    color: white;
+    font-size: 25px;
+}
 /* Navigáció vége */
 
 /* Térkép */
 #terkep{
     border: none;
-    width:650px; 
-    height:450px;
+    width:80%; 
+    height:250px;
     padding-top: 30px;
 }
 /* Térkép vége */

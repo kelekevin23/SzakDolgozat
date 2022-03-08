@@ -5,31 +5,31 @@ $ab = new Ab();
 if (isset($_POST["login"])) {
     $loginMail = $_POST["emailB"];
     $loginJelszo = $_POST["jelszo"];
-    
+
     $vanUser = $ab->select("felhasznalonev", "felhasznalok", "where email like '$loginMail' and jelszo like '$loginJelszo'");
-    
-    if (count($vanUser)==1) {
+
+    if (count($vanUser) == 1) {
         $felhasznalo = $vanUser['felhasznalonev'];
         echo $felhasznalo;
-      $userAdatok= $ab->select("*", "felhasznalok", "where felhasznalonev like '$felhasznalo' ");
+        $userAdatok = $ab->select("*", "felhasznalok", "where felhasznalonev like '$felhasznalo' ");
 
         $_SESSION['felhasznalonev'] = $felhasznalo;
 
         $_SESSION['fstatusz'] = $userAdatok['fstatusz'];
         $_SESSION['keresztnev'] = $userAdatok['keresztnev'];
 
+        $aktualisOldal = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $aktualisOldal = basename($aktualisOldal);
+        
         if ($_SESSION['fstatusz'] == "f") {
-            $aktualisOldal = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-            $aktualisOldal= basename($aktualisOldal);
-            if($aktualisOldal=="index.php"){
+            if ($aktualisOldal == "index.php") {
                 header('location: php/futar.php');
-            }else{
+            } else {
                 echo $aktualisOldal;
                 header('location: futar.php');
             }
-
-        } else {
-            header('location: index.php');
+        } else if ($_SESSION['fstatusz'] == "k"){
+                header('location: ' . $aktualisOldal);
         }
     }
 }
@@ -83,7 +83,7 @@ if (isset($_POST["submit"])) {
 
 //        $vanemail = $ab->selectmit("email", "felhasznalok", "email= '$email'");
 
-        $vanemail= $ab->select("email", "felhasznalok", "where email like '$email'");
+        $vanemail = $ab->select("email", "felhasznalok", "where email like '$email'");
 
         //$vanemail = mysqli_query($ab->getKapcsolat(), "SELECT `email` FROM `felhasznalok` WHERE `email` = '".$_POST['emailR']."'");
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -145,18 +145,18 @@ if (isset($_SESSION['vnev'])) {
 
             <label for="knev"><b>Keresztnév:</b></label>
             <input type="text" placeholder="Keresztnév" name="knev" value="<?php
-            if (isset($_SESSION['knev'])) {
-                echo $_SESSION['knev'];
-            }
+                   if (isset($_SESSION['knev'])) {
+                       echo $_SESSION['knev'];
+                   }
 ?>" >
             <span class="error">* <?php echo $knevErr; ?></span>
 
             <label for="emailR"><b>E-mail cím:</b></label>
             <input type="text" placeholder="E-mail cím" name="emailR" value="<?php
-            if (isset($_SESSION['emailR'])) {
-                echo $_SESSION['emailR'];
-            }
-            ?>">
+                   if (isset($_SESSION['emailR'])) {
+                       echo $_SESSION['emailR'];
+                   }
+?>">
             <span class="error">* <?php echo $emailErr; ?></span>
 
             <label for="psw"><b>Jelszó:</b></label>

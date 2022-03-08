@@ -24,7 +24,6 @@
                     <h1>B-Shop</h1>
                     <div class="kereso-panel">
                         <input type="text" placeholder="Keresés..." name="kereso" id="keresosav">
-                        <button type="submit" id="kereso-gomb"><i class="fa fa-search" ></i></button>
                     </div>
                     <?php
                     include_once 'session.php';

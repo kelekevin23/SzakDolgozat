@@ -75,3 +75,21 @@ header{
     opacity: 0.8;
 }
 /* Belépés és Regisztráció panel vége */
+.kosarTablazat{
+    width: 80%;
+    margin: auto;
+    background-color: white;
+    border: 3px solid brown;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.kosarAdatok{
+    text-align: center;
+    padding-top: 10px;
+    
+}
+.torolGomb{
+    background: limegreen;
+    color: white;
+    font-size: 25px;
+}

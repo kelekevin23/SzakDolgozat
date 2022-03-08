@@ -61,13 +61,15 @@ $(function () {
     this.kosarba.html("Kosárba");
 
     $(".kosarba").on("click", function () {
-        let objLeker = localStorage.getItem("aktualisObj");
-        let obj = JSON.parse(objLeker);
-        
-        let darabLeker = localStorage.getItem("aktualisDarab");
-        let darab = JSON.parse(darabLeker);
-        
-        ujTermek.setAdatok(obj, darab);
+        let obj = JSON.parse(localStorage.getItem("aktualisObj"));
+        let darab = JSON.parse(localStorage.getItem("aktualisDarab"));
+        let marka = localStorage.getItem("aktualisMarka");
+
+        if (darab > obj.keszlet) {
+            console.log("Jeleneleg nincs ennyi darab készleten.");
+        } else {
+            ujTermek.setAdatok(obj, darab, marka);
+        }
     });
 });
 

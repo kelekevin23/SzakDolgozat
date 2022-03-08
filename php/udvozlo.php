@@ -1,10 +1,10 @@
 
 <?php
-if (isset($_SESSION['keresztnev'])) {
+if (isset($_SESSION['felhasznalonev'])) {
     ?>
     <div id="panel">
-        <h1>Üdv <?php echo utf8_encode($_SESSION['keresztnev']) ?></h1>
-        <form method="post">
+        <p id="udvozles">Üdv <?php echo utf8_encode($_SESSION['felhasznalonev']) ?></p>
+        <form method="post" id="kijelentkezesForm">
             <button type="submit" id="kijelentkezes" name="kijelentkezes">Kijelentkezés</button>
         </form>                     
     </div>

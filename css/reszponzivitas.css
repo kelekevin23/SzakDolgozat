@@ -50,10 +50,7 @@
     td, th{
         padding: 0px;
     }
-    #terkep{
-        width: 350px;
-        height: 250px;
-    }
+   
 
 }
 @media screen and (max-width:400px){

@@ -76,6 +76,12 @@ class BorondAdatlap {
         let szinek = [];
         const ajax = new Ajax();
 
+        if (this.obj.keszlet === "0") {
+            $(".kosarba").attr('disabled', true);
+        } else {
+            $(".kosarba").attr('disabled', false);
+        }
+        
         let data = {
             mit: "*",
             tablaNeve: "Cikk",
@@ -89,6 +95,7 @@ class BorondAdatlap {
             let darab = $("#menny").val();
             //let aktualisObj = JSON.stringify(this.obj);
             localStorage.setItem("aktualisDarab", darab);
+            localStorage.setItem("aktualisMarka", marka);
         });
     }
 

@@ -1,10 +1,7 @@
 @charset "utf-8";
 
 /* Képgaléria */
-article{
-    text-align: center; 
-    color: brown;
-}
+
 #balkep, #jobbkep{
     width: 60%;
     margin: auto;
@@ -17,7 +14,6 @@ article{
     width: 100%;
     background-color: brown;
     color: white;
-    /*font-size: 50px;*/
     font-size: larger;
     font-weight: bold;
 }

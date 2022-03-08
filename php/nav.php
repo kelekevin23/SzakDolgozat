@@ -28,11 +28,12 @@ class Menu {
         </div>
         <?php
     }
+
     public function navFutar() {
         ?>
-        <div id = "menu">
-            <button id="sajatRend" name="sajatRend">Saját rendelések</button>
-             <button id="elerRend" name="elerRend">Elérhető rendelések</button>
+        <div id="menu">
+            <li><button id="elerRend" name="elerRend">Elérhető rendelések</button></li>
+            <li><button id="sajatRend" name="sajatRend">Saját rendelések</button></li>
         </div>
         <?php
     }

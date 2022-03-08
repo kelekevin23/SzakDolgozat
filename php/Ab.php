@@ -9,8 +9,8 @@ class Ab {
       private $kapcsolat;
      */
 
-    //private $serverName = "DESKTOP-HFFA4M4";
-    private $serverName = "WIN10X64HUN61\SQLEXPRESS";
+    private $serverName = "DESKTOP-HFFA4M4";
+    //private $serverName = "WIN10X64HUN61\SQLEXPRESS";
     private $connectionInfo = array("Database" => "Szakdoga_adattal");
     private $kapcsolat;
 

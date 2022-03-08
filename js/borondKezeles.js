@@ -58,35 +58,36 @@ $(function () {
                 }
             }
         }
+        let rendezes = " order by c.modell, c.magassag";
         let radioValue = $("input[name='marka']:checked").val();
         let where = "";
         let meret = $("input[name='meret']:checked").val();
         if (radioValue === undefined) {
             if (meret === undefined) {
                 if (whereSzin === "") {
-                    where += "order by c.modell, c.magassag";
+                    where += rendezes;
                 } else {
-                    where += "where (" + whereSzin + " ) order by c.modell, c.magassag";
+                    where += "where (" + whereSzin + " ) " + rendezes;
                 }
             } else {
                 if (whereSzin === "") {
-                    where += "where c.urmertek " + meret + "order by c.modell, c.magassag";
+                    where += "where c.urmertek " + meret + rendezes;
                 } else {
-                    where += "where (" + whereSzin + ") and c.urmertek " + meret + " order by c.modell, c.magassag";
+                    where += "where (" + whereSzin + ") and c.urmertek " + meret + rendezes;
                 }
             }
         } else {
             if (meret === undefined) {
                 if (whereSzin === "") {
-                    where += "where m.marka like '" + radioValue + "' order by c.modell, c.magassag";
+                    where += "where m.marka like '" + radioValue + "'" + rendezes;
                 } else {
-                    where += "where m.marka like '" + radioValue + "' and (" + whereSzin + ") order by c.modell, c.magassag";
+                    where += "where m.marka like '" + radioValue + "' and (" + whereSzin + ")" + rendezes;
                 }
             } else {
                 if (whereSzin === "") {
-                    where += "where m.marka like '" + radioValue + "' " + " and c.urmertek " + meret + " order by c.modell, c.magassag";
+                    where += "where m.marka like '" + radioValue + "' " + " and c.urmertek " + meret + rendezes;
                 } else {
-                    where += "where m.marka like '" + radioValue + "' " + " and c.urmertek " + meret + " and (" + whereSzin + ") order by c.modell, c.magassag";
+                    where += "where m.marka like '" + radioValue + "' " + " and c.urmertek " + meret + " and (" + whereSzin + ")" + rendezes;
                 }
             }
         }
@@ -121,12 +122,18 @@ $(function () {
     const szuloElem = $(".adatFeltolt");
     const sablonElem = $(".termek");
     function termeketFelvesz(adatok) {
-        //  console.log(adatok.length);
+        console.log(adatok.length);
         $(".adatFeltolt").empty();
-        for (var index = indexLapozas; index < indexLapozas + 10; index++) {
-            if (index < adatok.length) {
-                const ujElem = sablonElem.clone().appendTo(szuloElem);
-                const termek = new Borond(ujElem, adatok[index]);
+        if (adatok.length === 0) {
+            $(".adatFeltolt").append("<h3>Sajnos nincs ilyen fajta bőrönd!</h3>");
+            $(".adatFeltolt").css("text-align", "center");
+            $(".adatFeltolt h3").css("color", "brown");
+        } else {
+            for (var index = indexLapozas; index < indexLapozas + 10; index++) {
+                if (index < adatok.length) {
+                    const ujElem = sablonElem.clone().appendTo(szuloElem);
+                    const termek = new Borond(ujElem, adatok[index]);
+                }
             }
         }
         lapozas(adatok);
@@ -155,7 +162,7 @@ $(function () {
 
         $('.lapozElem').eq(0).css("background-color", "white");
         $('.lapozElem').eq(0).css("color", "brown");
-        
+
         $('.lapozElem').on('click', function () {
             let id = this.id;
             indexLapozas = (id * 10) - 10;

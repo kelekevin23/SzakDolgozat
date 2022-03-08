@@ -8,7 +8,6 @@
         <title>Szakdolgozat</title>
         <script src="js/jquery-3.6.0.min.js"></script>
         <script src="js/menu.js"></script>
-        <script src="js/script.js"></script>
         <script src="js/galeria.js"></script>
         <script src="js/ajax.js"></script>
         <script src="js/bejelentkezes_regisztracio.js"></script>
@@ -38,7 +37,6 @@
                     <h1>B-Shop</h1>
                     <div class="kereso-panel">
                         <input type="text" placeholder="Keresés..." name="kereso" id="keresosav">
-                        <button type="submit" id="kereso-gomb"><i class="fa fa-search" ></i></button>
                     </div>
 
                     <?php

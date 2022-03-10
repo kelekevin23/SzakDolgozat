@@ -18,12 +18,9 @@ header h1{
     background-color: lightgrey;
     border: none;
 }
-#kereso-gomb:hover{
-    background: #ccc;
-}
 /* Fejléc vége */
 
-/*Bejelentkezés, Regisztráció gombok */
+/*Bejelentkezés, Regisztráció, Kijelentkezés gombok */
 article{
     text-align: center; 
     color: brown;
@@ -52,7 +49,7 @@ article{
     margin-top: auto;
     margin-bottom: auto;
 }
-/*Bejelentkezés, Regisztráció gombok vége*/
+/*Bejelentkezés, Regisztráció, Kijelentkezés gombok vége*/
 
 /* Belépés és Regisztráció panel */
 .form-container {
@@ -84,16 +81,10 @@ nav li{
     padding-top: 10px;
     padding-bottom: 10px;
 }
-#menu{
-    display: grid;
-    text-align: center;
-}
-
 nav a{
     text-decoration: none;
     color: white;
 }
-
 nav button{
     border: none;
     background-color: brown;
@@ -103,18 +94,20 @@ nav button{
 }
 /* Navigáció vége */
 
-/* Térkép */
-#terkep{
-    border: none;
-    width:80%; 
-    height:250px;
-    padding-top: 30px;
+/* Kosár oldal */
+.kosarTablazat{
+    background-color: white;
+    border: 3px solid brown;
+    font-size: 20px;
 }
-/* Térkép vége */
-
-/* Footer */
-footer{
+.kosarAdatok{
     text-align: center;
-    color: brown;
+    padding-top: 10px;
+    
 }
-/* Footer vége*/
+.torolGomb{
+    background: limegreen;
+    color: white;
+    font-size: 25px;
+}
+/* Kosár oldal vége */

@@ -10,7 +10,6 @@ if (isset($_POST["login"])) {
 
     if (count($vanUser) == 1) {
         $felhasznalo = $vanUser['felhasznalonev'];
-        echo $felhasznalo;
         $userAdatok = $ab->select("*", "felhasznalok", "where felhasznalonev like '$felhasznalo' ");
 
         $_SESSION['felhasznalonev'] = $felhasznalo;
@@ -20,16 +19,27 @@ if (isset($_POST["login"])) {
 
         $aktualisOldal = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $aktualisOldal = basename($aktualisOldal);
-        
+
         if ($_SESSION['fstatusz'] == "f") {
             if ($aktualisOldal == "index.php") {
-                header('location: php/futar.php');
+                header('location: php/felhasznalok/futar.php');
             } else {
-                echo $aktualisOldal;
-                header('location: futar.php');
+                header('location: felhasznalok/futar.php');
             }
-        } else if ($_SESSION['fstatusz'] == "k"){
-                header('location: ' . $aktualisOldal);
+        } else if ($_SESSION['fstatusz'] == "k") {
+            header('location: ' . $aktualisOldal);
+        } else if ($_SESSION['fstatusz'] == "a") {
+            if ($aktualisOldal == "index.php") {
+                header('location: php/felhasznalok/admin.php');
+            } else {
+                header('location: felhasznalok/admin.php');
+            }
+        } else if ($_SESSION['fstatusz'] == "r") {
+            if ($aktualisOldal == "index.php") {
+                header('location: php/felhasznalok/rendszergazda.php');
+            } else {
+                header('location: felhasznalok/rendszergazda.php');
+            }
         }
     }
 }

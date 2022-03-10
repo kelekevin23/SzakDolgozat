@@ -3,9 +3,7 @@
 
 class Menu {
 
-    public function __construct() {
-        
-    }
+    public function __construct() {}
 
     public function navIndex() {
         ?>
@@ -34,6 +32,23 @@ class Menu {
         <div id="menu">
             <li><button id="elerRend" name="elerRend">Elérhető rendelések</button></li>
             <li><button id="sajatRend" name="sajatRend">Saját rendelések</button></li>
+        </div>
+        <?php
+    }
+    public function navAdmin() {
+        ?>
+        <div id="menu">
+            <li><button id="rendelesSzerk" name="rendelesSzerk">Rendelések</button></li>
+            <li><button id="borondokSzerk" name="borondokSzerk">Bőröndök</button></li>
+        </div>
+        <?php
+    }
+    public function navRendszergazda() {
+        ?>
+        <div id="menu">
+            <li><button id="rendelesSzerk" name="rendelesSzerk">Rendelések</button></li>
+            <li><button id="borondokSzerk" name="borondokSzerk">Bőröndök</button></li>
+            <li><button id="felhasznSzerk" name="felhasznSzerk">Felhasználók</button></li>
         </div>
         <?php
     }

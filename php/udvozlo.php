@@ -24,10 +24,10 @@ if (isset($_POST["kijelentkezes"])) {
     $aktualisOldal = basename($aktualisOldal);
     if ($aktualisOldal == "index.php") {
         header('location: index.php');
-    } else {
-        echo $aktualisOldal;
+    } else if ($aktualisOldal == "futar.php" or $aktualisOldal == "admin.php" or $aktualisOldal == "rendszergazda.php"){
+        header('location: ../../index.php');
+    } else{
         header('location: ../index.php');
-    }
-    
+    } 
 }
 ?>

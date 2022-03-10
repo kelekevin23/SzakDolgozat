@@ -10,16 +10,11 @@
     grid-template-columns: 1fr 1fr;
     margin: auto;
 }
-
 #adatok_tarolo{
     margin: auto;
     width: 90%;
     display: grid;
     grid-template-columns: 1fr 1fr;  
-}
-
-#adatok_tarolo p{
-    font-size: 16px;
 }
 /* Bőrönd oldal vége */
 
@@ -36,13 +31,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr;  
     padding-top: 20px;
-}
-#kezdoKep{
-    text-align: center;
-    border-bottom: 1px solid brown;
-}
-#kezdoKep img{
-    width: 50%;
 }
 .borondKepek{
     display: grid;

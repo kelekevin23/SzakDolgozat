@@ -19,15 +19,6 @@ header{
     background-color: white;
     border: 1px solid black;   
 }
-#kereso-gomb{
-    float: left;
-    height: 100%;
-    width: 10%;
-    border: none;
-    background-color: lightgrey;
-    cursor: pointer;
-    text-align: center;
-}
 /* Fejléc vége */
 
 /*Bejelentkezés, Regisztráció gombok */
@@ -75,21 +66,28 @@ header{
     opacity: 0.8;
 }
 /* Belépés és Regisztráció panel vége */
+
+/* Navigáció */
+#menu{
+    display: grid;
+    text-align: center;
+}
+
+/* Navigáció vége */
+
+/* Térkép */
+#terkep{
+    border: none;
+    width:80%; 
+    height:250px;
+    padding-top: 30px;
+}
+/* Térkép vége */
+
+/* Kosár oldal */
 .kosarTablazat{
     width: 80%;
     margin: auto;
-    background-color: white;
-    border: 3px solid brown;
-    font-size: 20px;
     margin-bottom: 20px;
 }
-.kosarAdatok{
-    text-align: center;
-    padding-top: 10px;
-    
-}
-.torolGomb{
-    background: limegreen;
-    color: white;
-    font-size: 25px;
-}
+/* Kosár oldal vége */

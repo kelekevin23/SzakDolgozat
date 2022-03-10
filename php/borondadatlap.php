@@ -9,7 +9,7 @@
         <script src="../js/jquery-3.6.0.min.js"></script>
         <script src="../js/menu.js"></script>
         <script src="../js/borondok.js"></script>
-        <script src="../js/borondadatlap.js"></script>
+        <script src="../js/borondAdatlap.js"></script>
         <script src="../js/kosar.js"></script>
         <script src="../js/ajax.js"></script>
         <script src="../js/bejelentkezes_regisztracio.js"></script>
@@ -18,7 +18,6 @@
         <link href="../css/szerkezetBorondok.css" rel="stylesheet" type="text/css"/>
         <link href="../css/tartalomBorondok.css" rel="stylesheet" type="text/css"/>
         <link href="../css/reszponzivitas.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
     <body>

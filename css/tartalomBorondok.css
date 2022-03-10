@@ -64,7 +64,9 @@
     margin: auto;
     padding: 10px;
 }
-
+#adatok_tarolo p{
+    font-size: 16px;
+}
 /* Bőrönd oldal vége */
 
 
@@ -72,7 +74,6 @@
 .adatlap-oldalszerkezet img {
     mix-blend-mode: multiply;
 }
-
 .adatlap_tarolo, .szinek{
     width: 80%;
     margin: auto;
@@ -80,7 +81,6 @@
     border: 3px solid brown;
     font-size: 16px;
 }
-
 #adatlap_szinek{
     width: 60%;
     text-align: center;
@@ -95,6 +95,13 @@
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
+}
+#kezdoKep{
+    text-align: center;
+    border-bottom: 1px solid brown;
+}
+#kezdoKep img{
+    width: 50%;
 }
 .szinek button{
     width: 30px;

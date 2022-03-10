@@ -16,17 +16,9 @@
         <link href="css/szerkezetFooldal.css" rel="stylesheet" type="text/css"/>
         <link href="css/tartalomFooldal.css" rel="stylesheet" type="text/css"/>
         <link href="css/reszponzivitas.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     </head>
     <?php
-        include_once 'php/session.php';
-        
-        
-
-    /* include_once 'php/Ab.php';
-      $ab = new Ab();
-      $ab->select("top 9 c.*, m.marka", "Cikk", "Cikk c inner join Modell m on c.modell = m.modell", "order by keszlet desc", "Modell"); */
+    include_once 'php/session.php';
     ?>
 
     <body>
@@ -114,9 +106,6 @@
                 </div>
             </aside>
 
-            <footer>
-
-            </footer>
         </main>
 
 

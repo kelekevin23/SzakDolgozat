@@ -6,7 +6,6 @@ class Kosar {
     constructor() {
         this.kosarTomb = [];
         this.valami = JSON.parse(localStorage.getItem("kosar"));
-        console.log(this.valami);
         if (this.valami !== null) {
             this.kosarTomb = this.valami;
             this.megjelenit();
@@ -41,12 +40,14 @@ class Kosar {
         }
         tablazat += "<th>darab</th>";
         tablazat += "<th>ar</th>";
+        tablazat += "<th>kep</th>";
+        tablazat += "<th></th>";
         tablazat += "</tr>";
 
+        let eleres;
         for (let index = 0; index < this.kosarTomb.length; index++) {
             this.osszeg += this.kosarTomb[index].adat.ar;
             tablazat += "<tr>";
-
 
             tablazat += "<td>" + this.kosarTomb[index].marka + "</td>";
             for (let i = 0; i < adatok.length; i++) {
@@ -57,9 +58,18 @@ class Kosar {
                 }
             }
 
-            tablazat += "<td class=jobb>" + this.kosarTomb[index].darab + "</td>";
+            tablazat += "<td class=darab>" + this.kosarTomb[index].darab + "</td>";
             let reszOsszeg = this.kosarTomb[index].adat.ar * this.kosarTomb[index].darab;
-            tablazat += "<td class=jobb>" + reszOsszeg + " Ft</td>";
+            tablazat += "<td class=reszOsszeg >" + reszOsszeg + " Ft</td>";
+            //tablazat += "<td><button class=kepGomb id=" + index + ">Kép mutatása</button></td>";
+
+
+            let eleres = "../kepek/" + this.kosarTomb[index].marka.substring(0, 2) + "/" + this.kosarTomb[index].adat.modell+ this.kosarTomb[index].adat.kepElerese + this.kosarTomb[index].adat.szin + "1.jpg";
+            //eleres = "../kepek/Sa/COSMOLITE SPINNER/55-40-20-36/piros1.jpg";
+            console.log(eleres);
+            tablazat += "<td class=kepbetolt><img src= ></td>";
+
+            $(".kepbetolt img").attr("src", eleres);
             tablazat += "<td><button class=gombok id=" + index + ">X</button></td></tr>";
 
             //localStorage.removeItem("lastname");
@@ -71,10 +81,16 @@ class Kosar {
         }
         tablazat += "</table>";
 
-
+        
         $(".kosarAdatok").html(tablazat);
-        $(".kosarAdatok").append("<button class=torolGomb>Kosár törlése</button>");
+        $(".kosarGombok").html("<button class=torolGomb>Kosár törlése</button>");
+        $(".kosarGombok").append("<a href=rendeles.php><button class=rendeles>Rendelés folytatása...</button></a>");
 
+        if (this.kosarTomb.length === 0) {
+            $(".rendeles").attr('disabled', true);
+        } else {
+            $(".rendeles").attr('disabled', false);
+        }
         $(".torolGomb").on("click", (event) => {
             this.kosarTomb = [];
             let adathalmaz = JSON.stringify(this.kosarTomb);

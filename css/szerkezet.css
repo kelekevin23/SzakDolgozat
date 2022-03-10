@@ -86,8 +86,13 @@ header{
 
 /* Kosár oldal */
 .kosarTablazat{
-    width: 80%;
+    width: 90%;
     margin: auto;
     margin-bottom: 20px;
+}
+.kosarGombok{
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
 }
 /* Kosár oldal vége */

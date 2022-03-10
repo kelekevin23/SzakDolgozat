@@ -147,26 +147,26 @@ if (isset($_POST["submit"])) {
 
             <label for="vnev"><b>Vezetéknév:</b></label>
             <input type="text" placeholder="Vezetéknév" name="vnev" value="<?php
-if (isset($_SESSION['vnev'])) {
-    echo $_SESSION['vnev'];
-}
-?>" >
+            if (isset($_SESSION['vnev'])) {
+                echo $_SESSION['vnev'];
+            }
+            ?>" >
             <span class="error">* <?php echo $vnevErr; ?></span>
 
             <label for="knev"><b>Keresztnév:</b></label>
             <input type="text" placeholder="Keresztnév" name="knev" value="<?php
-                   if (isset($_SESSION['knev'])) {
-                       echo $_SESSION['knev'];
-                   }
-?>" >
+            if (isset($_SESSION['knev'])) {
+                echo $_SESSION['knev'];
+            }
+            ?>" >
             <span class="error">* <?php echo $knevErr; ?></span>
 
             <label for="emailR"><b>E-mail cím:</b></label>
             <input type="text" placeholder="E-mail cím" name="emailR" value="<?php
-                   if (isset($_SESSION['emailR'])) {
-                       echo $_SESSION['emailR'];
-                   }
-?>">
+            if (isset($_SESSION['emailR'])) {
+                echo $_SESSION['emailR'];
+            }
+            ?>">
             <span class="error">* <?php echo $emailErr; ?></span>
 
             <label for="psw"><b>Jelszó:</b></label>

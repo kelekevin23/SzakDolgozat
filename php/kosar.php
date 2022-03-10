@@ -50,7 +50,11 @@
             <aside class="kosarAdatok">
 
             </aside>
+            <aside class="kosarGombok">
 
+            </aside>
+
+           
         </main>
 
 

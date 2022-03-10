@@ -98,16 +98,29 @@ nav button{
 .kosarTablazat{
     background-color: white;
     border: 3px solid brown;
-    font-size: 20px;
+    font-size: 16px;
+}
+.kosarTablazat th, .kosarTablazat td{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid black;
+    border-collapse: collapse;
 }
 .kosarAdatok{
     text-align: center;
-    padding-top: 10px;
-    
+    padding-top: 10px; 
 }
 .torolGomb{
+    background: crimson;
+    color: white;
+    font-size: 25px;
+}
+.rendeles{
     background: limegreen;
     color: white;
     font-size: 25px;
+}
+.kosarTablazat tr:nth-child(odd) {
+    background-color: #D6EEEE;
 }
 /* Kosár oldal vége */

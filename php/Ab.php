@@ -82,7 +82,7 @@ class Ab {
             array_push($oszlopNevek, $row['COLUMN_NAME']);
         }
            
-       // var_dump($oszlopNevek);
+        //var_dump($oszlopNevek);
         if ($where === "") {
             $sql = "SELECT " . $mit . " FROM " . $honnan;
         } else {
@@ -93,7 +93,7 @@ class Ab {
             $sql = "SELECT " . $mit . " FROM " . $tablaNeve . " " . $where;
         }
         
-        //echo $sql;
+       // echo $sql;
         $tomb = array();
         $adatok = sqlsrv_query($this->kapcsolat, $sql, array(), array("Scrollable" => "buffered"));
 
@@ -111,7 +111,7 @@ class Ab {
         /*  $myJSON = json_encode($tomb, JSON_UNESCAPED_UNICODE);
           $bytes = file_put_contents("top10.json", $myJSON); */
         
-       // var_dump($tomb);
+        //var_dump($tomb);
         //return json_encode($tomb);  
         return $tomb;
     }

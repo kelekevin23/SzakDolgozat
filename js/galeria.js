@@ -160,10 +160,12 @@ class Kep {
         }
 
         let marka = $(".galeria .marka").eq(1).text();
-        
+
         $(".gombok").on("click", function () {
             szin[this.id].szin = szin[this.id].szin.replace(new RegExp(/[û]/g), "ű");
             $("#fokep img").attr("src", "kepek/" + marka.substring(0, 2) + '/' + szin[this.id].modell + szin[this.id].kepElerese + szin[this.id].szin + "1.jpg");
+            console.log("kepek/" + marka.substring(0, 2) + '/' + szin[this.id].modell + szin[this.id].kepElerese + szin[this.id].szin + "1.jpg");
+   
         });
     }
 }

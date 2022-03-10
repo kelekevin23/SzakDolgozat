@@ -91,19 +91,6 @@ $(function () {
                 }
             }
         }
-        /*if (radioValue === undefined) {
-         if (whereSzin === "") {
-         where += "order by c.modell, c.magassag";
-         } else {
-         where += "where" + whereSzin + " order by c.modell, c.magassag";
-         }
-         } else {
-         if (whereSzin === "") {
-         where += "where m.marka like '" + radioValue + "' order by c.modell, c.magassag";
-         } else {
-         where += "where m.marka like '" + radioValue + "' and (" + whereSzin + ") order by c.modell, c.magassag";
-         }
-         }*/
 
         console.log(where);
 

@@ -110,10 +110,11 @@ nav button{
     text-align: center;
     padding-top: 10px; 
 }
-.torolGomb{
+.torolKosar{
     background: crimson;
     color: white;
     font-size: 25px;
+    height: 50%;
 }
 .rendeles{
     background: limegreen;
@@ -123,4 +124,7 @@ nav button{
 .kosarTablazat tr:nth-child(odd) {
     background-color: #D6EEEE;
 }
+/*.kepbetolt img{
+    width: 30%;  
+}*/
 /* Kosár oldal vége */

@@ -5,6 +5,7 @@ $(function () {
 
     let adatok = [];
     let data = {
+        //mit: "rend_szam, megrendelo, fizetesimod, szallcim, fizetesiosszeg",
         mit: "*",
         tablaNeve: "Rendeles",
         honnan: "",

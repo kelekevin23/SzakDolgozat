@@ -69,7 +69,7 @@ class Ab {
     }
 
     public function selectTobbtablas($mit, $tablaNeve, $honnan, $where, $segedTabla) {
-          
+
         if ($segedTabla === "") {
             $oszlopok = "SELECT distinct COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS where TABLE_NAME like '" . $tablaNeve . "'";
         } else {
@@ -81,27 +81,30 @@ class Ab {
         while ($row = sqlsrv_fetch_array($oszlopLekerdezes, SQLSRV_FETCH_ASSOC)) {
             array_push($oszlopNevek, $row['COLUMN_NAME']);
         }
-           
+
         //var_dump($oszlopNevek);
         if ($where === "") {
             $sql = "SELECT " . $mit . " FROM " . $honnan;
         } else {
             $sql = "SELECT " . $mit . " FROM " . $honnan . " " . $where;
         }
-        
-        if ($honnan === "" and  $segedTabla === "") {
+
+        if ($honnan === "" and $segedTabla === "") {
             $sql = "SELECT " . $mit . " FROM " . $tablaNeve . " " . $where;
         }
-        
-       // echo $sql;
+
+        // echo $sql;
         $tomb = array();
         $adatok = sqlsrv_query($this->kapcsolat, $sql, array(), array("Scrollable" => "buffered"));
 
         if (sqlsrv_num_rows($adatok) > 0) {
             while ($row = sqlsrv_fetch_array($adatok, SQLSRV_FETCH_ASSOC)) {
                 for ($index = 0; $index < count($oszlopNevek); $index++) {
-                    $seged[$oszlopNevek[$index]] = $row[$oszlopNevek[$index]];
-                    //var_dump($seged);
+                    $type = gettype($row[$oszlopNevek[$index]]);
+                    if ($type != "object") {
+                        $seged[$oszlopNevek[$index]] = strval($row[$oszlopNevek[$index]]);
+                    }
+                    //echo serialize($row[$oszlopNevek[$index]]);
                 }
                 // array_push($tomb, $seged);
                 $tomb[] = array_map('utf8_encode', $seged);
@@ -110,7 +113,7 @@ class Ab {
 
         /*  $myJSON = json_encode($tomb, JSON_UNESCAPED_UNICODE);
           $bytes = file_put_contents("top10.json", $myJSON); */
-        
+
         //var_dump($tomb);
         //return json_encode($tomb);  
         return $tomb;
@@ -118,7 +121,10 @@ class Ab {
 
     public function insert($tablaNeve, $oszlopok, $ertekek) {
 
-        $sql = "INSERT INTO " . $tablaNeve . " " . $oszlopok . " VALUES (" . $ertekek . ")";
+        if ($tablaNeve === "Cim") {
+            $sql = " SET IDENTITY_INSERT [Cim] ON INSERT INTO " . $tablaNeve . " " . $oszlopok . " VALUES (" . $ertekek . ") SET IDENTITY_INSERT [Cim] OFF";
+        }
+
 
         $result = sqlsrv_query($this->kapcsolat, $sql);
         /* $vmi = sqlsrv_query($this->kapcsolat, $sql);

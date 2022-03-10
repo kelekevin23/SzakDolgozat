@@ -26,7 +26,8 @@ class Borond {
     }
 
     termekBeallit(obj) {
-        this.gomb.html("<a href=borondadatlap.php target='blank'>További információ...</a>");
+        //this.gomb.html("<a href=borondadatlap.php target='_blank'>További információ...</a>");
+        this.gomb.html("<a href=borondadatlap.php>További információ...</a>");
         this.termekMarka.html(obj.marka);
         this.termekModell.html(obj.modell);
         this.termekMagassag.html(obj.magassag + " cm");
@@ -59,16 +60,27 @@ class BorondAdatlap {
         let markaTomb = localStorage.getItem("adatlap_marka");
         let marka = JSON.parse(markaTomb);
 
-        let adatok = ['modell', 'cikkszam', 'magassag', 'szelesseg', 'melyseg', 'urmertek', 'szin', 'keszlet', 'ar'];
+        let adatok = [
+            'modell', 'Modell', '', 
+            'cikkszam', 'Cikkszám', '', 
+            'magassag', 'Magasság', ' cm', 
+            'szelesseg', 'Szélesség', ' cm', 
+            'melyseg', 'Mélység', ' cm', 
+            'urmertek', 'Űrmérték', ' liter', 
+            'szin', 'Szín', '', 
+            'keszlet', 'Készlet', ' darab', 
+            'ar', 'Ár', ' Forint'
+        ];
+        
         $(".adatlap_tarolo").empty();
         $(".adatlap_tarolo").append("<tr><th>marka</th><td>" + marka + "</td></tr>");
 
 
 
-        for (var i = 0; i < adatok.length; i++) {
+        for (var i = 0; i < adatok.length; i+=3) {
             for (var item in this.obj) {
                 if (adatok[i] === item) {
-                    $(".adatlap_tarolo").append("<tr><th>" + item + "</th><td>" + this.obj[item] + "</td></tr>");
+                    $(".adatlap_tarolo").append("<tr><th>" + adatok[i+1] + "</th><td>" + this.obj[item] + adatok[i+2] +  "</td></tr>");
                 }
             }
         }

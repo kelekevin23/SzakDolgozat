@@ -47,14 +47,14 @@
             </article>
 
 
-            <aside class="kosarAdatok">
+            <div class="tarolo-div">
+                <aside class="kosarAdatok">
+                </aside>
+                <aside class="kosarGombok">
 
-            </aside>
-            <aside class="kosarGombok">
+                </aside>
+            </div>
 
-            </aside>
-
-           
         </main>
 
 

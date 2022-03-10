@@ -8,7 +8,7 @@
         <title>Szakdolgozat</title>
         <script src="../js/jquery-3.6.0.min.js"></script>
         <script src="../js/menu.js"></script>
-        <script src="../js/kosar.js"></script>
+        <script src="../js/rendeles.js"></script>
         <script src="../js/bejelentkezes_regisztracio.js"></script>
         <link href="../css/szerkezet.css" rel="stylesheet" type="text/css"/>
         <link href="../css/tartalom.css" rel="stylesheet" type="text/css"/>
@@ -47,8 +47,62 @@
             </article>
 
 
-            <aside>
-                <h1>Hali</h1>
+            <aside >
+                <form class="urlapRendeles" method="post">
+                    <div class="rendelesInfo">
+                        <fieldset>
+                            <legend>Fizetési mód</legend>
+                            <p id="osszeg"></p>
+                              <input type="radio" id="keszp" name="fizetes" checked>
+                              <label for="keszp">Készpénz</label><br><br>
+                              <input type="radio" id="kartya" name="fizetes">
+                              <label for="kartya">Bankkártya</label><br><br>
+                        </fieldset>
+                    </div>
+                    <fieldset>
+                        <legend>Vevő adatai</legend>
+                        <div id="Adatok">
+                            <label for="vnev">Vezetéknév:</label>
+                            <input type="text" id="vnev" name="vnev" placeholder="Vezetéknév">                  
+                            <label for="knev">Keresztnév:</label>
+                            <input type="text" id="knev" name="knev" placeholder="Keresztnév">
+                            <label for="tszam">Telefonszám:</label>
+                            <input type="tel" id="tszam" name="tszam" placeholder="06203682794">
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Szállítási cím</legend>
+                        <div id="Adatok">
+                            <label for="varos1">Város:</label>
+                            <input type="text" id="varos1" name="varos1" placeholder="Budapest">                  
+                            <label for="irany1">Irányítószám:</label>
+                            <input type="text" id="irany1" name="irany1" placeholder="1191">
+                            <label for="utca1">Utca/Tér/Fasor:</label>
+                            <input type="text" id="utca1" name="utca1" placeholder="Hunyadi utca">
+                            <label for="hsz1">Házszám:</label>
+                            <input type="text" id="hsz1" name="hsz1" placeholder="23/B">
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Számlázási cím</legend>
+                        <div id="Adatok">
+                            <label for="varos2">Város:</label>
+                            <input type="text" id="varos2" name="varos2" placeholder="Budapest">                  
+                            <label for="irany2">Irányítószám:</label>
+                            <input type="text" id="irany2" name="irany2" placeholder="1191">
+                            <label for="utca2">Utca/Tér/Fasor:</label>
+                            <input type="text" id="utca2" name="utca2" placeholder="Hunyadi utca">
+                            <label for="hsz2">Házszám:</label>
+                            <input type="text" id="hsz2" name="hsz2" placeholder="23/B">
+                            <label for="cnev2">Cégnév:</label>
+                            <input type="text" id="cnev2" name="cnev2" placeholder="Proba Kft.">
+                            <label for="asz2">Adószám:</label>
+                            <input type="tel" id="asz2" name="asz2" placeholder="11111111">
+                        </div>
+                    </fieldset>
+                    <br>
+                    <button type="submit" name="rendVeglegesites" id="rendVeglegesites">Rendelés véglegesítése</button>
+                </form>
             </aside>
 
         </main>
@@ -57,3 +111,31 @@
     </body>
 
 </html>
+<?php
+include_once 'Ab.php';
+$ab = new Ab();
+
+function test_input2($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+if (isset($_POST["rendVeglegesites"])) {
+    $fnev = $_SESSION['felhasznalonev'];
+    $vnev = test_input2($_POST["vnev"]);
+    $knev = test_input2($_POST["knev"]);
+    $varos = test_input2($_POST["varos1"]);
+    $irany = test_input2($_POST["irany1"]);
+    $utca = test_input2($_POST["utca1"]);
+    $hsz = test_input2($_POST["hsz1"]);
+    $tszam = test_input2($_POST["tszam"]);
+
+    
+    $userAdatok = $ab->select("*", "Cim", "order by id");
+
+    $utolsoId = $userAdatok['id']+1;
+    $ab->insert("Cim", "(id, felhasznalonev, vezeteknev, keresztnev, varos, iranyitoszam, utca, hazszam, telefonszam)", "'$utolsoId', '$fnev', '$vnev', '$knev', '$varos', '$irany', '$utca', '$hsz', '$tszam'");
+}
+?>

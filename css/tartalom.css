@@ -116,11 +116,6 @@ nav button{
     font-size: 25px;
     height: 50%;
 }
-.rendeles{
-    background: limegreen;
-    color: white;
-    font-size: 25px;
-}
 .kosarTablazat tr:nth-child(odd) {
     background-color: #D6EEEE;
 }
@@ -128,3 +123,21 @@ nav button{
     width: 30%;  
 }*/
 /* Kosár oldal vége */
+
+/* Rendelés oldal */
+.rendeles{
+    background: limegreen;
+    color: white;
+    font-size: 25px;
+}
+#ellenorzes{
+    background: deepskyblue;
+    color: white;
+    font-size: 25px;
+}
+#ellenorzesGomb{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 10px;
+}
+/* Rendelés oldal vége */

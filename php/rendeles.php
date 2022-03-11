@@ -59,7 +59,7 @@
                               <label for="kartya">Bankkártya</label><br><br>
                         </fieldset>
                     </div>
-                    <fieldset>
+                    <fieldset id="vevoAdat">
                         <legend>Vevő adatai</legend>
                         <div id="Adatok">
                             <label for="vnev">Vezetéknév:</label>
@@ -70,20 +70,20 @@
                             <input type="tel" id="tszam" name="tszam" placeholder="06203682794">
                         </div>
                     </fieldset>
-                    <fieldset>
+                    <fieldset id="szallitasi">
                         <legend>Szállítási cím</legend>
                         <div id="Adatok">
                             <label for="varos1">Város:</label>
-                            <input type="text" id="varos1" name="varos1" placeholder="Budapest">                  
+                            <input type="text" id="varos1" name="varos1" placeholder="Budapest" value="">                  
                             <label for="irany1">Irányítószám:</label>
-                            <input type="text" id="irany1" name="irany1" placeholder="1191">
+                            <input type="text" id="irany1" name="irany1" placeholder="1191" value="">
                             <label for="utca1">Utca/Tér/Fasor:</label>
                             <input type="text" id="utca1" name="utca1" placeholder="Hunyadi utca">
                             <label for="hsz1">Házszám:</label>
                             <input type="text" id="hsz1" name="hsz1" placeholder="23/B">
                         </div>
                     </fieldset>
-                    <fieldset>
+                    <fieldset id="szamlazasi">
                         <legend>Számlázási cím</legend>
                         <div id="Adatok">
                             <label for="varos2">Város:</label>
@@ -101,8 +101,14 @@
                         </div>
                     </fieldset>
                     <br>
-                    <button type="submit" name="rendVeglegesites" id="rendVeglegesites">Rendelés véglegesítése</button>
+                    <button type="submit" name="rendVeglegesites" id="rendVeglegesites">Rendelés véglegesítése</button>     
                 </form>
+                
+                <div id="ellenorzesGomb">
+                    <div></div>
+                    <button id="ellenorzes">Adatok ellenőrzése</button>
+                </div>
+
             </aside>
 
         </main>
@@ -124,18 +130,37 @@ function test_input2($data) {
 
 if (isset($_POST["rendVeglegesites"])) {
     $fnev = $_SESSION['felhasznalonev'];
+    
+    //alap adatok
     $vnev = test_input2($_POST["vnev"]);
     $knev = test_input2($_POST["knev"]);
+    $tszam = test_input2($_POST["tszam"]);
+    
+    //szallitas
     $varos = test_input2($_POST["varos1"]);
     $irany = test_input2($_POST["irany1"]);
     $utca = test_input2($_POST["utca1"]);
     $hsz = test_input2($_POST["hsz1"]);
-    $tszam = test_input2($_POST["tszam"]);
 
     
-    $userAdatok = $ab->select("*", "Cim", "order by id");
+    //szamlazas
+    $varos2 = test_input2($_POST["varos2"]);
+    $irany2 = test_input2($_POST["irany2"]);
+    $utca2 = test_input2($_POST["utca2"]);
+    $hsz2 = test_input2($_POST["hsz2"]);
+    $cnev2 = test_input2($_POST["cnev2"]);
+    $asz2 = test_input2($_POST["asz2"]);
 
-    $utolsoId = $userAdatok['id']+1;
-    $ab->insert("Cim", "(id, felhasznalonev, vezeteknev, keresztnev, varos, iranyitoszam, utca, hazszam, telefonszam)", "'$utolsoId', '$fnev', '$vnev', '$knev', '$varos', '$irany', '$utca', '$hsz', '$tszam'");
+    $userAdatok = $ab->select("*", "Cim", "order by id");
+    $utolsoId = $userAdatok['id'] + 1;
+
+    if ($cnev2 === "" or $asz2 === "") {
+        echo 'Üres';
+    }
+
+
+
+
+    //$ab->insert("Cim", "(id, felhasznalonev, vezeteknev, keresztnev, varos, iranyitoszam, utca, hazszam, telefonszam)", "'$utolsoId', '$fnev', '$vnev', '$knev', '$varos', '$irany', '$utca', '$hsz', '$tszam'");
 }
 ?>

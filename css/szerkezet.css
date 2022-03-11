@@ -115,9 +115,9 @@ header{
     grid-gap: 20px;
 }
 #Adatok label{
-   padding-top: 10px; 
-   padding-bottom: 10px; 
-   text-align: center;
+    padding-top: 10px; 
+    padding-bottom: 10px; 
+    text-align: center;
 }
 #osszeg{
     text-align: center;
@@ -128,6 +128,6 @@ header{
     background: limegreen;
     color: white;
     font-size: 25px;
-    text-align: center
+    text-align: center;
 }
 /* Rendelés oldal vége */

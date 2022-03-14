@@ -22,17 +22,6 @@ $(function () {
     const ujElem2 = sablonElem.clone().appendTo(szuloElem2);
     nagyGaleria = new BorondAdatlap(ujElem2, data, 1);
 
-
-
-    /* $(window).on("kosarKattintas", (event) => {
-     console.log(event.detail);
-     //console.log(event.detail.tomb.szin);
-     // let adat = JSON.stringify(event.detail);
-     // localStorage.setItem("kosar", adat);
-     // ujTermek.setAdatok(event.detail);
-     });*/
-
-
     $(window).on("kepKattintas", (event) => {
         nagyGaleria.termekBeallit(event.detail.data2, event.detail.data);
     });
@@ -53,7 +42,6 @@ $(function () {
         const ujElem2 = sablonElem.clone().appendTo(szuloElem2);
         nagyGaleria = new BorondAdatlap(ujElem2, event.detail.data, 1);
     });
-
 
 
     const ujTermek = new Kosar();

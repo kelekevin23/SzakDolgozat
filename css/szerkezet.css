@@ -109,12 +109,18 @@ header{
 .urlapRendeles legend{  
     font-size: 20px;
 }
-#Adatok{  
+
+.rendelesTablazat{
+    text-align: center;
+    border: 1px solid black;
+    width: 100%;
+}
+#adatok{  
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
 }
-#Adatok label{
+#adatok label{
     padding-top: 10px; 
     padding-bottom: 10px; 
     text-align: center;

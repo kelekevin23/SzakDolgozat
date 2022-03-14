@@ -125,12 +125,12 @@ class Kep {
     }
 
     tablazatKiir(obj) {
-        $("#adatok").empty();
-        $("#adatok").append("<th>Méret:</th>");
-        $("#adatok").append("<td>" + obj.magassag + " cm</td>");
-        $("#adatok").append("<td>" + obj.szelesseg + " cm</td>");
-        $("#adatok").append("<td>" + obj.melyseg + " cm</td>");
-        $("#adatok").append("<td>" + obj.urmertek + " l</td>");
+        $("#borondAdat").empty();
+        $("#borondAdat").append("<th>Méret:</th>");
+        $("#borondAdat").append("<td>" + obj.magassag + " cm</td>");
+        $("#borondAdat").append("<td>" + obj.szelesseg + " cm</td>");
+        $("#borondAdat").append("<td>" + obj.melyseg + " cm</td>");
+        $("#borondAdat").append("<td>" + obj.urmertek + " l</td>");
         //$("#adatok").append("<td>" + obj.szin + "</td>");
 
         $(".szinek").empty();

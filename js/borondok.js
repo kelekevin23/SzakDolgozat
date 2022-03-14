@@ -26,7 +26,6 @@ class Borond {
     }
 
     termekBeallit(obj) {
-        //this.gomb.html("<a href=borondadatlap.php target='_blank'>További információ...</a>");
         this.gomb.html("<a href=borondadatlap.php>További információ...</a>");
         this.termekMarka.html(obj.marka);
         this.termekModell.html(obj.modell);

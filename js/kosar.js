@@ -5,6 +5,7 @@ class Kosar {
 
     constructor() {
         this.kosarTomb = [];
+        this.rendelesbeTomb = [];
         this.valami = JSON.parse(localStorage.getItem("kosar"));
         if (this.valami !== null) {
             this.kosarTomb = this.valami;
@@ -47,10 +48,9 @@ class Kosar {
         tablazat += "<th></th>";
         tablazat += "</tr>";
 
+        this.rendelesbeTomb = [];
         for (let index = 0; index < this.kosarTomb.length; index++) {
-            
             tablazat += "<tr>";
-
             tablazat += "<td>" + this.kosarTomb[index].marka + "</td>";
             for (let i = 0; i < adatok.length; i++) {
                 for (var item in this.kosarTomb[index].adat) {
@@ -64,21 +64,20 @@ class Kosar {
             let reszOsszeg = this.kosarTomb[index].adat.ar * this.kosarTomb[index].darab;
             this.osszeg += parseInt(reszOsszeg);
             tablazat += "<td class=reszOsszeg >" + reszOsszeg + " Ft</td>";
-            //tablazat += "<td><button class=kepGomb id=" + index + ">Kép mutatása</button></td>";
 
+            let rendelesbe = {
+                cikkszam: this.kosarTomb[index].adat.cikkszam,
+                darab: this.kosarTomb[index].darab,
+                reszOsszeg: reszOsszeg
+            };
+            console.log(this.rendelesbeTomb);
+            this.rendelesbeTomb.push(rendelesbe);
+            let adathalmaz = JSON.stringify(this.rendelesbeTomb);
+            localStorage.setItem("rendeleshez", adathalmaz);
 
             let eleres = "../kepek/" + this.kosarTomb[index].marka.substring(0, 2) + "/" + this.kosarTomb[index].adat.modell + this.kosarTomb[index].adat.kepElerese + this.kosarTomb[index].adat.szin + "1.jpg";
-
-            //tablazat += "<td class=kepbetolt><img src='"+ eleres + "'></td>";
             tablazat += "<td><a href='" + eleres + "' ><button class=kepetMutat id=" + index + ">Kép mutatása</button></a></td>";
-
             tablazat += "<td><button class=torolGombok id=" + index + ">X</button></td></tr>";
-
-            //localStorage.removeItem("lastname");
-            //Adat = Localstorage.getItem("kulcs");
-            //this.kosarTomb = JSON.parse(localStorage.getItem("kulcs"));
-            //this.kosarTomb = localStorage.getItem("kulcs");
-            //localStorage.setItem("kulcs", this.kosarTomb[index]);
 
         }
         tablazat += "</table>";

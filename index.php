@@ -88,7 +88,7 @@
                         </thead>
 
                         <tbody>
-                            <tr id="adatok">
+                            <tr id="borondAdat">
 
                             </tr>
 

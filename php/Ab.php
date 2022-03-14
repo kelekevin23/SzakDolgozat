@@ -9,9 +9,9 @@ class Ab {
       private $kapcsolat;
      */
 
-    //private $serverName = "DESKTOP-HFFA4M4";
-    private $serverName = "WIN10X64HUN61\SQLEXPRESS";
-    private $connectionInfo = array("Database" => "Szakdoga_adattal");
+    private $serverName = "DESKTOP-HFFA4M4";
+    //private $serverName = "WIN10X64HUN61\SQLEXPRESS";
+    private $connectionInfo = array("Database" => "Szakdoga_adattal", "CharacterSet" => "UTF-8");
     private $kapcsolat;
 
     function getKapcsolat() {
@@ -106,8 +106,8 @@ class Ab {
                     }
                     //echo serialize($row[$oszlopNevek[$index]]);
                 }
-                // array_push($tomb, $seged);
-                $tomb[] = array_map('utf8_encode', $seged);
+                array_push($tomb, $seged);
+                //$tomb[] = array_map('utf8_encode', $seged);
             }
         }
 
@@ -120,12 +120,8 @@ class Ab {
     }
 
     public function insert($tablaNeve, $oszlopok, $ertekek) {
-
-        if ($tablaNeve === "Cim") {
-            $sql = " SET IDENTITY_INSERT [Cim] ON INSERT INTO " . $tablaNeve . " " . $oszlopok . " VALUES (" . $ertekek . ") SET IDENTITY_INSERT [Cim] OFF";
-        }
-
-
+        $sql = "INSERT INTO " . $tablaNeve . " " . $oszlopok . " VALUES (" . $ertekek . ")";
+        // echo $sql;
         $result = sqlsrv_query($this->kapcsolat, $sql);
         /* $vmi = sqlsrv_query($this->kapcsolat, $sql);
           if (sqlsrv_query($this->kapcsolat, $sql)) {
@@ -155,7 +151,7 @@ class Ab {
         } else {
             $sql = "UPDATE " . $tablaNeve . " SET " . $ujErtekek . " WHERE " . $where;
         }
-
+        echo $sql;
         $vmi = sqlsrv_query($this->kapcsolat, $sql);
     }
 

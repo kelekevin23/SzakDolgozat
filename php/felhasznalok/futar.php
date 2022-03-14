@@ -38,9 +38,37 @@ include_once '../session.php';
                     ?>
                 </nav>
             </div>
-            <article>
-                
-            </article>
+            <section class="rendelesRendezes">
+
+                <div id="elerhetoRendelesek"></div>
+
+                <div id="kivalasztott">
+                    <form class="futarValasztas" method="post">
+                        <label for="rendszam">Kiválasztott rendszám:</label>
+                        <input type="text" id="rendszam" name="rendszam" value="" readonly="readonly">
+                        <button type="submit" name="kivalasztas" id="kivalasztas">Magamhoz veszem</button>
+                    </form>
+                </div>
+            </section>
         </main>
     </body>
 </html>
+<?php
+include_once '../Ab.php';
+$ab = new Ab();
+
+function test_input3($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+if (isset($_POST["kivalasztas"])) {
+    $rendszam = test_input3($_POST["rendszam"]);
+    $fnev = $_SESSION['felhasznalonev'];
+    if ($rendszam !== "") {
+        $ab->update("Rendeles", "kiszallito = '$fnev', rstatusz = 3", "rend_szam = " . $rendszam);
+    }
+}
+?>

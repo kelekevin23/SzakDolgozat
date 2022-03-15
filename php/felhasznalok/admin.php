@@ -10,7 +10,9 @@ include_once '../session.php';
         <title>Szakdolgozat</title>
         <script src="../../js/jquery-3.6.0.min.js"></script>
         <script src="../../js/menu.js"></script>
-        <script src="../../js/futar.js"></script>
+        <script src="../../js/ajax.js"></script>
+        <script src="../../js/admin.js"></script>
+        
         <script src="../../js/bejelentkezes_regisztracio.js"></script>
         <link href="../../css/szerkezet.css" rel="stylesheet" type="text/css"/>
         <link href="../../css/tartalom.css" rel="stylesheet" type="text/css"/>
@@ -37,9 +39,36 @@ include_once '../session.php';
                     ?>
                 </nav>
             </div>
-            <article>
-
-            </article>
+            <section>
+                <div id="csomagRendelesek"></div>
+                
+                <div id="kivalasztott">
+                    <form class="osszecsomagolas" method="post">
+                        <label for="rendszam">Kiválasztott rendszám:</label>
+                        <input type="text" id="rendszam" name="rendszam" value="" readonly="readonly">
+                        <button type="submit" name="kivalasztas" id="kivalasztas">Összecsomagolva!</button>
+                    </form>
+                </div>
+            </section>
         </main>
     </body>
 </html>
+<?php
+include_once '../Ab.php';
+$ab = new Ab();
+
+function test_input3($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+if (isset($_POST["kivalasztas"])) {
+    $rendszam = test_input3($_POST["rendszam"]);
+    $fnev = $_SESSION['felhasznalonev'];
+    if ($rendszam !== "") {
+        $ab->update("Rendeles", "rstatusz = 2", "rend_szam = " . $rendszam);
+    }
+}
+?>

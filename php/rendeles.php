@@ -61,10 +61,10 @@
                           <input type="radio" id="kartya" name="fizetes" value="Bankkártya">
                           <label for="kartya">Bankkártya</label><br><br>
                     </fieldset>
-
+                    
                     <fieldset id="vevoAdat">
                         <legend>Vevő adatai</legend>
-                        <div id="adatok">
+                        <div class="rendAdatok">
                             <label for="vnev">Vezetéknév:</label>
                             <input type="text" id="vnev" name="vnev" placeholder="Vezetéknév">                  
                             <label for="knev">Keresztnév:</label>
@@ -75,7 +75,7 @@
                     </fieldset>
                     <fieldset id="szallitasi">
                         <legend>Szállítási cím</legend>
-                        <div id="adatok">
+                        <div class="rendAdatok">
                             <label for="varos1">Város:</label>
                             <input type="text" id="varos" name="varos" placeholder="Budapest">                                        
                             <label for="irany1">Irányítószám:</label>
@@ -90,7 +90,7 @@
                     </fieldset>
                     <fieldset id="szamlazasi">
                         <legend>Számlázási cím</legend>
-                        <div id="adatok">
+                        <div class="rendAdatok">
                             <label for="varos2">Város:</label>
                             <input type="text" id="varos2" name="varos2" placeholder="Budapest">                  
                             <label for="irany2">Irányítószám:</label>
@@ -105,7 +105,8 @@
                             <input type="tel" id="asz2" name="asz2" placeholder="11111111-x-yz">
                         </div>
                     </fieldset>
-                    <button id="ellenorzes" onclick="return false">Adatok ellenőrzése</button>
+                    <button id="szerkesztes" onclick="return false">Adatok szerkesztése</button>
+                    <button id="ellenorzes" onclick="return false">Adatok véglegesítése</button>
                     <button type="submit" name="rendVeglegesites" id="rendVeglegesites">Rendelés véglegesítése</button>     
                 </form>
 

@@ -14,13 +14,16 @@ $(function () {
 
     for (let index = 1; index < 5; index++) {
         const ujElem = sablonElem.clone().appendTo(szuloElem);
-        let galeria = new BorondAdatlap(ujElem, data, index);
+        let galeria = new BorondAdatlapKep(ujElem, data, index);
     }
     sablonElem.remove();
 
     const szuloElem2 = $("#kezdoKep");
     const ujElem2 = sablonElem.clone().appendTo(szuloElem2);
-    nagyGaleria = new BorondAdatlap(ujElem2, data, 1);
+    nagyGaleria = new BorondAdatlapKep(ujElem2, data, 1);
+
+
+    let adatokLerias = new BorondAdatlap(data);
 
     $(window).on("kepKattintas", (event) => {
         nagyGaleria.termekBeallit(event.detail.data2, event.detail.data);
@@ -34,13 +37,15 @@ $(function () {
 
         for (let index = 1; index < 5; index++) {
             const ujElem = sablonElem.clone().appendTo(szuloElem);
-            let galeria = new BorondAdatlap(ujElem, event.detail.data, index);
+            let galeria = new BorondAdatlapKep(ujElem, event.detail.data, index);
         }
         sablonElem.remove();
 
         const szuloElem2 = $("#kezdoKep");
         const ujElem2 = sablonElem.clone().appendTo(szuloElem2);
-        nagyGaleria = new BorondAdatlap(ujElem2, event.detail.data, 1);
+        nagyGaleria = new BorondAdatlapKep(ujElem2, event.detail.data, 1);
+
+        let adatokLerias = new BorondAdatlap(event.detail.data);
     });
 
 
@@ -53,12 +58,13 @@ $(function () {
         let darab = JSON.parse(localStorage.getItem("aktualisDarab"));
         let marka = localStorage.getItem("aktualisMarka");
 
-        if (darab > obj.keszlet) {
-            console.log("Jeleneleg nincs ennyi darab készleten.");
-        } else {
-            ujTermek.setAdatok(obj, darab, marka);
+        if (darab !== null) {
+
+            if (darab > obj.keszlet) {
+                console.log("Jeleneleg nincs ennyi darab készleten.");
+            } else {
+                ujTermek.setAdatok(obj, darab, marka);
+            }
         }
     });
 });
-
-

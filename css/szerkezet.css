@@ -115,12 +115,12 @@ header{
     border: 1px solid black;
     width: 100%;
 }
-#adatok{  
+.rendAdatok{  
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
 }
-#adatok label{
+.rendAdatok label{
     padding-top: 10px; 
     padding-bottom: 10px; 
     text-align: center;

@@ -48,6 +48,7 @@ class Kosar {
         tablazat += "<th></th>";
         tablazat += "</tr>";
 
+        localStorage.removeItem("rendeleshez");
         this.rendelesbeTomb = [];
         for (let index = 0; index < this.kosarTomb.length; index++) {
             tablazat += "<tr>";
@@ -89,18 +90,17 @@ class Kosar {
         localStorage.setItem("vegOsszeg", this.osszeg);
 
         let szoveg = $("#panel p").html();
-        
+
         if ((this.kosarTomb.length) !== 0 && (szoveg !== undefined)) {
             $(".rendeles").attr('disabled', false);
             $("#rendInfo").html(" ");
-        } else if((this.kosarTomb.length) === 0 && (szoveg!== undefined)) {
+        } else if ((this.kosarTomb.length) === 0 && (szoveg !== undefined)) {
             $(".rendeles").attr('disabled', true);
             $("#rendInfo").html("A kosarad üres!");
-            console.log("ads");
-        }else if((this.kosarTomb.length) !== 0 && (szoveg=== undefined) ){
+        } else if ((this.kosarTomb.length) !== 0 && (szoveg === undefined)) {
             $(".rendeles").attr('disabled', true);
             $("#rendInfo").html("A folytatáshoz jelentkezz be!");
-        }else{
+        } else {
             $(".rendeles").attr('disabled', true);
             $("#rendInfo").html("A rendeléshez véglegesítéséhez bejelentkezés, illetve termék választás szükséges!");
         }
@@ -112,6 +112,7 @@ class Kosar {
             this.kosarTomb = [];
             let adathalmaz = JSON.stringify(this.kosarTomb);
             localStorage.setItem("kosar", adathalmaz);
+
             this.megjelenit();
         });
 

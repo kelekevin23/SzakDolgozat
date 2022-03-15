@@ -1,5 +1,5 @@
 $(function () {
-
+    $("#szerkesztes").hide();
     let osszeg = localStorage.getItem("vegOsszeg");
     let rendelesTomb = JSON.parse(localStorage.getItem("rendeleshez"));
 
@@ -37,8 +37,19 @@ $(function () {
         });
     });
 
+    $("#szerkesztes").on("click", (event) => {
+        $("#szerkesztes").hide();
+        $("#ellenorzes").show();
+        $("#rendVeglegesites").attr('disabled', true);
+        $(".urlapRendeles").children("fieldset").prop("disabled", false);
+        $(".rendAdatok").children("input").css("border", "hidden");
 
+    });
     $("#ellenorzes").on("click", (event) => {
+        $(".rendAdatok").children("input").css("border", "groove");
+        $("#ellenorzes").hide();
+        $("#szerkesztes").show();
+        $(".urlapRendeles").children("fieldset").prop("disabled", true);
         let rosszErtek = false;
 
         $('#vevoAdat :input').each(function (index, element) {
@@ -48,14 +59,17 @@ $(function () {
                 if (text.charAt(0) === "0") {
                     if (tszam.toString().length !== 10) {
                         rosszErtek = true;
+                        console.log("jó");
+                        $("#tszam").css("border-color", "red");
                     }
                 } else {
-                    if (tszam.toString().length !== 11) {
-                        rosszErtek = true;
-                    }
+                    rosszErtek = true;
+                    $("#tszam").css("border-color", "red");
                 }
             }
             if (text === "") {
+
+                $("#" + element.id).css("border-color", "red");
                 rosszErtek = true;
             }
         });
@@ -66,11 +80,13 @@ $(function () {
                 if (element.id === "irany") {
                     let i2 = parseInt(text);
                     if (i2.toString().length !== 4) {
+                        $("#irany").css("border-color", "red");
                         rosszErtek = true;
                     }
                 }
                 if (text === "") {
                     rosszErtek = true;
+                    $("#" + element.id).css("border-color", "red");
                 }
             }
         });
@@ -83,6 +99,7 @@ $(function () {
             if (element.id === "irany2") {
                 let i2 = parseInt(text);
                 if (i2.toString().length !== 4) {
+                    $("#irany2").css("border-color", "red");
                     rosszErtek = true;
                 }
             }
@@ -94,18 +111,20 @@ $(function () {
             }
 
             if (text === "" && element.id !== "cnev2" && element.id !== "asz2") {
+                $("#" + element.id).css("border-color", "red");
                 rosszErtek = true;
             }
 
             if (cnev2 === "" && asz2 !== "" || cnev2 !== "" && asz2 === "") {
+                $("#" + element.id).css("border-color", "red");
                 rosszErtek = true;
             } else if (cnev2 !== "" && asz2 !== "") {
-                /*if (asz2.toString().length !== 13) {
-                 rosszErtek = true;
-                 } else {
-                 rosszErtek = false;
-                 }*/
-                console.log("ha");
+                if (asz2.toString().length !== 13) {
+                    rosszErtek = true;
+                    $("#" + element.id).css("border-color", "red");
+                } else {
+                    rosszErtek = false;
+                }
                 rosszErtek = false;
             }
 

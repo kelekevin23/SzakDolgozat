@@ -39,15 +39,12 @@ class Borond {
     }
 }
 
-class BorondAdatlap {
+class BorondAdatlapKep {
     constructor(elem, obj, index) {
-
         this.elem = elem;
         this.obj = obj;
 
         this.index = index;
-        let aktualisObj = JSON.stringify(this.obj);
-        localStorage.setItem("aktualisObj", aktualisObj);
 
         this.termekKep = this.elem.children(".galeria img");
         this.termekBeallit(this.obj, this.index);
@@ -56,30 +53,52 @@ class BorondAdatlap {
             this.kattintasTrigger();
         });
 
+    }
+    termekBeallit(obj, index) {
+        this.index = index;
+        obj.szin = obj.szin.replace(new RegExp(/[û]/g), "ű");
+
+        let markaTomb = localStorage.getItem("adatlap_marka");
+        let marka = JSON.parse(markaTomb);
+
+        this.termekKep.attr("src", "../kepek/" + marka.substring(0, 2) + '/' + obj.modell + obj.kepElerese + obj.szin + index + ".jpg");
+    }
+    kattintasTrigger() {
+        let esemeny = new CustomEvent("kepKattintas", {detail: {data: this.index, data2: this.obj}});
+        window.dispatchEvent(esemeny);
+    }
+}
+class BorondAdatlap {
+    constructor(obj) {
+        this.obj = obj;
+
+        let aktualisObj = JSON.stringify(this.obj);
+        localStorage.setItem("aktualisObj", aktualisObj);
+
         let markaTomb = localStorage.getItem("adatlap_marka");
         let marka = JSON.parse(markaTomb);
 
         let adatok = [
-            'modell', 'Modell', '', 
-            'cikkszam', 'Cikkszám', '', 
-            'magassag', 'Magasság', ' cm', 
-            'szelesseg', 'Szélesség', ' cm', 
-            'melyseg', 'Mélység', ' cm', 
-            'urmertek', 'Űrmérték', ' liter', 
-            'szin', 'Szín', '', 
-            'keszlet', 'Készlet', ' darab', 
+            'modell', 'Modell', '',
+            'cikkszam', 'Cikkszám', '',
+            'magassag', 'Magasság', ' cm',
+            'szelesseg', 'Szélesség', ' cm',
+            'melyseg', 'Mélység', ' cm',
+            'urmertek', 'Űrmérték', ' liter',
+            'szin', 'Szín', '',
+            'keszlet', 'Készlet', ' darab',
             'ar', 'Ár', ' Forint'
         ];
-        
+
         $(".adatlap_tarolo").empty();
         $(".adatlap_tarolo").append("<tr><th>marka</th><td>" + marka + "</td></tr>");
 
 
 
-        for (var i = 0; i < adatok.length; i+=3) {
+        for (var i = 0; i < adatok.length; i += 3) {
             for (var item in this.obj) {
                 if (adatok[i] === item) {
-                    $(".adatlap_tarolo").append("<tr><th>" + adatok[i+1] + "</th><td>" + this.obj[item] + adatok[i+2] +  "</td></tr>");
+                    $(".adatlap_tarolo").append("<tr><th>" + adatok[i + 1] + "</th><td>" + this.obj[item] + adatok[i + 2] + "</td></tr>");
                 }
             }
         }
@@ -92,7 +111,7 @@ class BorondAdatlap {
         } else {
             $(".kosarba").attr('disabled', false);
         }
-        
+
         let data = {
             mit: "*",
             tablaNeve: "Cikk",
@@ -104,27 +123,17 @@ class BorondAdatlap {
 
         $(".kosarba").on("click", function () {
             let darab = $("#menny").val();
-            //let aktualisObj = JSON.stringify(this.obj);
-            localStorage.setItem("aktualisDarab", darab);
-            localStorage.setItem("aktualisMarka", marka);
+            if (darab > 0) {
+                console.log(darab);
+                localStorage.setItem("aktualisDarab", darab);
+                localStorage.setItem("aktualisMarka", marka);
+            } else{
+                localStorage.removeItem("aktualisDarab");
+            }
         });
     }
 
-    kattintasTrigger() {
-        let esemeny = new CustomEvent("kepKattintas", {detail: {data: this.index, data2: this.obj}});
-        window.dispatchEvent(esemeny);
-    }
-
-    termekBeallit(obj, index) {
-        this.index = index;
-        obj.szin = obj.szin.replace(new RegExp(/[û]/g), "ű");
-        let markaTomb = localStorage.getItem("adatlap_marka");
-        let marka = JSON.parse(markaTomb);
-
-        this.termekKep.attr("src", "../kepek/" + marka.substring(0, 2) + '/' + obj.modell + obj.kepElerese + obj.szin + index + ".jpg");
-    }
     szineketMegjelenit(szinek) {
-        //console.log(szinek);
         $(".szinek").empty();
         for (var i = 0; i < szinek.length; i++) {
             $(".szinek").append("<div class=adatlapSzinek><p>" + szinek[i].szin + "</p><button class=adatlapGombok id=" + i + "></button></div>");
@@ -136,57 +145,4 @@ class BorondAdatlap {
             window.dispatchEvent(esemeny);
         });
     }
-}
-class BorondRendszergazda extends Borond {
-    constructor(elem, obj) {
-        super(elem, obj);
-
-        //this.beallit(this.adat);
-
-        /*this.torlesElem = this.elem.children("td").children(".torol");
-         this.modositElem = this.elem.children("td").children(".modosit");
-         
-         this.torlesElem.on("click", ()=>{
-         this.torolTrigger();
-         });
-         
-         this.modositElem.on("click", ()=>{
-         this.modositTrigger();
-         });*/
-    }
-    /*torolTrigger(){
-     let esemeny = new CustomEvent("torles", {detail:this.adat});
-     window.dispatchEvent(esemeny);
-     
-     }
-     
-     modositTrigger(){
-     let esemeny = new CustomEvent("modositas", {detail:this.adat});
-     window.dispatchEvent(esemeny);
-     
-     }*/
-}
-class BorondAdmin extends Borond {
-    constructor(elem, obj) {
-        super(elem, obj);
-
-        this.beallit(this.adat);
-
-        /* this.modositElem = this.elem.children("td").children(".modosit");
-         
-         this.modositElem.on("click", ()=>{
-         this.modositTrigger();
-         });*/
-    }
-    /* torolTrigger(){
-     let esemeny = new CustomEvent("torles", {detail:this.adat});
-     window.dispatchEvent(esemeny);
-     
-     }
-     
-     modositTrigger(){
-     let esemeny = new CustomEvent("modositas", {detail:this.adat});
-     window.dispatchEvent(esemeny);
-     
-     }*/
 }

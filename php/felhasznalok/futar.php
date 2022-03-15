@@ -40,7 +40,7 @@ include_once '../session.php';
             </div>
             <section class="rendelesRendezes">
 
-                <div id="elerhetoRendelesek"></div>
+                <div id="adottRendelesek"></div>
 
                 <div id="kivalasztott">
                     <form class="futarValasztas" method="post">

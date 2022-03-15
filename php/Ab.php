@@ -9,7 +9,7 @@ class Ab {
       private $kapcsolat;
      */
 
-    private $serverName = "DESKTOP-HFFA4M4";
+    private $serverName = "DESKTOP-MARCI";
     //private $serverName = "WIN10X64HUN61\SQLEXPRESS";
     private $connectionInfo = array("Database" => "Szakdoga_adattal", "CharacterSet" => "UTF-8");
     private $kapcsolat;

@@ -13,7 +13,6 @@ if (isset($_POST["login"])) {
         $userAdatok = $ab->select("*", "felhasznalok", "where felhasznalonev like '$felhasznalo' ");
 
         $_SESSION['felhasznalonev'] = $felhasznalo;
-
         $_SESSION['fstatusz'] = $userAdatok['fstatusz'];
         $_SESSION['keresztnev'] = $userAdatok['keresztnev'];
 

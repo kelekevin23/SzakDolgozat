@@ -84,16 +84,28 @@ class Kosar {
 
         $(".kosarAdatok").html(tablazat);
         $(".kosarGombok").html("<button class=torolKosar>Kosár törlése</button>");
-        $(".kosarGombok").append("<div><a href=rendeles.php><button class=rendeles>Rendelés folytatása...</button></a><p>A rendelés folytatásához be kell jelentkezned</p></div>");
+        $(".kosarGombok").append("<div><a href=rendeles.php><button class=rendeles>Rendelés folytatása...</button></a><p id=rendInfo></p></div>");
 
         localStorage.setItem("vegOsszeg", this.osszeg);
 
         let szoveg = $("#panel p").html();
-        if ((this.kosarTomb.length) === 0 || (szoveg === undefined)) {
-            $(".rendeles").attr('disabled', true);
-        } else {
+        
+        if ((this.kosarTomb.length) !== 0 && (szoveg !== undefined)) {
             $(".rendeles").attr('disabled', false);
+            $("#rendInfo").html(" ");
+        } else if((this.kosarTomb.length) === 0 && (szoveg!== undefined)) {
+            $(".rendeles").attr('disabled', true);
+            $("#rendInfo").html("A kosarad üres!");
+            console.log("ads");
+        }else if((this.kosarTomb.length) !== 0 && (szoveg=== undefined) ){
+            $(".rendeles").attr('disabled', true);
+            $("#rendInfo").html("A folytatáshoz jelentkezz be!");
+        }else{
+            $(".rendeles").attr('disabled', true);
+            $("#rendInfo").html("A rendeléshez véglegesítéséhez bejelentkezés, illetve termék választás szükséges!");
         }
+
+
 
 
         $(".torolKosar").on("click", (event) => {

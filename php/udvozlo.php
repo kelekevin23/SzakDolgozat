@@ -3,7 +3,7 @@
 if (isset($_SESSION['felhasznalonev'])) {
     ?>
     <div id="panel">
-        <p id="udvozles">Üdv <?php echo utf8_encode($_SESSION['felhasznalonev']) ?></p>
+        <p id="udvozles">Üdv <?php echo $_SESSION['felhasznalonev'] ?></p>
         <form method="post" id="kijelentkezesForm">
             <button type="submit" id="kijelentkezes" name="kijelentkezes">Kijelentkezés</button>
         </form>                     

@@ -1,6 +1,6 @@
 $(function () {
 
-
+    const ajax = new Ajax();
     let rendelesek = [];
     elerhetoRendeles();
 
@@ -26,9 +26,8 @@ $(function () {
         sajatRendeles();
     });
 
-    function elerhetoRendeles() {
-        const ajax = new Ajax();
-
+    function elerhetoRendeles() { 
+        $("#adottRendelesek").empty();
         rendelesek = [];
         let data = {
             mit: "*",
@@ -38,22 +37,19 @@ $(function () {
             segedTabla: "Cim"
         };
         ajax.getAjax('../feldolgoz.php', rendelesek, data, megjelenites);
-        $("#adottRendelesek").empty();
     }
     ;
     function sajatRendeles() {
-        const ajax = new Ajax();
-
+        $("#adottRendelesek").empty();
         rendelesek = [];
         let data = {
             mit: "*",
             tablaNeve: "Rendeles",
             honnan: " Rendeles r inner join Cim c on r.szamlcim = c.id",
-            where: "where r.kiszallito like '" + nev + "'",
+            where: "where r.kiszallito like '" + nev + "' and rstatusz = 3",
             segedTabla: "Cim"
         };
         ajax.getAjax('../feldolgoz.php', rendelesek, data, megjelenites);
-        $("#adottRendelesek").empty();
     }
     ;
 
@@ -62,11 +58,12 @@ $(function () {
         let nincsGomb = false;
         let tablazat = "";
         let oszlopok = ["felhasznalonev", "rend_szam", "varos", "fizetesiosszeg", "fizetesimod", "telefonszam"];
+        let oszlopokSzoveg = ["Felhasználónév", "Rendelési szám", "Város", "Fizetési összeg (forint)", "Fizetési mód", "Telefonszám"];
 
         tablazat += "<table class=rendelesekTablazat>";
         tablazat += "<tr>";
-        for (var i = 0; i < oszlopok.length; i++) {
-            tablazat += "<th>" + oszlopok[i] + "</th>";
+        for (var i = 0; i < oszlopokSzoveg.length; i++) {
+            tablazat += "<th>" + oszlopokSzoveg[i] + "</th>";
         }
         tablazat += "</tr>";
         if (rendelesek.length === 0) {

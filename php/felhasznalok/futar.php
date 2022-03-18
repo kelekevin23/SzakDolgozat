@@ -15,6 +15,7 @@ include_once '../session.php';
         <script src="../../js/bejelentkezes_regisztracio.js"></script>
         <link href="../../css/szerkezet.css" rel="stylesheet" type="text/css"/>
         <link href="../../css/tartalom.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/tartalomFelhasznalok.css" rel="stylesheet" type="text/css"/>
         <link href="../../css/reszponzivitas.css" rel="stylesheet" type="text/css"/>  
     </head>
     <body>

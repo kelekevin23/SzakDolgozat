@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+/* Futár oldal, Admin oldal */
+.adminRendezes{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.rendelesekTablazat, .beszerzesekTablazat{
+    text-align: center;
+    background-color: white;
+    border: 3px solid brown;
+    font-size: 16px;
+    margin: auto;
+    width: 80%;
+}
+.rendelesekTablazat th, .rendelesekTablazat td{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.beszerzesekTablazat th, .beszerzesekTablazat td{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#kivalasztott{
+    margin-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    font-size: 20px;
+}
+/* Futár oldal, Admin oldal vége */

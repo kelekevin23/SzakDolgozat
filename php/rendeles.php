@@ -12,6 +12,8 @@
         <script src="../js/bejelentkezes_regisztracio.js"></script>
         <link href="../css/szerkezet.css" rel="stylesheet" type="text/css"/>
         <link href="../css/tartalom.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/szerkezetRendeles.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/tartalomRendeles.css" rel="stylesheet" type="text/css"/>
         <link href="../css/reszponzivitas.css" rel="stylesheet" type="text/css"/>
     </head>
 
@@ -61,7 +63,7 @@
                           <input type="radio" id="kartya" name="fizetes" value="Bankkártya">
                           <label for="kartya">Bankkártya</label><br><br>
                     </fieldset>
-                    
+
                     <fieldset id="vevoAdat">
                         <legend>Vevő adatai</legend>
                         <div class="rendAdatok">
@@ -76,13 +78,13 @@
                     <fieldset id="szallitasi">
                         <legend>Szállítási cím</legend>
                         <div class="rendAdatok">
-                            <label for="varos1">Város:</label>
+                            <label for="varos">Város:</label>
                             <input type="text" id="varos" name="varos" placeholder="Budapest">                                        
-                            <label for="irany1">Irányítószám:</label>
+                            <label for="irany">Irányítószám:</label>
                             <input type="text" id="irany" name="irany" placeholder="1191">
-                            <label for="utca1">Utca/Tér/Fasor:</label>
+                            <label for="utca">Utca/Tér/Fasor:</label>
                             <input type="text" id="utca" name="utca" placeholder="Hunyadi utca">
-                            <label for="hsz1">Házszám:</label>
+                            <label for="hsz">Házszám:</label>
                             <input type="text" id="hsz" name="hsz" placeholder="23/B">
                             <div></div>
                             <button id="szamlCim" onclick="return false">A Számlázási cím megegyezik a Szállítás címmel</button>

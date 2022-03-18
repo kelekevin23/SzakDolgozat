@@ -12,10 +12,10 @@ include_once '../session.php';
         <script src="../../js/menu.js"></script>
         <script src="../../js/ajax.js"></script>
         <script src="../../js/admin.js"></script>
-        
         <script src="../../js/bejelentkezes_regisztracio.js"></script>
         <link href="../../css/szerkezet.css" rel="stylesheet" type="text/css"/>
         <link href="../../css/tartalom.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/tartalomFelhasznalok.css" rel="stylesheet" type="text/css"/>
         <link href="../../css/reszponzivitas.css" rel="stylesheet" type="text/css"/>   
     </head>
     <body>
@@ -39,15 +39,23 @@ include_once '../session.php';
                     ?>
                 </nav>
             </div>
-            <section>
-                <div id="csomagRendelesek"></div>
-                
-                <div id="kivalasztott">
-                    <form class="osszecsomagolas" method="post">
-                        <label for="rendszam">Kiválasztott rendszám:</label>
-                        <input type="text" id="rendszam" name="rendszam" value="" readonly="readonly">
-                        <button type="submit" name="kivalasztas" id="kivalasztas">Összecsomagolva!</button>
-                    </form>
+            <section class="adminRendezes">
+
+                <div class="rendelesStatusz">
+                    <div id="csomagRendelesek"></div>
+
+                    <div id="kivalasztott">
+                        <form class="osszecsomagolas" method="post">
+                            <label for="rendszam">Kiválasztott rendszám:</label>
+                            <input type="text" id="rendszam" name="rendszam" value="" readonly="readonly">
+                            <button type="submit" name="kivalasztas" id="kivalasztas">Összecsomagolva!</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="borondBeszerzes">
+                    <div id="borondSzerkesztes"></div>
+
                 </div>
             </section>
         </main>
@@ -70,5 +78,15 @@ if (isset($_POST["kivalasztas"])) {
     if ($rendszam !== "") {
         $ab->update("Rendeles", "rstatusz = 2", "rend_szam = " . $rendszam);
     }
+}
+if (isset($_POST["szerkesztes"])) {
+    $index = test_input3($_POST["szerkesztes"]);
+    
+    $adottId = test_input3($_POST["id" . $index]);
+    $cikkszam = test_input3($_POST["cikkszam" . $index]);
+    $darabszam = test_input3($_POST["darabszam" . $index]);
+
+    $ab->update("Cikk", "keszlet +=" . $darabszam, " cikkszam like " . $cikkszam);
+    $ab->delete("Beszerzes", " id = " . $adottId);
 }
 ?>

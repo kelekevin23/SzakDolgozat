@@ -41,15 +41,19 @@ $(function () {
         $("#szerkesztes").hide();
         $("#ellenorzes").show();
         $("#rendVeglegesites").attr('disabled', true);
-        $(".urlapRendeles").children("fieldset").prop("disabled", false);
         $(".rendAdatok").children("input").css("border", "hidden");
+        $(".rendAdatok").children("input").attr("readonly", false);
+        $("#szamlCim").prop("disabled", false);
+        //$(".urlapRendeles").children("fieldset").prop("disabled", false);
 
     });
     $("#ellenorzes").on("click", (event) => {
-        $(".rendAdatok").children("input").css("border", "groove");
         $("#ellenorzes").hide();
         $("#szerkesztes").show();
-        $(".urlapRendeles").children("fieldset").prop("disabled", true);
+        $(".rendAdatok").children("input").css("border", "groove");
+        $(".rendAdatok").children("input").attr("readonly", true);
+        $("#szamlCim").prop("disabled", true);
+       // $(".urlapRendeles").children("fieldset").prop("disabled", true);
         let rosszErtek = false;
 
         $('#vevoAdat :input').each(function (index, element) {
@@ -59,7 +63,6 @@ $(function () {
                 if (text.charAt(0) === "0") {
                     if (tszam.toString().length !== 10) {
                         rosszErtek = true;
-                        console.log("jó");
                         $("#tszam").css("border-color", "red");
                     }
                 } else {

@@ -39,7 +39,7 @@ include_once '../session.php';
                     ?>
                 </nav>
             </div>
-            <section class="rendelesRendezes">
+            <section class="futarRendezes">
 
                 <div id="adottRendelesek"></div>
 

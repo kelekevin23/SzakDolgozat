@@ -74,13 +74,12 @@ function test_input3($data) {
 
 if (isset($_POST["kivalasztas"])) {
     $rendszam = test_input3($_POST["rendszam"]);
-    $fnev = $_SESSION['felhasznalonev'];
     if ($rendszam !== "") {
         $ab->update("Rendeles", "rstatusz = 2", "rend_szam = " . $rendszam);
     }
 }
-if (isset($_POST["szerkesztes"])) {
-    $index = test_input3($_POST["szerkesztes"]);
+if (isset($_POST["jovahagyas"])) {
+    $index = test_input3($_POST["jovahagyas"]);
     
     $adottId = test_input3($_POST["id" . $index]);
     $cikkszam = test_input3($_POST["cikkszam" . $index]);

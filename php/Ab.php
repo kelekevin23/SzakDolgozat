@@ -94,12 +94,12 @@ class Ab {
 
     public function insert($tablaNeve, $oszlopok, $ertekek) {
         $sql = "INSERT INTO " . $tablaNeve . " " . $oszlopok . " VALUES (" . $ertekek . ")";
-        // echo $sql;
+        //echo $sql;
         $result = sqlsrv_query($this->kapcsolat, $sql);
 
-        if ($result === false) {
+        /*if ($result === false) {
             die(print_r(sqlsrv_errors(), true));
-        }
+        }*/
     }
 
     public function update($tablaNeve, $ujErtekek, $where) {
@@ -118,7 +118,7 @@ class Ab {
         } else {
             $sql = "DELETE FROM " . $tablaNeve . " WHERE " . $where;
         }
-
+        //echo $sql;
         $vmi = sqlsrv_query($this->kapcsolat, $sql);
     }
 

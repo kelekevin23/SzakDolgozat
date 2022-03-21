@@ -30,15 +30,11 @@
 #adatok_tarolo p{
     height: 20px;
 }
-
 #szures_form{
     font-size: 20px;
     padding-left: 10px;
     padding-right: 10px;
     line-height: 200%;
-}
-#urmertek_csuszka{
-    margin: auto;
 }
 #szures-gomb{
     color: white;

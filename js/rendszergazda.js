@@ -4,6 +4,7 @@ $(function () {
 
     let adatok = [];
     let indexLapozas = 0;
+    let lapozId = 1;
     let kezdes = localStorage.getItem("allapot");
 
     if (kezdes === "rendelesek") {
@@ -27,6 +28,20 @@ $(function () {
         felhasznalok();
     });
 
+
+    $("#keresCikk").keyup(function () {
+        let szoveg = $("#keresCikk").val();
+        adatok = [];
+        let data = {
+            mit: "*",
+            tablaNeve: "Cikk",
+            honnan: "",
+            where: "where cikkszam like '%" + szoveg + "%' and cikkszam not in (select cikkszam from Rend_tetel)",
+            segedTabla: ""
+
+        };
+        ajax.getAjax('../feldolgoz.php', adatok, data, borondokMegjelenites);
+    });
 
 
     function rendelesek() {
@@ -62,6 +77,7 @@ $(function () {
         };
         ajax.getAjax('../feldolgoz.php', adatok, data, borondokMegjelenites);
     }
+    
     function felhasznalok() {
         $(".rendszerGazdaRendelesek").hide();
         $(".rendszerGazdaBorondok").hide();
@@ -83,7 +99,6 @@ $(function () {
         // console.log(adatok);
     }
 
-
     function borondokMegjelenites(adatok) {
         console.log(adatok.length);
         $("#borondok").empty();
@@ -95,9 +110,11 @@ $(function () {
             tablazat = "<form method=post><table class=borondokTablazat>";
             tablazat += "<tr>";
             for (var i = 0; i < oszlopokSzoveg.length; i += 2) {
-                tablazat += "<th>" + oszlopokSzoveg[i] + "</th>";
+                tablazat += "<th id=" + i + ">" + oszlopokSzoveg[i] + "</th>";
             }
             tablazat += "</tr>";
+
+
             let szamlalo = 0;
             for (var index = indexLapozas; index < indexLapozas + 15; index++) {
                 if (index < adatok.length) {
@@ -126,9 +143,33 @@ $(function () {
 
         $("#borondok").append(tablazat);
 
-        $(".modositas").on("click", (event) => {
+        $(".borondokTablazat tr th").on("click", (event) => {
+            let azon = parseInt(event.target.id);
+            let rendez = "";
+            if (azon === 0) {
+                rendez = "order by cikkszam";
+            } else if (azon === 2) {
+                rendez = "order by ar";
+            } else if (azon === 4) {
+                rendez = "order by keszlet";
+            }
+            let szoveg = $("#keresCikk").val();
+            let where = "";
+            if (szoveg === "") {
+                where = "where cikkszam not in (select cikkszam from Rend_tetel) " + rendez;
+            } else {
+                where = "where cikkszam like '%" + szoveg + "%' and cikkszam not in (select cikkszam from Rend_tetel) " + rendez;
+            }
+            adatok = [];
+            let data = {
+                mit: "*",
+                tablaNeve: "Cikk",
+                honnan: "",
+                where: where,
+                segedTabla: ""
 
-
+            };
+            ajax.getAjax('../feldolgoz.php', adatok, data, borondokMegjelenites);
         });
         $(".borondokTablazat").on('click', '.modositas', function () {
             borondokMegjelenites(adatok);
@@ -166,6 +207,7 @@ $(function () {
 
 
     }
+    
     function lapozasBorondok(adatok) {
         let szam = adatok.length / 15;
         let maradek = adatok.length % 10;
@@ -178,6 +220,9 @@ $(function () {
         for (var i = 1; i < Math.trunc(szam) + emeles; i++) {
             $("#borondok .lapoz").append("<button class=lapozElem id=" + i + ">" + i + "</button>");
         }
+        $('.lapozElem').eq(lapozId - 1).css("background-color", "white");
+        $('.lapozElem').eq(lapozId - 1).css("color", "brown");
+
         $('.lapozElem').on('click', function () {
             let id = this.id;
             indexLapozas = (id * 15) - 15;
@@ -185,9 +230,11 @@ $(function () {
 
         });
         $(".lapozElem").click(function () {
-            let id = this.id;
-            $('.lapozElem').eq(id - 1).css("background-color", "white");
-            $('.lapozElem').eq(id - 1).css("color", "brown");
+            $('.lapozElem').eq(lapozId - 1).css("background-color", "brown");
+            $('.lapozElem').eq(lapozId - 1).css("color", "white");
+            lapozId = this.id;
+            $('.lapozElem').eq(lapozId - 1).css("background-color", "white");
+            $('.lapozElem').eq(lapozId - 1).css("color", "brown");
         });
     }
 

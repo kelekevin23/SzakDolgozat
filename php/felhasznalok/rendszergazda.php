@@ -45,6 +45,14 @@ include_once '../session.php';
             </div>
 
             <div class="rendszerGazdaBorondok">
+
+
+                <div id="kereses">
+                    <label for=keresCikk>Keresett cikkszám:</label>
+                    <input type="text" id="keresCikk" name="keresCikk" maxlength="13" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                </div>
+
+                <div></div>
                 <div id="borondok"></div>
                 <div id="ujBorondok">
                     <form method="post">

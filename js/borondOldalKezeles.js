@@ -25,6 +25,22 @@ $(function () {
     };
     ajax.getAjax('feldolgoz.php', termekek, data2, termeketFelvesz);
 
+    $("#keresosav").on('keypress', function (e) {
+        if (e.which === 13) {
+            let szoveg = $("#keresosav").val();
+            termekek = [];
+            let data = {
+                mit: "*",
+                tablaNeve: "Cikk",
+                honnan: "Cikk c inner join Modell m on c.modell = m.modell",
+                where: " where c.modell like '%" + szoveg + "%' order by c.modell, c.magassag",
+                segedTabla: "Modell"
+
+            };
+            console.log(szoveg);
+            ajax.getAjax('feldolgoz.php', termekek, data, termeketFelvesz);
+        }
+    });
 
     $('#szures-gomb').on('click', function () {
         indexLapozas = 0;
@@ -59,6 +75,11 @@ $(function () {
             }
         }
         let rendezes = " order by c.modell, c.magassag";
+        let szoveg = $("#keresosav").val();
+        if (szoveg !== "") {
+            rendezes = " and c.modell like '%" + szoveg + "%' order by c.modell, c.magassag";
+        }
+        
         let radioValue = $("input[name='marka']:checked").val();
         let where = "";
         let meret = $("input[name='meret']:checked").val();
@@ -92,7 +113,7 @@ $(function () {
             }
         }
 
-        console.log(where);
+       // console.log(where);
 
         let data2 = {
             mit: "*",

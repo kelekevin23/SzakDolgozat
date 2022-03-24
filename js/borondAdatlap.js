@@ -58,6 +58,7 @@ $(function () {
         let darab = JSON.parse(localStorage.getItem("aktualisDarab"));
         let marka = localStorage.getItem("aktualisMarka");
 
+        console.log(obj);
         if (darab !== null) {
 
             if (darab > obj.keszlet) {

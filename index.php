@@ -27,7 +27,7 @@
             <div class="header-container">
                 <header>
                     <h1>B-Shop</h1>
-                 
+
                     <div class="kereso-panel">
                         <input type="text" placeholder="Keresés..." name="kereso" id="keresosav">
                     </div>
@@ -59,7 +59,9 @@
                         <div id="balkep"></div>
                         <div id="fokep"></div>
                         <div id="jobbkep"></div>
-
+                        <input type="hidden" id="adottCikkszam" value="">
+                        <input type="hidden" id="adottKeszlet" value="">
+                        <input type="hidden" id="adottSzin" value="">
                         <button id="jobb">></button>
                     </div>
                 </div>
@@ -69,8 +71,9 @@
             <section>
                 <div class="galeria">
                     <h3 class="marka"></h3>
-                    <img src="" alt="">
+                    <a href="php/borondadatlap.php"><img src="" alt=""></a>
                 </div>
+                
             </section>
 
             <aside class="adatok">

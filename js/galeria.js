@@ -2,7 +2,6 @@ $(function () {
 
     const galeria = new Galeria();
 
-
 });
 
 
@@ -45,6 +44,8 @@ class Galeria {
             foGaleria.tablazatKiir(adatok[index]);
 
             $("#jobb").on("click", function () {
+                $("#adottCikkszam").text("");
+                
                 index++;
 
                 if (index === 10) {
@@ -72,6 +73,8 @@ class Galeria {
             });
 
             $("#bal").on("click", function () {
+                $("#adottCikkszam").text("");
+               
                 index--;
                 if (index === -2) {
                     index = 7;
@@ -104,20 +107,34 @@ class Galeria {
 class Kep {
     constructor(elem, obj) {
         this.elem = elem;
-        this.kep = this.elem.children("img");
+
+        this.kep = this.elem.children("a").children("img");
         this.marka = this.elem.children(".marka");
         this.modell = this.elem.children(".modell");
 
         this.obj = obj;
         this.kepBeallit(this.obj);
 
+    }
 
-
+    kepKattintas(data) {
+        let adathalmaz = JSON.stringify(data);
+        localStorage.setItem("adatlap", adathalmaz);
     }
 
     kepBeallit(obj) {
         this.marka.html(obj.marka);
         this.modell.html(obj.modell);
+
+        this.kep.on("click", () => {
+            let szoveg = $("#adottCikkszam").text();
+            if (szoveg !== "") {
+                obj.cikkszam = $("#adottCikkszam").text();
+                obj.keszlet = $("#adottKeszlet").text();
+                obj.szin = $("#adottSzin").text();
+            }
+            this.kepKattintas(obj);
+        });
 
         obj.szin = obj.szin.replace(new RegExp(/[û]/g), "ű");
         this.kep.attr("src", "kepek/" + obj.marka.substring(0, 2) + '/' + obj.modell + obj.kepElerese + obj.szin + "1.jpg");
@@ -131,7 +148,6 @@ class Kep {
         $("#borondAdat").append("<td>" + obj.szelesseg + " cm</td>");
         $("#borondAdat").append("<td>" + obj.melyseg + " cm</td>");
         $("#borondAdat").append("<td>" + obj.urmertek + " l</td>");
-        //$("#adatok").append("<td>" + obj.szin + "</td>");
 
         $(".szinek").empty();
 
@@ -162,10 +178,13 @@ class Kep {
         let marka = $(".galeria .marka").eq(1).text();
 
         $(".gombok").on("click", function () {
+            console.log(szin[this.id]);
+            $("#adottCikkszam").text(szin[this.id].cikkszam);
+            $("#adottKeszlet").text(szin[this.id].keszlet);
+            $("#adottSzin").text(szin[this.id].szin);
+
             szin[this.id].szin = szin[this.id].szin.replace(new RegExp(/[û]/g), "ű");
             $("#fokep img").attr("src", "kepek/" + marka.substring(0, 2) + '/' + szin[this.id].modell + szin[this.id].kepElerese + szin[this.id].szin + "1.jpg");
-            console.log("kepek/" + marka.substring(0, 2) + '/' + szin[this.id].modell + szin[this.id].kepElerese + szin[this.id].szin + "1.jpg");
-   
         });
     }
 }

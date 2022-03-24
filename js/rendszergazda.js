@@ -77,7 +77,7 @@ $(function () {
         };
         ajax.getAjax('../feldolgoz.php', adatok, data, borondokMegjelenites);
     }
-    
+
     function felhasznalok() {
         $(".rendszerGazdaRendelesek").hide();
         $(".rendszerGazdaBorondok").hide();
@@ -207,7 +207,7 @@ $(function () {
 
 
     }
-    
+
     function lapozasBorondok(adatok) {
         let szam = adatok.length / 15;
         let maradek = adatok.length % 10;

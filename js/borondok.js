@@ -45,7 +45,6 @@ class BorondAdatlapKep {
         this.obj = obj;
 
         this.index = index;
-
         this.termekKep = this.elem.children(".galeria img");
         this.termekBeallit(this.obj, this.index);
 

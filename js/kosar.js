@@ -71,7 +71,6 @@ class Kosar {
                 darab: this.kosarTomb[index].darab,
                 reszOsszeg: reszOsszeg
             };
-            console.log(this.rendelesbeTomb);
             this.rendelesbeTomb.push(rendelesbe);
             let adathalmaz = JSON.stringify(this.rendelesbeTomb);
             localStorage.setItem("rendeleshez", adathalmaz);

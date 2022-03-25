@@ -4,7 +4,7 @@ include_once 'Ab.php';
 $ab = new Ab();
 if (isset($_POST["login"])) {
     $loginMail = $_POST["emailB"];
-    $loginJelszo = $_POST["jelszo"];
+    $loginJelszo = md5($_POST["jelszo"]);
 
     $vanUser = $ab->select("felhasznalonev", "felhasznalok", "where email like '$loginMail' and jelszo like '$loginJelszo'");
 
@@ -133,6 +133,7 @@ if (isset($_POST["submit"])) {
         $ker = strtolower(substr("$knev", 0, 3));
         $kod = rand(100, 999);
         $felhasznalonev = $vez . $ker . $kod;
+        $jelszo= md5($jelszo);
         $ab->insert("Felhasznalok", "(felhasznalonev, vezeteknev, keresztnev, email, jelszo, fstatusz)", "'$felhasznalonev', '$vnev','$knev','$email','$jelszo','k'");
     }
 }

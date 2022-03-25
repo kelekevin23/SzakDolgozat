@@ -175,9 +175,17 @@ if (isset($_POST["veglegesites"])) {
     $ures = false;
     $where = "";
     $fnev = test_input4($_POST["adat0"]);
+ 
     for ($index1 = 1; $index1 < 6; $index1++) {
         if (test_input4($_POST["adat" . $index1]) === "") {
             $ures = true;
+        }if ($index1 === 4) {
+            $regijelszo = test_input4($_POST["regijelszo"]);
+
+            if ($regijelszo !== test_input4($_POST["adat" . $index1])) {
+                
+                $_POST["adat" . $index1]=md5($_POST["adat" . $index1]);
+            }
         }
         if ($index1 === 5) {
             $where .= test_input4($_POST["adatNev" . $index1]) . " = '" . test_input4($_POST["adat" . $index1] . "'");
@@ -187,6 +195,7 @@ if (isset($_POST["veglegesites"])) {
     }
     if (!$ures) {
         $ab->update("Felhasznalok", $where, " felhasznalonev =  '$fnev'");
+       
     }
 }
 ?>

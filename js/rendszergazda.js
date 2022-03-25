@@ -240,10 +240,10 @@ $(function () {
 
     function felhasznalokMegjelenites(adatok) {
         let tablazat = "";
-
+        let veglegesitSor;
         let oszlopok = ["felhasznalonev", "vezeteknev", "keresztnev", "email", "jelszo", "fstatusz"];
         let oszlopokSzoveg = ["Felhasználónév", "Vezetéknév", "Keresztnév", "Email", "Jelszó", "Státusz"];
-
+        let jelszavak=[];
         if (adatok.length !== 0) {
             tablazat = "<form method=post><table class=felhasznalokTablazat>";
             tablazat += "<tr>";
@@ -258,6 +258,10 @@ $(function () {
                         if (oszlopok[i] === item) {
                             if (item === "felhasznalonev") {
                                 tablazat += "<td><input type=hidden name=fnev" + index + " value=" + adatok[index][item] + ">" + adatok[index][item] + "</td>";
+                                
+                            } else if (item === "jelszo") {
+                                jelszavak.push(adatok[index][item]);
+                                tablazat += "<td>" + adatok[index][item] + "</td>";
                             } else {
                                 tablazat += "<td>" + adatok[index][item] + "</td>";
                             }
@@ -277,10 +281,10 @@ $(function () {
             $(".torles").attr('disabled', true);
             //$(".modositas").attr('disabled', true);
             let modositando = [];
-
+            veglegesitSor = this.id;
             var jelenlegiSor = $(this).closest("tr");
             let index = parseInt(this.id) + 1;
-
+            let jelszo= jelszavak[this.id];
             for (var i = 0; i < 6; i++) {
                 modositando.push(jelenlegiSor.find("td:eq(" + i + ")").text());
             }
@@ -294,7 +298,8 @@ $(function () {
 
                 }
             }
-            modosit += "<td><button type=submit name=veglegesites>Véglegesítés</button></td>";
+            modosit += "<input type=hidden name=regijelszo value=" + jelszo + ">";
+            modosit += "<td><button type=submit name=veglegesites value=" + veglegesitSor + ">Véglegesítés</button></td>";
             modosit += "<td><button class=megse onclick='return false'>Mégse</button></td>";
 
             $(".felhasznalokTablazat tr:nth(" + index + ")").html(modosit);

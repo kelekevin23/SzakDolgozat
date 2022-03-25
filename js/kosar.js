@@ -1,4 +1,5 @@
 $(function () {
+    localStorage.setItem("oldal", "kosar");
     new Kosar();
 });
 class Kosar {

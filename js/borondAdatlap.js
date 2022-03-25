@@ -1,4 +1,6 @@
 $(function () {
+    
+    localStorage.setItem("oldal", "borondadAdatlap");
 
     let nagyGaleria;
     let tomb = localStorage.getItem("adatlap");

@@ -1,5 +1,12 @@
 $(function () {
-
+    
+    let keresett = localStorage.getItem("kereses");
+    
+    if(kereses === ""){
+        kereses(keresett);
+    }
+    
+    
     const ajax = new Ajax();
     let indexLapozas = 0;
 
@@ -26,8 +33,14 @@ $(function () {
     ajax.getAjax('feldolgoz.php', termekek, data2, termeketFelvesz);
 
     $("#keresosav").on('keypress', function (e) {
+        
         if (e.which === 13) {
-            let szoveg = $("#keresosav").val();
+            kereses($("#keresosav").val());
+        }
+    });
+    
+    function kereses(adat){
+        let szoveg = adat;
             termekek = [];
             let data = {
                 mit: "*",
@@ -39,8 +52,7 @@ $(function () {
             };
             console.log(szoveg);
             ajax.getAjax('feldolgoz.php', termekek, data, termeketFelvesz);
-        }
-    });
+    }
 
     $('#szures-gomb').on('click', function () {
         indexLapozas = 0;

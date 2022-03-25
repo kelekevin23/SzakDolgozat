@@ -1,5 +1,6 @@
 $(function () {
     $("#szerkesztes").hide();
+    localStorage.setItem("oldal", "rendeles");
     let osszeg = localStorage.getItem("vegOsszeg");
     let rendelesTomb = JSON.parse(localStorage.getItem("rendeleshez"));
 

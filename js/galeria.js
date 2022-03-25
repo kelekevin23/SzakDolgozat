@@ -1,4 +1,6 @@
 $(function () {
+    
+    localStorage.setItem("oldal", "index");
 
     const galeria = new Galeria();
 

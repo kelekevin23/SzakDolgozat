@@ -4,4 +4,23 @@ $(function () {
         $("nav li").eq(i).css("border-right", "1px solid white");
         $("nav li").eq(i).css("border-bottom", "none");
     }
+    
+    
+    $("#keresosav").on('keypress', function (e) {
+         
+        if (e.which === 13) {
+            let oldal = localStorage.getItem("oldal");
+            console.log(oldal);
+            
+            let szoveg = $("#keresosav").val(); 
+            console.log(szoveg);
+            
+            if(oldal === 'index'){                
+                window.location.href='php/borondok.php';                
+            }else{
+                window.location.href='borondok.php';
+            }
+            localStorage.setItem("kereses", $("#keresosav").val());  
+        }
+    });
 });

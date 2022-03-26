@@ -1,5 +1,6 @@
 $(function () {
 
+//location.reload();
     let rendelesek = [];
     let beszerzes = [];
     const ajax = new Ajax();
@@ -35,7 +36,7 @@ $(function () {
             where: "where r.rstatusz=1",
             segedTabla: "Cim"
         };
-        ajax.getAjax('../feldolgoz.php', rendelesek, data, rendelesMegjelenites);
+        ajax.selectAjax('../api/Select.php', rendelesek, data, rendelesMegjelenites);
     }
 
     function adminBorondok() {
@@ -51,8 +52,9 @@ $(function () {
             where: "",
             segedTabla: ""
         };
-        ajax.getAjax('../feldolgoz.php', beszerzes, data, beszerzesMegjelenites);
+        ajax.selectAjax('../api/Select.php', beszerzes, data, beszerzesMegjelenites);
     }
+    
     function beszerzesMegjelenites(beszerzes) {
         let tablazat = "<p>Jelenleg nincsen visszaküldött bőrönd!</p>";
         let oszlopokSzoveg = ["Id", "Cikkszám", "Darabszám"];
@@ -77,7 +79,6 @@ $(function () {
 
         $("#borondSzerkesztes").html(tablazat);
     }
-
 
     function rendelesMegjelenites(rendelesek) {
         let tablazat = "<p>Jelenleg nincs beérkezett rendelés!</p>";

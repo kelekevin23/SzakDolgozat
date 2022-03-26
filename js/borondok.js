@@ -118,7 +118,7 @@ class BorondAdatlap {
             where: "where modell like '" + this.obj.modell + "' and kepElerese like '" + this.obj.kepElerese + "'",
             segedTabla: "Szin"
         };
-        ajax.getAjax('feldolgoz.php', szinek, data, this.szineketMegjelenit);
+        ajax.selectAjax('api/Select.php', szinek, data, this.szineketMegjelenit);
 
         $(".kosarba").on("click", function () {
             let darab = $("#menny").val();

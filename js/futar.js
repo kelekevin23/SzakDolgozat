@@ -36,7 +36,7 @@ $(function () {
             where: "where r.rstatusz=2",
             segedTabla: "Cim"
         };
-        ajax.getAjax('../feldolgoz.php', rendelesek, data, megjelenites);
+        ajax.selectAjax('../api/Select.php', rendelesek, data, megjelenites);
     }
 
     function sajatRendeles() {
@@ -49,7 +49,7 @@ $(function () {
             where: "where r.kiszallito like '" + nev + "' and rstatusz = 3",
             segedTabla: "Cim"
         };
-        ajax.getAjax('../feldolgoz.php', rendelesek, data, megjelenites);
+        ajax.selectAjax('../api/Select.php', rendelesek, data, megjelenites);
     }
 
     function megjelenites(rendelesek) {

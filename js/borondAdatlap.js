@@ -9,23 +9,7 @@ $(function () {
     let marka = JSON.stringify(data.marka);
     localStorage.setItem("adatlap_marka", marka);
 
-
-    const szuloElem = $(".borondKepek");
-    const sablonElem = $(".galeria");
-
-
-    for (let index = 1; index < 5; index++) {
-        const ujElem = sablonElem.clone().appendTo(szuloElem);
-        let galeria = new BorondAdatlapKep(ujElem, data, index);
-    }
-    sablonElem.remove();
-
-    const szuloElem2 = $("#kezdoKep");
-    const ujElem2 = sablonElem.clone().appendTo(szuloElem2);
-    nagyGaleria = new BorondAdatlapKep(ujElem2, data, 1);
-
-
-    let adatokLerias = new BorondAdatlap(data);
+    borondBetolt(data);
 
     $(window).on("kepKattintas", (event) => {
         nagyGaleria.termekBeallit(event.detail.data2, event.detail.data);
@@ -33,23 +17,25 @@ $(function () {
 
     $(window).on("szinKattintas", (event) => {
         $(".borondKepek").empty();
+        borondBetolt(event.detail.data);
+    });
 
+    function borondBetolt(obj){
         const szuloElem = $(".borondKepek");
         const sablonElem = $(".galeria");
 
         for (let index = 1; index < 5; index++) {
             const ujElem = sablonElem.clone().appendTo(szuloElem);
-            let galeria = new BorondAdatlapKep(ujElem, event.detail.data, index);
+            new BorondAdatlapKep(ujElem, obj, index);
         }
         sablonElem.remove();
 
         const szuloElem2 = $("#kezdoKep");
         const ujElem2 = sablonElem.clone().appendTo(szuloElem2);
-        nagyGaleria = new BorondAdatlapKep(ujElem2, event.detail.data, 1);
+        nagyGaleria = new BorondAdatlapKep(ujElem2, obj, 1);
 
-        let adatokLerias = new BorondAdatlap(event.detail.data);
-    });
-
+        new BorondAdatlap(obj);
+    }
 
     const ujTermek = new Kosar();
     this.kosarba = $(".kosarba");

@@ -27,23 +27,35 @@
     border-left: 1px solid brown;
     border-right: 1px solid brown; 
 }
+#szuresGombok{
+    text-align: center;
+    padding: 20px;
+}
+#szures-gomb{
+    color: white;
+    width: 100%;
+    background-color: brown;
+    font-size: 20px;
+    padding: 10px;
+}
+#szures-torol{
+    color: white;
+    width: 50%;
+    background-color: steelblue;
+    font-size: 15px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
 #adatok_tarolo p{
     height: 20px;
 }
+
 #szures_form{
     font-size: 20px;
     padding-left: 10px;
     padding-right: 10px;
     line-height: 200%;
-}
-#szures-gomb{
-    color: white;
-    width: 92%;
-    margin-left: 10px;
-    margin-right: 10px;
-    background-color: brown;
-    font-size: 20px;
-    padding: 10px;
 }
 #szinek_tarolo label{
     padding-left: 20px;

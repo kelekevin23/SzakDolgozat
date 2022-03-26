@@ -54,8 +54,10 @@
             <div class="tarolo-div">
                 <div class="borondok-oldalszerkezet">
                     <aside class="szures">
-                        <br>
-                        <button id="szures-gomb">Szűrés</button>
+                        <div id="szuresGombok">
+                            <button id="szures-gomb">Szűrés</button>
+                            <button id="szures-torol">Szűrések törlése</button>
+                        </div>
                         <form id="szures_form">
                             <fieldset>
                                 <legend>Márkák:</legend>

@@ -1,13 +1,10 @@
 $(function () {
-    
-    let keresett = localStorage.getItem("kereses");
-    
-    if(kereses === ""){
-        kereses(keresett);
-    }
-    
-    
+
+    localStorage.setItem("oldal", "borond");
+
     const ajax = new Ajax();
+    const ell = new Ellenorzes();
+    let termekek = [];
     let indexLapozas = 0;
 
     let adatok = [];
@@ -18,10 +15,8 @@ $(function () {
         where: "where besorolas is null",
         segedTabla: ""
     };
-    ajax.getAjax('feldolgoz.php', adatok, data, checkbox);
+    ajax.selectAjax('api/Select.php', adatok, data, checkbox);
 
-
-    let termekek = [];
     let data2 = {
         mit: "*",
         tablaNeve: "Cikk",
@@ -30,104 +25,50 @@ $(function () {
         segedTabla: "Modell"
 
     };
-    ajax.getAjax('feldolgoz.php', termekek, data2, termeketFelvesz);
 
-    $("#keresosav").on('keypress', function (e) {
-        
-        if (e.which === 13) {
+    let keresett = localStorage.getItem("kereses");
+    if (keresett !== null) {
+        kereses(keresett);
+    } else {
+        ajax.selectAjax('api/Select.php', termekek, data2, termeketFelvesz);
+    }
+
+    $("#keresosav").on('keypress', function (gomb) {
+        if (gomb.which === 13) {
+            $('input:radio[name=marka]:checked').prop('checked', false);
+            $('input:radio[name=meret]:checked').prop('checked', false);
+            $('input:checkbox[name=szin]:checked').prop('checked', false);
             kereses($("#keresosav").val());
         }
     });
-    
-    function kereses(adat){
-        let szoveg = adat;
-            termekek = [];
-            let data = {
-                mit: "*",
-                tablaNeve: "Cikk",
-                honnan: "Cikk c inner join Modell m on c.modell = m.modell",
-                where: " where c.modell like '%" + szoveg + "%' order by c.modell, c.magassag",
-                segedTabla: "Modell"
 
-            };
-            console.log(szoveg);
-            ajax.getAjax('feldolgoz.php', termekek, data, termeketFelvesz);
+    function kereses(szoveg) {
+        termekek = [];
+        let data = {
+            mit: "*",
+            tablaNeve: "Cikk",
+            honnan: "Cikk c inner join Modell m on c.modell = m.modell",
+            where: " where c.modell like '%" + szoveg + "%' order by c.modell, c.magassag",
+            segedTabla: "Modell"
+
+        };
+        ajax.selectAjax('api/Select.php', termekek, data, termeketFelvesz);
     }
+
+    $('#szures-torol').on('click', function () {
+        $('input:radio[name=marka]:checked').prop('checked', false);
+        $('input:radio[name=meret]:checked').prop('checked', false);
+        $('input:checkbox[name=szin]:checked').prop('checked', false);
+
+        $("#keresosav").val("");
+        localStorage.removeItem("kereses");
+        $('#szures-gomb').click();
+    });
 
     $('#szures-gomb').on('click', function () {
         indexLapozas = 0;
-
-        let checked = [];
-        $("input[name='szin']:checked").each(function () {
-            checked.push(this.id);
-        });
-
-        let whereSzin = "";
-        if (checked.length > 0) {
-
-            for (var i = 0; i < checked.length; i++) {
-                checked[i] = checked[i].replace(new RegExp(/[áéöóí]/g), "%");
-            }
-
-            for (var i = 0; i < checked.length; i++) {
-                if (i === (checked.length) - 1) {
-                    whereSzin += " s.szin like '" + checked[i] + "'";
-                } else {
-                    whereSzin += " s.szin like '" + checked[i] + "' or ";
-                }
-            }
-            whereSzin += " or ";
-            for (var i = 0; i < checked.length; i++) {
-                if (i === (checked.length) - 1) {
-                    whereSzin += " s.besorolas like '" + checked[i] + "'";
-                } else {
-
-                    whereSzin += " s.besorolas like '" + checked[i] + "' or ";
-                }
-            }
-        }
-        let rendezes = " order by c.modell, c.magassag";
-        let szoveg = $("#keresosav").val();
-        if (szoveg !== "") {
-            rendezes = " and c.modell like '%" + szoveg + "%' order by c.modell, c.magassag";
-        }
-        
-        let radioValue = $("input[name='marka']:checked").val();
-        let where = "";
-        let meret = $("input[name='meret']:checked").val();
-        if (radioValue === undefined) {
-            if (meret === undefined) {
-                if (whereSzin === "") {
-                    where += rendezes;
-                } else {
-                    where += "where (" + whereSzin + " ) " + rendezes;
-                }
-            } else {
-                if (whereSzin === "") {
-                    where += "where c.urmertek " + meret + rendezes;
-                } else {
-                    where += "where (" + whereSzin + ") and c.urmertek " + meret + rendezes;
-                }
-            }
-        } else {
-            if (meret === undefined) {
-                if (whereSzin === "") {
-                    where += "where m.marka like '" + radioValue + "'" + rendezes;
-                } else {
-                    where += "where m.marka like '" + radioValue + "' and (" + whereSzin + ")" + rendezes;
-                }
-            } else {
-                if (whereSzin === "") {
-                    where += "where m.marka like '" + radioValue + "' " + " and c.urmertek " + meret + rendezes;
-                } else {
-                    where += "where m.marka like '" + radioValue + "' " + " and c.urmertek " + meret + " and (" + whereSzin + ")" + rendezes;
-                }
-            }
-        }
-
-       // console.log(where);
-
-        let data2 = {
+        let where = ell.szuresEllenorzes();
+        let data3 = {
             mit: "*",
             tablaNeve: "Cikk",
             honnan: "Cikk c inner join Modell m on c.modell = m.modell inner join Szin s on c.szin = s.szin",
@@ -135,7 +76,7 @@ $(function () {
             segedTabla: "Modell"
         };
         termekek = [];
-        ajax.getAjax('feldolgoz.php', termekek, data2, termeketFelvesz);
+        ajax.selectAjax('api/Select.php', termekek, data3, termeketFelvesz);
     });
 
 
@@ -162,8 +103,8 @@ $(function () {
 
     function checkbox(adatok) {
         for (var i = 0; i < adatok.length; i++) {
-            $("#szinek_tarolo").append("<input type=checkbox id=" + adatok[i].szin + " name=szin " + i + "value=" + adatok[i].szin + ">");
-            $("#szinek_tarolo").append("<label for=szin" + i + ">" + adatok[i].szin + "</label><br>");
+            $("#szinek_tarolo").append("<input type=checkbox id=" + adatok[i].szin + " name=szin value=" + adatok[i].szin + ">");
+            $("#szinek_tarolo").append("<label for=szin>" + adatok[i].szin + "</label><br>");
         }
     }
 
@@ -204,5 +145,81 @@ $(function () {
     });
 
 });
+
+class Ellenorzes {
+    constructor() {
+
+    }
+    szuresEllenorzes() {
+        let checked = [];
+        $("input[name='szin']:checked").each(function () {
+            checked.push(this.id);
+        });
+
+        let whereSzin = "";
+        if (checked.length > 0) {
+
+            for (var i = 0; i < checked.length; i++) {
+                checked[i] = checked[i].replace(new RegExp(/[áéöóí]/g), "%");
+            }
+
+            for (var i = 0; i < checked.length; i++) {
+                if (i === (checked.length) - 1) {
+                    whereSzin += " s.szin like '" + checked[i] + "'";
+                } else {
+                    whereSzin += " s.szin like '" + checked[i] + "' or ";
+                }
+            }
+            whereSzin += " or ";
+            for (var i = 0; i < checked.length; i++) {
+                if (i === (checked.length) - 1) {
+                    whereSzin += " s.besorolas like '" + checked[i] + "'";
+                } else {
+
+                    whereSzin += " s.besorolas like '" + checked[i] + "' or ";
+                }
+            }
+        }
+        let rendezes = " order by c.modell, c.magassag";
+        let szoveg = $("#keresosav").val();
+        if (szoveg !== "") {
+            rendezes = " and c.modell like '%" + szoveg + "%' order by c.modell, c.magassag";
+        }
+
+        let radioValue = $("input[name='marka']:checked").val();
+        let where = "";
+        let meret = $("input[name='meret']:checked").val();
+        if (radioValue === undefined) {
+            if (meret === undefined) {
+                if (whereSzin === "") {
+                    where += rendezes;
+                } else {
+                    where += "where (" + whereSzin + " ) " + rendezes;
+                }
+            } else {
+                if (whereSzin === "") {
+                    where += "where c.urmertek " + meret + rendezes;
+                } else {
+                    where += "where (" + whereSzin + ") and c.urmertek " + meret + rendezes;
+                }
+            }
+        } else {
+            if (meret === undefined) {
+                if (whereSzin === "") {
+                    where += "where m.marka like '" + radioValue + "'" + rendezes;
+                } else {
+                    where += "where m.marka like '" + radioValue + "' and (" + whereSzin + ")" + rendezes;
+                }
+            } else {
+                if (whereSzin === "") {
+                    where += "where m.marka like '" + radioValue + "' " + " and c.urmertek " + meret + rendezes;
+                } else {
+                    where += "where m.marka like '" + radioValue + "' " + " and c.urmertek " + meret + " and (" + whereSzin + ")" + rendezes;
+                }
+            }
+        }
+        return where;
+    }
+}
 
 

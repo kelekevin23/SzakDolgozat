@@ -40,7 +40,7 @@ $(function () {
             segedTabla: ""
 
         };
-        ajax.getAjax('../feldolgoz.php', adatok, data, borondokMegjelenites);
+        ajax.selectAjax('../api/Select.php', adatok, data, borondokMegjelenites);
     });
 
 
@@ -58,7 +58,7 @@ $(function () {
             where: "",
             segedTabla: "Cim"
         };
-        ajax.getAjax('../feldolgoz.php', adatok, data, rendelesMegjelenites);
+        ajax.selectAjax('../api/Select.php', adatok, data, rendelesMegjelenites);
     }
     function borondok() {
         $(".rendszerGazdaRendelesek").hide();
@@ -75,7 +75,7 @@ $(function () {
             segedTabla: ""
 
         };
-        ajax.getAjax('../feldolgoz.php', adatok, data, borondokMegjelenites);
+        ajax.selectAjax('../api/Select.php', adatok, data, borondokMegjelenites);
     }
 
     function felhasznalok() {
@@ -92,7 +92,7 @@ $(function () {
             where: "",
             segedTabla: ""
         };
-        ajax.getAjax('../feldolgoz.php', adatok, data, felhasznalokMegjelenites);
+        ajax.selectAjax('../api/Select.php', adatok, data, felhasznalokMegjelenites);
     }
 
     function rendelesMegjelenites(adatok) {
@@ -169,7 +169,7 @@ $(function () {
                 segedTabla: ""
 
             };
-            ajax.getAjax('../feldolgoz.php', adatok, data, borondokMegjelenites);
+            ajax.selectAjax('../api/Select.php', adatok, data, borondokMegjelenites);
         });
         $(".borondokTablazat").on('click', '.modositas', function () {
             borondokMegjelenites(adatok);

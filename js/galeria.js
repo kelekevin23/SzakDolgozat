@@ -1,7 +1,6 @@
 $(function () {
-    
-    localStorage.setItem("oldal", "index");
 
+    localStorage.setItem("oldal", "index");
     const galeria = new Galeria();
 
 });
@@ -13,9 +12,6 @@ class Galeria {
         const ajax = new Ajax();
         let adatok = [];
 
-
-
-
         let data = {
             mit: "top 9 c.*, m.marka",
             tablaNeve: "Cikk",
@@ -23,7 +19,7 @@ class Galeria {
             where: "order by keszlet desc",
             segedTabla: "Modell"
         };
-        ajax.getAjax('php/feldolgoz.php', adatok, data, kepeketFelvesz);
+        ajax.selectAjax('php/api/Select.php', adatok, data, kepeketFelvesz);
 
         const sablonElem = $(".galeria");
         var index = 4;
@@ -34,10 +30,9 @@ class Galeria {
         const jobbKep = $("#jobbkep");
 
         function kepeketFelvesz(adatok) {
+            
             const balElem = sablonElem.clone().appendTo(balKep);
-
             const foElem = sablonElem.clone().appendTo(foKep);
-
             const jobbElem = sablonElem.clone().appendTo(jobbKep);
 
             const balGaleria = new Kep(balElem, adatok[index - 1]);
@@ -47,9 +42,8 @@ class Galeria {
 
             $("#jobb").on("click", function () {
                 $("#adottCikkszam").text("");
-                
-                index++;
 
+                index++;
                 if (index === 10) {
                     index = 1;
                 }
@@ -76,7 +70,7 @@ class Galeria {
 
             $("#bal").on("click", function () {
                 $("#adottCikkszam").text("");
-               
+
                 index--;
                 if (index === -2) {
                     index = 7;
@@ -101,8 +95,6 @@ class Galeria {
                 }
             });
         }
-
-
     }
 }
 
@@ -153,7 +145,6 @@ class Kep {
 
         $(".szinek").empty();
 
-
         let szinek = [];
         const ajax = new Ajax();
 
@@ -161,11 +152,10 @@ class Kep {
             mit: "*",
             tablaNeve: "Cikk",
             honnan: "Cikk c inner join Szin sz on c.szin = sz.szin",
-            //where: "where modell like 'AIRCONIC SPINNER' and kepElerese like '/67-44.5-26-67/'",
             where: "where modell like '" + obj.modell + "' and kepElerese like '" + obj.kepElerese + "'",
             segedTabla: "Szin"
         };
-        ajax.getAjax('php/feldolgoz.php', szinek, data, this.szineketMegjelenit);
+        ajax.selectAjax('php/api/Select.php', szinek, data, this.szineketMegjelenit);
 
 
 
@@ -180,7 +170,6 @@ class Kep {
         let marka = $(".galeria .marka").eq(1).text();
 
         $(".gombok").on("click", function () {
-            console.log(szin[this.id]);
             $("#adottCikkszam").text(szin[this.id].cikkszam);
             $("#adottKeszlet").text(szin[this.id].keszlet);
             $("#adottSzin").text(szin[this.id].szin);

@@ -6,13 +6,13 @@ $(function () {
     new AdminRendeles();
     $(".borondBeszerzes").hide();
 
-    $("#rendelesSzerk").on("click", (event) => {
+    $("#rendelesSzerk").on("click", function () {
         $(".borondBeszerzes").hide();
         $(".rendelesStatusz").show();
         new AdminRendeles();
     });
 
-    $("#borondokSzerk").on("click", (event) => {
+    $("#borondokSzerk").on("click", function () {
         $(".rendelesStatusz").hide();
         $(".borondBeszerzes").show();
         new AdminBeszerzes();

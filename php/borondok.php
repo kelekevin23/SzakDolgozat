@@ -9,7 +9,7 @@
         <script src="../js/jquery-3.6.0.min.js"></script>
         <script src="../js/menu.js"></script>
         <script src="../js/view/borondokView.js"></script>
-        <script src="../js/borondOldalKezeles.js"></script>
+        <script src="../js/controller/borondOldalKezeles.js"></script>
         <script src="../js/ajax.js"></script>
         <script src="../js/view/bejelentkezes_regisztracio.js"></script>
         <link href="../css/szerkezet.css" rel="stylesheet" type="text/css"/>

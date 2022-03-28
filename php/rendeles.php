@@ -10,8 +10,9 @@
         <script src="../js/menu.js"></script>
         <script src="../js/ajax.js"></script>
         <script src="../js/view/rendelesView.js"></script>
-        <script src="../js/rendelesEllenorzes.js"></script>
-        <script src="../js/rendelesAdatBeszuras.js"></script>
+        <script src="../js/controller/rendeles.js"></script>
+        <script src="../js/controller/rendelesEllenorzes.js"></script>
+        <script src="../js/controller/rendelesAdatBeszuras.js"></script>
         <script src="../js/view/bejelentkezes_regisztracio.js"></script>
         <link href="../css/szerkezet.css" rel="stylesheet" type="text/css"/>
         <link href="../css/tartalom.css" rel="stylesheet" type="text/css"/>

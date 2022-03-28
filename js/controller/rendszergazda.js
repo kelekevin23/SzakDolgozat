@@ -5,29 +5,75 @@ $(function () {
     let adatok = [];
     let indexLapozas = 0;
     let lapozId = 1;
-    let kezdes = localStorage.getItem("allapot");
 
-    if (kezdes === "rendelesek") {
-        rendelesek();
-    } else if (kezdes === "borondok") {
-        borondok();
-    } else if (kezdes === "felhasznalok") {
-        felhasznalok();
-    } else {
-        borondok();
-    }
+    new RendszergazdaFelhasznalok();
+    $(".rendszerGazdaRendelesek").hide();
+    $(".rendszerGazdaBorondok").hide();
 
-    $("#rendelesSzerk").on("click", (event) => {
-        rendelesek();
+    $("#rendelesSzerk").on("click", function () {
+        $(".rendszerGazdaBorondok").hide();
+        $(".rendszerGazdaFelhasznalok").hide();
+        $(".rendszerGazdaRendelesek").show();
+        new RendszergazdaRendeles();
     });
 
-    $("#borondokSzerk").on("click", (event) => {
-        borondok();
+    $("#borondokSzerk").on("click", function () {
+        $(".rendszerGazdaRendelesek").hide();
+        $(".rendszerGazdaFelhasznalok").hide();
+        $(".rendszerGazdaBorondok").show();
+        new RendszergazdaBorond();
     });
-    $("#felhasznSzerk").on("click", (event) => {
-        felhasznalok();
+    $("#felhasznSzerk").on("click", function () {
+        $(".rendszerGazdaRendelesek").hide();
+        $(".rendszerGazdaBorondok").hide();
+        $(".rendszerGazdaFelhasznalok").show();
+        new RendszergazdaFelhasznalok();
     });
-
+    $(window).on("torles", (event) => {
+        console.log(event.detail);
+        let data = {
+            tablaNeve: "Felhasznalok",
+            where: "felhasznalonev = '" + event.detail.felhasznalonev + "'"
+        };
+        ajax.deleteAjax("../api/Delete.php", data);
+        new RendszergazdaFelhasznalok();
+    });
+    $(window).on("veglegesites", (event) => {
+        let ujAdatok = [];
+        let rendben = true;
+        for (var i = 0; i < 6; i++) {
+            ujAdatok.push($(".adat" + i).val());
+            if ($(".adat" + i).val() === "") {
+                rendben = false;
+            }
+        }
+        if (ujAdatok[4].length === 32) {
+            if (event.detail[4] !== ujAdatok[4]) {
+                ujAdatok[4] = calcMD5(ujAdatok[4]);
+            } else {
+            }
+        } else {
+            if (event.detail[4] !== calcMD5(ujAdatok[4])) {
+                ujAdatok[4] = calcMD5(ujAdatok[4]);
+            } else {
+                ujAdatok[4] = event.detail[4];
+            }
+        }
+        let data = {
+            tablaNeve: "Felhasznalok",
+            ujErtekek:
+                    "vezeteknev = '" + ujAdatok[1] + "'," +
+                    "keresztnev = '" + ujAdatok[2] + "', " +
+                    "email = '" + ujAdatok[3] + "', " +
+                    "jelszo = '" + ujAdatok[4] + "', " +
+                    "fstatusz = '" + ujAdatok[5] + "'",
+            where: "felhasznalonev = '" + ujAdatok[0] + "'"
+        };
+        if (rendben) {
+            ajax.updateAjax("../api/Update.php", data);
+            new RendszergazdaFelhasznalok();
+        }
+    });
 
     $("#keresCikk").keyup(function () {
         let szoveg = $("#keresCikk").val();
@@ -43,64 +89,8 @@ $(function () {
         ajax.selectAjax('../api/Select.php', adatok, data, borondokMegjelenites);
     });
 
-
-    function rendelesek() {
-        $(".rendszerGazdaBorondok").hide();
-        $(".rendszerGazdaFelhasznalok").hide();
-        $(".rendszerGazdaRendelesek").show();
-
-        localStorage.setItem("allapot", "rendelesek");
-        adatok = [];
-        let data = {
-            mit: "*",
-            tablaNeve: "Rendeles",
-            honnan: " Rendeles r inner join Cim c on r.szamlcim = c.id",
-            where: "",
-            segedTabla: "Cim"
-        };
-        ajax.selectAjax('../api/Select.php', adatok, data, rendelesMegjelenites);
-    }
-    function borondok() {
-        $(".rendszerGazdaRendelesek").hide();
-        $(".rendszerGazdaFelhasznalok").hide();
-        $(".rendszerGazdaBorondok").show();
-
-        localStorage.setItem("allapot", "borondok");
-        adatok = [];
-        let data = {
-            mit: "*",
-            tablaNeve: "Cikk",
-            honnan: "",
-            where: "where cikkszam not in (select cikkszam from Rend_tetel)",
-            segedTabla: ""
-
-        };
-        ajax.selectAjax('../api/Select.php', adatok, data, borondokMegjelenites);
-    }
-
-    function felhasznalok() {
-        $(".rendszerGazdaRendelesek").hide();
-        $(".rendszerGazdaBorondok").hide();
-        $(".rendszerGazdaFelhasznalok").show();
-
-        localStorage.setItem("allapot", "felhasznalok");
-        adatok = [];
-        let data = {
-            mit: "*",
-            tablaNeve: "Felhasznalok",
-            honnan: "",
-            where: "",
-            segedTabla: ""
-        };
-        ajax.selectAjax('../api/Select.php', adatok, data, felhasznalokMegjelenites);
-    }
-
-    function rendelesMegjelenites(adatok) {
-        // console.log(adatok);
-    }
-
     function borondokMegjelenites(adatok) {
-        console.log(adatok.length);
+        console.log(adatok);
         $("#borondok").empty();
         let tablazat = "";
         let oszlopok = ["cikkszam", "ar", "keszlet"];
@@ -237,80 +227,6 @@ $(function () {
             $('.lapozElem').eq(lapozId - 1).css("color", "brown");
         });
     }
-
-    function felhasznalokMegjelenites(adatok) {
-        let tablazat = "";
-        let veglegesitSor;
-        let oszlopok = ["felhasznalonev", "vezeteknev", "keresztnev", "email", "jelszo", "fstatusz"];
-        let oszlopokSzoveg = ["Felhasználónév", "Vezetéknév", "Keresztnév", "Email", "Jelszó", "Státusz"];
-        let jelszavak=[];
-        if (adatok.length !== 0) {
-            tablazat = "<form method=post><table class=felhasznalokTablazat>";
-            tablazat += "<tr>";
-            for (var i = 0; i < oszlopokSzoveg.length; i++) {
-                tablazat += "<th>" + oszlopokSzoveg[i] + "</th>";
-            }
-            tablazat += "</tr>";
-            for (var index = 0; index < adatok.length; index++) {
-                tablazat += "<tr>";
-                for (var i = 0; i < oszlopok.length; i++) {
-                    for (var item in adatok[index]) {
-                        if (oszlopok[i] === item) {
-                            if (item === "felhasznalonev") {
-                                tablazat += "<td><input type=hidden name=fnev" + index + " value=" + adatok[index][item] + ">" + adatok[index][item] + "</td>";
-                                
-                            } else if (item === "jelszo") {
-                                jelszavak.push(adatok[index][item]);
-                                tablazat += "<td>" + adatok[index][item] + "</td>";
-                            } else {
-                                tablazat += "<td>" + adatok[index][item] + "</td>";
-                            }
-                        }
-                    }
-                }
-                tablazat += "<td><button class=modositas id=" + index + " onclick='return false'>Módosítás</button></td>";
-                tablazat += "<td><button type=submit name=torles class=torles value=" + index + " >Törlés</button></td>";
-                tablazat += "</tr>";
-            }
-            tablazat += "</table>";
-        }
-
-        $("#felhasznalok").html(tablazat);
-        $(".felhasznalokTablazat").on('click', '.modositas', function () {
-            felhasznalokMegjelenites(adatok);
-            $(".torles").attr('disabled', true);
-            //$(".modositas").attr('disabled', true);
-            let modositando = [];
-            veglegesitSor = this.id;
-            var jelenlegiSor = $(this).closest("tr");
-            let index = parseInt(this.id) + 1;
-            let jelszo= jelszavak[this.id];
-            for (var i = 0; i < 6; i++) {
-                modositando.push(jelenlegiSor.find("td:eq(" + i + ")").text());
-            }
-
-            let modosit = "";
-            for (var i = 0; i < modositando.length; i++) {
-                if (i === 0) {
-                    modosit += "<td><input type=hidden name=adatNev" + i + " value=" + oszlopok[i] + "><input type=text id=" + oszlopok[i] + " name=adat" + i + " value=" + modositando[i] + " readonly></td>";
-                } else {
-                    modosit += "<td><input type=hidden name=adatNev" + i + " value=" + oszlopok[i] + "><input type=text id=" + oszlopok[i] + " name=adat" + i + " value=" + modositando[i] + "></td>";
-
-                }
-            }
-            modosit += "<input type=hidden name=regijelszo value=" + jelszo + ">";
-            modosit += "<td><button type=submit name=veglegesites value=" + veglegesitSor + ">Véglegesítés</button></td>";
-            modosit += "<td><button class=megse onclick='return false'>Mégse</button></td>";
-
-            $(".felhasznalokTablazat tr:nth(" + index + ")").html(modosit);
-            $(".felhasznalokTablazat tr:nth(" + index + ")").css("background-color", "lightblue");
-
-            $(".megse").on("click", (event) => {
-                felhasznalokMegjelenites(adatok);
-            });
-        });
-    }
-
 
 });
 

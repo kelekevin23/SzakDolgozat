@@ -9,7 +9,7 @@
         <script src="../js/jquery-3.6.0.min.js"></script>
         <script src="../js/menu.js"></script>
         <script src="../js/view/borondokView.js"></script>
-        <script src="../js/borondAdatlap.js"></script>
+        <script src="../js/controller/borondAdatlap.js"></script>
         <script src="../js/kosar.js"></script>
         <script src="../js/ajax.js"></script>
         <script src="../js/view/bejelentkezes_regisztracio.js"></script>

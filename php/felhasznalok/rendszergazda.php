@@ -11,8 +11,9 @@ include_once '../session.php';
         <script src="../../js/jquery-3.6.0.min.js"></script>
         <script src="../../js/menu.js"></script>
         <script src="../../js/ajax.js"></script>
+        <script src="../../js/md5.js"></script>
         <script src="../../js/view/rendszergazdaView.js"></script>
-        <script src="../../js/rendszergazda.js"></script>
+        <script src="../../js/controller/rendszergazda.js"></script>
         <link href="../../css/szerkezet.css" rel="stylesheet" type="text/css"/>
         <link href="../../css/tartalom.css" rel="stylesheet" type="text/css"/>
         <link href="../../css/tartalomFelhasznalok.css" rel="stylesheet" type="text/css"/>
@@ -170,32 +171,5 @@ if (isset($_POST["torles"])) {
     $index = test_input4($_POST["torles"]);
     $fnev = test_input4($_POST["fnev" . $index]);
     $ab->delete("Felhasznalok", " felhasznalonev = '$fnev'");
-}
-if (isset($_POST["veglegesites"])) {
-    $ures = false;
-    $where = "";
-    $fnev = test_input4($_POST["adat0"]);
- 
-    for ($index1 = 1; $index1 < 6; $index1++) {
-        if (test_input4($_POST["adat" . $index1]) === "") {
-            $ures = true;
-        }if ($index1 === 4) {
-            $regijelszo = test_input4($_POST["regijelszo"]);
-
-            if ($regijelszo !== test_input4($_POST["adat" . $index1])) {
-                
-                $_POST["adat" . $index1]=md5($_POST["adat" . $index1]);
-            }
-        }
-        if ($index1 === 5) {
-            $where .= test_input4($_POST["adatNev" . $index1]) . " = '" . test_input4($_POST["adat" . $index1] . "'");
-        } else {
-            $where .= test_input4($_POST["adatNev" . $index1]) . " = '" . test_input4($_POST["adat" . $index1]) . "', ";
-        }
-    }
-    if (!$ures) {
-        $ab->update("Felhasznalok", $where, " felhasznalonev =  '$fnev'");
-       
-    }
 }
 ?>

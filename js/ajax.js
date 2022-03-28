@@ -19,43 +19,40 @@ class Ajax {
                 myCallback(tomb);
             },
             error: function () {
-                "Sikertleen adatlekérés";
+                console.log("Sikertelen adatlekérés");
             }
         });
 
     }
-    insertAjax(eleresiUt, tomb, data, myCallback) {
+    insertAjax(eleresiUt, data) {
         $.ajax({
             type: "POST",
             url: eleresiUt,
             data: data,
-            datatype: "text",
             error: function () {
-                "Sikertleen adatfeltöltés";
+                console.log("Sikertelen adatfeltöltés");
             }
         });
 
     }
-    updateAjax(eleresiUt, tomb, data, myCallback) {
+    updateAjax(eleresiUt, data) {
         $.ajax({
-            type: "PUT",
+            type: "POST",
             url: eleresiUt,
             data: data,
-            datatype: "text",
             error: function () {
-                "Sikertleen adatfrissítés";
+                console.log("Sikertelen adatfrissítés");
             }
         });
 
     }
-    deleteAjax(eleresiUt, tomb, data, myCallback) {
+    deleteAjax(eleresiUt, data) {
         $.ajax({
-            type: "DELETE",
+            type: "POST",
             url: eleresiUt,
             data: data,
-            datatype: "text",
             error: function () {
-                "Sikertleen adattörlés";
+                console.log("Sikertelen adattörlés");
             }
         });
 

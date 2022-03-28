@@ -8,11 +8,11 @@
         <title>Szakdolgozat</title>
         <script src="../js/jquery-3.6.0.min.js"></script>
         <script src="../js/menu.js"></script>
-        <script src="../js/borondok.js"></script>
+        <script src="../js/view/borondokView.js"></script>
         <script src="../js/borondAdatlap.js"></script>
         <script src="../js/kosar.js"></script>
         <script src="../js/ajax.js"></script>
-        <script src="../js/bejelentkezes_regisztracio.js"></script>
+        <script src="../js/view/bejelentkezes_regisztracio.js"></script>
         <link href="../css/szerkezet.css" rel="stylesheet" type="text/css"/>
         <link href="../css/tartalom.css" rel="stylesheet" type="text/css"/>
         <link href="../css/szerkezetBorondok.css" rel="stylesheet" type="text/css"/>
@@ -52,44 +52,46 @@
                 ?>
             </article>
 
-            <div class="adatlap-oldalszerkezet">
-                <div class="nagyGaleria">
+            <div class="kepTarolo-div">
+                <div class="adatlap-oldalszerkezet">
+                    <div class="nagyGaleria">
 
-                    <div id="kezdoKep"></div>
+                        <div id="kezdoKep"></div>
 
-                    <article>
-                        <div class="borondKepek"></div>
-                    </article>
-                    
-                    <div class="galeria">
-                        <img src="" alt="">
-                    </div>
-                </div>
+                        <article>
+                            <div class="borondKepek"></div>
+                        </article>
 
-
-
-                <section>
-                    <div id="kosarbaGomb">   
-                        <form>
-                            <label for="menny">Mennyiség:</label>
-                            <input type="number" id="menny" name="menny" min="1" value="1">
-                        </form>
-                            <button class="kosarba"></button>
-                    </div>
-
-                    <div class="termek_adatlap">
-                        <table class="adatlap_tarolo">
-
-                        </table>
-                    </div>
-
-                    <div id="adatlap_szinek">
-                        <h3>Elérhető szinek:</h3>
-                        <div class="szinek">
-
+                        <div class="galeria">
+                            <img src="" alt="">
                         </div>
                     </div>
-                </section>
+
+
+
+                    <section>
+                        <div id="kosarbaGomb">   
+                            <form>
+                                <label for="menny">Mennyiség:</label>
+                                <input type="number" id="menny" name="menny" min="1" value="1">
+                            </form>
+                            <button class="kosarba"></button>
+                        </div>
+
+                        <div class="termek_adatlap">
+                            <table class="adatlap_tarolo">
+
+                            </table>
+                        </div>
+
+                        <div id="adatlap_szinek">
+                            <h3>Elérhető szinek:</h3>
+                            <div class="szinek">
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
             </div>
 
         </main>

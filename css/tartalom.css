@@ -129,8 +129,7 @@ nav button{
 }*/
 /* Kosár oldal vége */
 
-/*Kapcsolat*/
-
+/* Kapcsolat */
 
 #terkep-felirat{
     font-size: 20px;
@@ -138,19 +137,16 @@ nav button{
 #terkep{
     border: none;
     width:80%; 
-    height:250px;
-    
+    height: 500px;
 }
 .kapcsolat-div{
-    display: grid;
-    grid-template-columns: 1fr;
-     font-size: 20px;
-     padding-top: 20px;
-     padding-bottom: 20px;
+    font-size: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 #kapcsolat-text{
-     width:80%;
-     margin: auto;
+    width:80%;
+    margin: auto;
 }
 #kapcsolat-gomb{
     color: white;

@@ -1,8 +1,8 @@
 <?php
 
-$tablaNeve = $_GET['tablaNeve'];
-$ujErtekek = $_GET['ujErtekek'];
-$where = $_GET['where'];
+$tablaNeve = $_POST['tablaNeve'];
+$ujErtekek = $_POST['ujErtekek'];
+$where = $_POST['where'];
 
 $update = new Update();
 $update->update($tablaNeve, $ujErtekek, $where);

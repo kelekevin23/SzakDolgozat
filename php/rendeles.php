@@ -8,8 +8,11 @@
         <title>Szakdolgozat</title>
         <script src="../js/jquery-3.6.0.min.js"></script>
         <script src="../js/menu.js"></script>
-        <script src="../js/rendeles.js"></script>
-        <script src="../js/bejelentkezes_regisztracio.js"></script>
+        <script src="../js/ajax.js"></script>
+        <script src="../js/view/rendelesView.js"></script>
+        <script src="../js/rendelesEllenorzes.js"></script>
+        <script src="../js/rendelesAdatBeszuras.js"></script>
+        <script src="../js/view/bejelentkezes_regisztracio.js"></script>
         <link href="../css/szerkezet.css" rel="stylesheet" type="text/css"/>
         <link href="../css/tartalom.css" rel="stylesheet" type="text/css"/>
         <link href="../css/szerkezetRendeles.css" rel="stylesheet" type="text/css"/>
@@ -50,13 +53,10 @@
 
 
             <aside >
-                <form class="urlapRendeles" method="post">
+                <form class="urlapRendeles">
                     <fieldset id="rendelesInfo">
+                        <div id="rendelesBetolt"></div>
                         <legend>Fizetési mód</legend>
-                        <input type="hidden" id="termekDarab" name="termekDarab" value="">
-                        <div id="rendelesBetolt">
-
-                        </div>
                         <p id="osszeg"></p>
                           <input type="radio" id="keszp" name="fizetes" value="Készpénz" checked>
                           <label for="keszp">Készpénz</label><br><br>
@@ -104,14 +104,13 @@
                             <label for="cnev2">Cégnév:</label>
                             <input type="text" id="cnev2" name="cnev2" placeholder="Proba Kft.">
                             <label for="asz2">Adószám:</label>
-                            <input type="tel" id="asz2" name="asz2" placeholder="11111111-x-yz">
+                            <input type="text" id="asz2" name="asz2" placeholder="11111111-x-yz">
                         </div>
                     </fieldset>
                     <button id="szerkesztes" onclick="return false">Adatok szerkesztése</button>
                     <button id="ellenorzes" onclick="return false">Adatok véglegesítése</button>
-                    <button type="submit" name="rendVeglegesites" id="rendVeglegesites">Rendelés véglegesítése</button>     
+                    <button id="rendVeglegesites" onclick="return false">Rendelés véglegesítése</button>
                 </form>
-
 
             </aside>
 
@@ -121,96 +120,3 @@
     </body>
 
 </html>
-<?php
-include_once 'Ab.php';
-$ab = new Ab();
-
-function test_input2($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-
-if (isset($_POST["rendVeglegesites"])) {
-    $fnev = $_SESSION['felhasznalonev'];
-
-    //alap adatok
-    $vnev = test_input2($_POST["vnev"]);
-    $knev = test_input2($_POST["knev"]);
-    $tszam = test_input2($_POST["tszam"]);
-
-    //szallitas
-    $varos = test_input2($_POST["varos"]);
-    $irany = test_input2($_POST["irany"]);
-    $utca = test_input2($_POST["utca"]);
-    $hsz = test_input2($_POST["hsz"]);
-
-    //szamlazas
-    $varos2 = test_input2($_POST["varos2"]);
-    $irany2 = test_input2($_POST["irany2"]);
-    $utca2 = test_input2($_POST["utca2"]);
-    $hsz2 = test_input2($_POST["hsz2"]);
-    $cnev2 = test_input2($_POST["cnev2"]);
-    $asz2 = test_input2($_POST["asz2"]);
-
-    $userAdatok = $ab->select("*", "Cim", "order by id");
-    $utolsoId = 1;
-    if (count($userAdatok) !== 0) {
-        $utolsoId = $userAdatok['id'] + 1;
-    }
-
-    $ujId = 0;
-    if ($varos === $varos2 and $irany === $irany2 and $utca === $utca2 and $hsz === $hsz2) {
-        if ($cnev2 === "" and $asz2 === "") {
-            $ab->insert("Cim", "(id, felhasznalonev, vezeteknev, keresztnev, varos, iranyitoszam, utca, hazszam, telefonszam)", "'$utolsoId', '$fnev', '$vnev', '$knev', '$varos', '$irany', '$utca', '$hsz', '$tszam'");
-        } else if ($cnev2 !== "" and $asz2 !== "") {
-            $ujId = $utolsoId + 1;
-            $ab->insert("Cim", "(id, felhasznalonev, vezeteknev, keresztnev, varos, iranyitoszam, utca, hazszam, telefonszam)", "'$utolsoId', '$fnev', '$vnev', '$knev', '$varos', '$irany', '$utca', '$hsz', '$tszam'");
-            $ab->insert("Cim", "(id, felhasznalonev, vezeteknev, keresztnev, varos, iranyitoszam, utca, hazszam, telefonszam, cegnev, adoszam)", "'$ujId', '$fnev', '$vnev', '$knev', '$varos', '$irany', '$utca', '$hsz', '$tszam', '$cnev2', '$asz2'");
-        }
-    } else {
-        if ($cnev2 === "" and $asz2 === "") {
-            $ujId = $utolsoId + 1;
-            $ab->insert("Cim", "(id, felhasznalonev, vezeteknev, keresztnev, varos, iranyitoszam, utca, hazszam, telefonszam)", "'$utolsoId', '$fnev', '$vnev', '$knev', '$varos', '$irany', '$utca', '$hsz', '$tszam'");
-            $ab->insert("Cim", "(id, felhasznalonev, vezeteknev, keresztnev, varos, iranyitoszam, utca, hazszam, telefonszam)", "'$ujId', '$fnev', '$vnev', '$knev', '$varos2', '$irany2', '$utca2', '$hsz2', '$tszam'");
-        } else if ($cnev2 !== "" and $asz2 !== "") {
-            $ujId = $utolsoId + 1;
-            $ab->insert("Cim", "(id, felhasznalonev, vezeteknev, keresztnev, varos, iranyitoszam, utca, hazszam, telefonszam)", "'$utolsoId', '$fnev', '$vnev', '$knev', '$varos', '$irany', '$utca', '$hsz', '$tszam'");
-            $ab->insert("Cim", "(id, felhasznalonev, vezeteknev, keresztnev, varos, iranyitoszam, utca, hazszam, telefonszam, cegnev, adoszam)", "'$ujId', '$fnev', '$vnev', '$knev', '$varos2', '$irany2', '$utca2', '$hsz2', '$tszam', '$cnev2', '$asz2'");
-        }
-    }
-
-
-    $rendelesAdatok = $ab->select("*", "Rendeles", "order by rend_szam");
-    $rendelesUtolsoId = 1;
-    if (count($rendelesAdatok) !== 0) {
-        $rendelesUtolsoId = $rendelesAdatok['rend_szam'] + 1;
-    }
-
-    $vegOsszeg = 0;
-    $fizMod = test_input2($_POST["fizetes"]);
-
-    $darab = test_input2($_POST["termekDarab"]);
-    for ($index = 0; $index < $darab; $index++) {
-        $reszOsszeg = test_input2($_POST["osszeg" . $index]);
-        $vegOsszeg += $reszOsszeg;
-    }
-
-    if ($ujId === 0) {
-        $ab->insert("Rendeles", "(rend_szam, megrendelo, fizetesimod, fizetesiosszeg, szallcim, szamlcim)", "'$rendelesUtolsoId', '$fnev', '$fizMod', '$vegOsszeg', '$utolsoId', '$utolsoId'");
-    } else {
-        $ab->insert("Rendeles", "(rend_szam, megrendelo, fizetesimod, fizetesiosszeg, szallcim, szamlcim)", "'$rendelesUtolsoId', '$fnev', '$fizMod', '$vegOsszeg', '$utolsoId', '$ujId'");
-    }
-
-    $cikkszam = "";
-    $darabszam = "";
-
-    for ($index = 0; $index < $darab; $index++) {
-        $cikkszam = test_input2($_POST["cikk" . $index]);
-        $darabszam = test_input2($_POST["darab" . $index]);
-        $ab->insert("Rend_tetel", "(rend_szam, cikkszam, darabszam)", "'$rendelesUtolsoId', '$cikkszam', '$darabszam'");
-        $ab->update("Cikk", "keszlet -=" . $darabszam, " cikkszam like " . $cikkszam);
-    }
-}
-?>

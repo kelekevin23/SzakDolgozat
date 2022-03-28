@@ -3,8 +3,8 @@ $(function () {
     $("#belepes").on("click", () => {
         hatterHomalyosit(".tarolo-div");
         hatterHomalyosit(".header-container");
+        hatterHomalyosit(".kepTarolo-div");
 
-        $(".kepTarolo-div").css("filter", "blur(2px)");
         $(".kepTarolo-div").css("mix-blend-mode", "multiply");
 
         panelDisplay("#bejelentkezoForm", "block");
@@ -27,9 +27,8 @@ $(function () {
     $("#regisztracio").on("click", () => {
         hatterHomalyosit(".tarolo-div");
         hatterHomalyosit(".header-container");
+        hatterHomalyosit(".kepTarolo-div");
 
-
-        $(".kepTarolo-div").css("filter", "blur(2px)");
         $(".kepTarolo-div").css("mix-blend-mode", "multiply");
 
         panelDisplay("#regisztracioForm", "block");

@@ -1,5 +1,5 @@
 $(function () {
-    
+
     localStorage.setItem("oldal", "borondadAdatlap");
 
     let nagyGaleria;
@@ -11,16 +11,7 @@ $(function () {
 
     borondBetolt(data);
 
-    $(window).on("kepKattintas", (event) => {
-        nagyGaleria.termekBeallit(event.detail.data2, event.detail.data);
-    });
-
-    $(window).on("szinKattintas", (event) => {
-        $(".borondKepek").empty();
-        borondBetolt(event.detail.data);
-    });
-
-    function borondBetolt(obj){
+    function borondBetolt(obj) {
         const szuloElem = $(".borondKepek");
         const sablonElem = $(".galeria");
 
@@ -36,6 +27,15 @@ $(function () {
 
         new BorondAdatlap(obj);
     }
+
+    $(window).on("kepKattintas", (event) => {
+        nagyGaleria.termekBeallit(event.detail.data2, event.detail.data);
+    });
+
+    $(window).on("szinKattintas", (event) => {
+        $(".borondKepek").empty();
+        borondBetolt(event.detail.data);
+    });
 
     const ujTermek = new Kosar();
     this.kosarba = $(".kosarba");

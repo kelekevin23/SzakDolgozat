@@ -82,6 +82,7 @@ $(function () {
 
     const szuloElem = $(".adatFeltolt");
     const sablonElem = $(".termek");
+    
     function termeketFelvesz(adatok) {
         console.log(adatok.length);
         $(".adatFeltolt").empty();

@@ -109,7 +109,7 @@ class Ab {
             $sql = "UPDATE " . $tablaNeve . " SET " . $ujErtekek . " WHERE " . $where;
         }
         //echo $sql;
-        $vmi = sqlsrv_query($this->kapcsolat, $sql);
+        $result = sqlsrv_query($this->kapcsolat, $sql);
     }
 
     public function delete($tablaNeve, $where) {
@@ -119,7 +119,7 @@ class Ab {
             $sql = "DELETE FROM " . $tablaNeve . " WHERE " . $where;
         }
         //echo $sql;
-        $vmi = sqlsrv_query($this->kapcsolat, $sql);
+        $result = sqlsrv_query($this->kapcsolat, $sql);
     }
 
 }

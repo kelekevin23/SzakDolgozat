@@ -4,11 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/SzakDolgozat/js/borondok.js</file>
-            <file>file:/C:/xampp/htdocs/SzakDolgozat/js/admin.js</file>
-            <file>file:/C:/xampp/htdocs/SzakDolgozat/php/borondok.php</file>
-            <file>file:/C:/xampp/htdocs/SzakDolgozat/js/borondAdatlap.js</file>
-            <file>file:/C:/xampp/htdocs/SzakDolgozat/js/borondOldalKezeles.js</file>
-            <file>file:/C:/xampp/htdocs/SzakDolgozat/php/borondadatlap.php</file>
+            <file>file:/C:/xampp/htdocs/SzakDolgozat/js/kosar.js</file>
+            <file>file:/C:/xampp/htdocs/SzakDolgozat/js/ajax.js</file>
+            <file>file:/C:/xampp/htdocs/SzakDolgozat/php/rendeles.php</file>
+            <file>file:/C:/xampp/htdocs/SzakDolgozat/php/api/Insert.php</file>
+            <file>file:/C:/xampp/htdocs/SzakDolgozat/js/rendelesEllenorzes.js</file>
+            <file>file:/C:/xampp/htdocs/SzakDolgozat/js/rendeles.js</file>
+            <file>file:/C:/xampp/htdocs/SzakDolgozat/php/Ab.php</file>
         </group>
     </open-files>
 </project-private>

@@ -10,7 +10,7 @@
         <script src="js/menu.js"></script>
         <script src="js/galeria.js"></script>
         <script src="js/ajax.js"></script>
-        <script src="js/bejelentkezes_regisztracio.js"></script>
+        <script src="js/view/bejelentkezes_regisztracio.js"></script>
         <link href="css/szerkezet.css" rel="stylesheet" type="text/css"/>
         <link href="css/tartalom.css" rel="stylesheet" type="text/css"/>
         <link href="css/szerkezetFooldal.css" rel="stylesheet" type="text/css"/>

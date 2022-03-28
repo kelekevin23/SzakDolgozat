@@ -1,14 +1,14 @@
 <?php
 
-$tablaNeve = $_GET['tablaNeve'];
-$oszlopok = $_GET['oszlopok'];
-$ertekek = $_GET['ertekek'];
+$tablaNeve = $_POST['tablaNeve'];
+$oszlopok = $_POST['oszlopok'];
+$ertekek = $_POST['ertekek'];
 
 $insert = new Insert();
 $insert->insert($tablaNeve, $oszlopok, $ertekek);
 
 class Insert {
-
+    
     public function __construct() {
         
     }

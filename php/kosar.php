@@ -9,7 +9,7 @@
         <script src="../js/jquery-3.6.0.min.js"></script>
         <script src="../js/menu.js"></script>
         <script src="../js/kosar.js"></script>
-        <script src="../js/bejelentkezes_regisztracio.js"></script>
+        <script src="../js/view/bejelentkezes_regisztracio.js"></script>
         <link href="../css/szerkezet.css" rel="stylesheet" type="text/css"/>
         <link href="../css/tartalom.css" rel="stylesheet" type="text/css"/>
         <link href="../css/reszponzivitas.css" rel="stylesheet" type="text/css"/>

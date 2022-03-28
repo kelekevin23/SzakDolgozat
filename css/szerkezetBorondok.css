@@ -20,9 +20,10 @@
 
 /* Lapozás */
 .lapoz{
-    padding-top: 10px;
     display: flex;
     justify-content: space-evenly;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 /* Lapozás vége */
 

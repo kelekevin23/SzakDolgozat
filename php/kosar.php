@@ -49,6 +49,7 @@
 
             <div class="tarolo-div">
                 <aside class="kosarAdatok">
+                    
                 </aside>
                 <aside class="kosarGombok">
 

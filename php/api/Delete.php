@@ -1,7 +1,7 @@
 <?php
 
-$tablaNeve = $_GET['tablaNeve'];
-$where = $_GET['where'];
+$tablaNeve = $_POST['tablaNeve'];
+$where = $_POST['where'];
 
 $update = new Delete();
 $update->delete($tablaNeve, $where);

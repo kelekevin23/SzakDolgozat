@@ -1,121 +1,51 @@
 $(function () {
 
 //location.reload();
-    let rendelesek = [];
-    let beszerzes = [];
     const ajax = new Ajax();
 
-    let kezdes = localStorage.getItem("allapot");
-
-    if (kezdes === "adminRendeles") {
-        adminRendeles();
-    } else if (kezdes === "adminBorondok") {
-        adminBorondok();
-    } else {
-        adminRendeles();
-    }
+    new AdminRendeles();
+    $(".borondBeszerzes").hide();
 
     $("#rendelesSzerk").on("click", (event) => {
-        adminRendeles();
+        $(".borondBeszerzes").hide();
+        $(".rendelesStatusz").show();
+        new AdminRendeles();
     });
 
     $("#borondokSzerk").on("click", (event) => {
-        adminBorondok();
-    });
-
-    function adminRendeles() {
-        $(".borondBeszerzes").hide();
-        $(".rendelesStatusz").show();
-
-        localStorage.setItem("allapot", "adminRendeles");
-        rendelesek = [];
-        let data = {
-            mit: "*",
-            tablaNeve: "Rendeles",
-            honnan: "Rendeles r inner join Cim c on r.szamlcim = c.id",
-            where: "where r.rstatusz=1",
-            segedTabla: "Cim"
-        };
-        ajax.selectAjax('../api/Select.php', rendelesek, data, rendelesMegjelenites);
-    }
-
-    function adminBorondok() {
         $(".rendelesStatusz").hide();
         $(".borondBeszerzes").show();
+        new AdminBeszerzes();
+    });
 
-        localStorage.setItem("allapot", "adminBorondok");
-        beszerzes = [];
+    $(window).on("jovahagyas", (event) => {
         let data = {
-            mit: "*",
-            tablaNeve: "Beszerzes",
-            honnan: "",
-            where: "",
-            segedTabla: ""
+            tablaNeve: "Cikk",
+            ujErtekek: "keszlet += " + event.detail.darabszam,
+            where: "cikkszam like '" + event.detail.cikkszam + "'"
         };
-        ajax.selectAjax('../api/Select.php', beszerzes, data, beszerzesMegjelenites);
-    }
+        ajax.updateAjax("../api/Update.php", data);
+        
+        let data2 = {
+            tablaNeve: "Beszerzes",
+            where: "id like " + event.detail.id 
+        };
+        ajax.deleteAjax("../api/Delete.php", data2);
+        
+        new AdminBeszerzes();
+    });
     
-    function beszerzesMegjelenites(beszerzes) {
-        let tablazat = "<p>Jelenleg nincsen visszaküldött bőrönd!</p>";
-        let oszlopokSzoveg = ["Id", "Cikkszám", "Darabszám"];
+    $(window).on("csomagol", (event) => {
+        let data = {
+            tablaNeve: "Rendeles",
+            ujErtekek: "rstatusz = 2" ,
+            where: "rend_szam = " + event.detail
+        };
+        ajax.updateAjax("../api/Update.php", data);
+        
+        new AdminRendeles();
+    });
 
-        if (beszerzes.length !== 0) {
-            tablazat = "<form method=post><table class=beszerzesekTablazat>";
-            tablazat += "<tr>";
-            for (var i = 0; i < oszlopokSzoveg.length; i++) {
-                tablazat += "<th>" + oszlopokSzoveg[i] + "</th>";
-            }
-            tablazat += "</tr>";
-            for (var index = 0; index < beszerzes.length; index++) {
-                tablazat += "<tr>";
-                tablazat += "<td><input type=hidden name=id" + index + " value=" + beszerzes[index].id + ">" + beszerzes[index].id + "</td>";
-                tablazat += "<td><input type=hidden name=cikkszam" + index + " value=" + beszerzes[index].cikkszam + ">" + beszerzes[index].cikkszam + "</td>";
-                tablazat += "<td><input type=hidden name=darabszam" + index + " value=" + beszerzes[index].darabszam + ">" + beszerzes[index].darabszam + "</td>";
-                tablazat += "<td><button type=submit name=jovahagyas value=" + index + ">Jóváhagyás</button></td>";
-                tablazat += "</tr>";
-            }
-            tablazat += "</table>";
-        }
 
-        $("#borondSzerkesztes").html(tablazat);
-    }
-
-    function rendelesMegjelenites(rendelesek) {
-        let tablazat = "<p>Jelenleg nincs beérkezett rendelés!</p>";
-        let oszlopok = ["felhasznalonev", "rend_szam", "varos", "fizetesiosszeg", "fizetesimod", "telefonszam"];
-        let oszlopokSzoveg = ["Felhasználónév", "Rendelési szám", "Város", "Fizetési összeg (forint)", "Fizetési mód", "Telefonszám"];
-
-        if (rendelesek.length !== 0) {
-            tablazat = "<table class=rendelesekTablazat>";
-            tablazat += "<tr>";
-            for (var i = 0; i < oszlopokSzoveg.length; i++) {
-                tablazat += "<th>" + oszlopokSzoveg[i] + "</th>";
-            }
-            tablazat += "</tr>";
-            for (var index = 0; index < rendelesek.length; index++) {
-                tablazat += "<tr>";
-                for (var i = 0; i < oszlopok.length; i++) {
-                    for (var item in rendelesek[index]) {
-                        if (oszlopok[i] === item) {
-                            tablazat += "<td>" + rendelesek[index][item] + "</td>";
-                        }
-                    }
-                }
-                tablazat += "<td><button class=kivalasztasGomb id=" + index + ">Kiválasztás</button></td>";
-                tablazat += "</tr>";
-            }
-            tablazat += "</table>";
-        } else{
-            $("#kivalasztott").hide();
-        }
-
-        $("#csomagRendelesek").html(tablazat);
-
-        $(".kivalasztasGomb").on("click", (event) => {
-            let id = $(event.target).attr("id");
-            let rendszam = rendelesek[id].rend_szam;
-            $("#rendszam").val(rendszam);
-        });
-    }
 });
     

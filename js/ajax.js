@@ -29,6 +29,9 @@ class Ajax {
             type: "POST",
             url: eleresiUt,
             data: data,
+            success: function (result) {
+                console.log(result);
+            },
             error: function () {
                 console.log("Sikertelen adatfeltöltés");
             }
@@ -40,6 +43,9 @@ class Ajax {
             type: "POST",
             url: eleresiUt,
             data: data,
+            success: function (result) {
+                console.log(result);
+            },
             error: function () {
                 console.log("Sikertelen adatfrissítés");
             }
@@ -51,6 +57,9 @@ class Ajax {
             type: "POST",
             url: eleresiUt,
             data: data,
+            success: function (result) {
+                console.log(result);
+            },
             error: function () {
                 console.log("Sikertelen adattörlés");
             }

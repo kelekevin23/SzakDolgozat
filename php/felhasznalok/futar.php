@@ -12,7 +12,7 @@ include_once '../session.php';
         <script src="../../js/menu.js"></script>
         <script src="../../js/ajax.js"></script>
         <script src="../../js/futar.js"></script>
-        <script src="../../js/bejelentkezes_regisztracio.js"></script>
+        <script src="../../js/view/futarView.js"></script>
         <link href="../../css/szerkezet.css" rel="stylesheet" type="text/css"/>
         <link href="../../css/tartalom.css" rel="stylesheet" type="text/css"/>
         <link href="../../css/tartalomFelhasznalok.css" rel="stylesheet" type="text/css"/>
@@ -43,33 +43,7 @@ include_once '../session.php';
 
                 <div id="adottRendelesek"></div>
 
-                <div id="kivalasztott">
-                    <form class="futarValasztas" method="post">
-                        <label for="rendszam">Kiválasztott rendszám:</label>
-                        <input type="text" id="rendszam" name="rendszam" value="" readonly="readonly">
-                        <button type="submit" name="kivalasztas" id="kivalasztas">Magamhoz veszem</button>
-                    </form>
-                </div>
             </section>
         </main>
     </body>
 </html>
-<?php
-include_once '../Ab.php';
-$ab = new Ab();
-
-function test_input3($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-
-if (isset($_POST["kivalasztas"])) {
-    $rendszam = test_input3($_POST["rendszam"]);
-    $fnev = $_SESSION['felhasznalonev'];
-    if ($rendszam !== "") {
-        $ab->update("Rendeles", "kiszallito = '$fnev', rstatusz = 3", "rend_szam = " . $rendszam);
-    }
-}
-?>

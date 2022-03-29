@@ -52,8 +52,8 @@
                 ?>
             </article>
 
-            <div class="kepTarolo-div">
-                <div class="adatlap-oldalszerkezet">
+            <div class="adatlap-oldalszerkezet">
+                <div class="kepTarolo-div">
                     <div class="nagyGaleria">
 
                         <div id="kezdoKep"></div>
@@ -66,9 +66,9 @@
                             <img src="" alt="">
                         </div>
                     </div>
+                </div>
 
-
-
+                <div class="tarolo-div">
                     <section>
                         <div id="kosarbaGomb">   
                             <form>
@@ -93,6 +93,8 @@
                     </section>
                 </div>
             </div>
+
+
 
         </main>
 

@@ -165,11 +165,4 @@ if (isset($_POST["veglegesitesBorond"])) {
         $ab->update("Cikk", $where, " cikkszam =  '$cikk'");
     }
 }
-
-//Felhasználók
-if (isset($_POST["torles"])) {
-    $index = test_input4($_POST["torles"]);
-    $fnev = test_input4($_POST["fnev" . $index]);
-    $ab->delete("Felhasznalok", " felhasznalonev = '$fnev'");
-}
 ?>

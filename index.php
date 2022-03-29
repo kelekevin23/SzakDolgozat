@@ -65,7 +65,6 @@
                         <button id="jobb">></button>
                     </div>
                 </div>
-
             </article>
 
             <section>
@@ -73,12 +72,10 @@
                     <h3 class="marka"></h3>
                     <a href="php/borondadatlap.php"><img src="" alt=""></a>
                 </div>
-                
             </section>
 
             <aside class="adatok">
                 <div class="tarolo-div">
-
                     <table>
                         <thead>
                             <tr>
@@ -87,26 +84,18 @@
                                 <th>Szélesség</th>
                                 <th>Mélység</th>
                                 <th>Űrmérték</th>
-
                             </tr>
                         </thead>
-
                         <tbody>
-                            <tr id="borondAdat">
-
-                            </tr>
-
+                            <tr id="borondAdat"></tr>
                             <tr>
                                 <th>Elérhető színek:</th>
                                 <td colspan="5">
-                                    <div class="szinek">
-
-                                    </div>
+                                    <div class="szinek"></div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-
                 </div>
             </aside>
 

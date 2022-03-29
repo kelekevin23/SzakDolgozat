@@ -133,7 +133,7 @@ if (isset($_POST["submit"])) {
         $ker = strtolower(substr("$knev", 0, 3));
         $kod = rand(100, 999);
         $felhasznalonev = $vez . $ker . $kod;
-        $jelszo= md5($jelszo);
+        $jelszo = md5($jelszo);
         $ab->insert("Felhasznalok", "(felhasznalonev, vezeteknev, keresztnev, email, jelszo, fstatusz)", "'$felhasznalonev', '$vnev','$knev','$email','$jelszo','k'");
     }
 }

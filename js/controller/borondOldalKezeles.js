@@ -119,14 +119,14 @@ $(function () {
         }
         $(".lapoz").empty();
         for (var i = 1; i < Math.trunc(szam) + emeles; i++) {
-            $(".lapoz").append("<button class=lapozElem id=" + i + ">" + i + "</button>");
+            $(".lapoz").append("<div class=lapozElem><button class=" + i + ">" + i + "</button></div>");
         }
 
         $('.lapozElem').eq(0).css("background-color", "white");
         $('.lapozElem').eq(0).css("color", "brown");
 
         $('.lapozElem').on('click', function () {
-            let id = this.id;
+            let id = this.children.class;
             indexLapozas = (id * 10) - 10;
             termeketFelvesz(termekek);
 

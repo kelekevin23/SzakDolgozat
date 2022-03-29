@@ -50,7 +50,6 @@ $(function () {
         if (ujAdatok[4].length === 32) {
             if (event.detail[4] !== ujAdatok[4]) {
                 ujAdatok[4] = calcMD5(ujAdatok[4]);
-            } else {
             }
         } else {
             if (event.detail[4] !== calcMD5(ujAdatok[4])) {

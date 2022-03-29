@@ -109,27 +109,61 @@ $(function () {
         }
     }
 
+    function allit(adatok) {
+
+        let szam = adatok.length / 10;
+        let maradek = 0;
+
+        let felso = parseInt(szam);
+        maradek = adatok.length % 10;
+        if (maradek > 0) {
+            felso++;
+        }
+
+        let kozepso = parseInt(szam / 2);
+        maradek = szam % 2;
+        if (maradek > 0) {
+            kozepso++;
+        }
+        let also = parseInt(szam / 3);
+        maradek = szam % 3;
+        if (maradek > 0) {
+            also++;
+        }
+        if ($(window).width() < 850) {
+            $('.lapoz').css("display", "grid");
+            $(".lapoz").css("grid-template-columns", "repeat(" + also + ", 1fr)");
+            $(".lapoz").css("text-align", "center");
+            $(".lapozElem").css("padding", "5px");
+        }
+        if ($(window).width() < 1300 && $(window).width() > 850) {
+            $('.lapoz').css("display", "grid");
+            $(".lapoz").css("grid-template-columns", "repeat(" + kozepso + ", 1fr)");
+            $(".lapoz").css("text-align", "center");
+            $(".lapozElem").css("padding", "5px");
+        }
+        if ($(window).width() > 1300) {
+            $(".lapozElem").css("padding", "0px");
+            $('.lapoz').css("display", "grid");
+            $(".lapoz").css("grid-template-columns", "repeat(" + felso + ", 1fr)");
+            $('.lapoz').css("display", "flex");
+            $('.lapoz').css("justify-content", "space-evenly");
+            $(".lapoz").css("text-align", "center");
+            $(".lapozElem").css("padding", "0px");
+        }
+
+    }
     function lapozas(adatok) {
 
         let szam = adatok.length / 10;
         let maradek = adatok.length % 10;
         let emeles = 1;
 
-        $(window).on('resize', function () {
-            var width = $(this);
-            if (width.width() < 650) {
-                $('.lapoz').css("display", "grid");
-                $(".lapoz").css("grid-template-columns", "repeat(" + 8 + ", 1fr)");
-            }
-            if (width.width() < 1300 && width.width() > 650) {
-                $('.lapoz').css("display", "grid");
-                $(".lapoz").css("grid-template-columns", "repeat(" + 12 + ", 1fr)");
-            }
-            if (width.width() > 1300) {
-                $('.lapoz').css("display", "grid");
-                $(".lapoz").css("grid-template-columns", "repeat(" + 23 + ", 1fr)");
-            }
+        allit(adatok);
+        $(window).resize(function () {
+            allit(adatok);
         });
+
         if (maradek > 0) {
             emeles = 2;
         }
@@ -138,8 +172,8 @@ $(function () {
             $(".lapoz").append("<div class=lapozElem><button class=" + i + ">" + i + "</button></div>");
         }
 
-        $('.lapozElem').children('button').eq(0).css("background-color", "white");
-        $('.lapozElem').children('button').eq(0).css("color", "brown");
+        $('.lapozElem').children('.1').css("background-color", "white");
+        $('.lapozElem').children('.1').css("color", "brown");
 
         $('.lapozElem').on('click', function () {
             let id = $(this).children('button').attr("class");

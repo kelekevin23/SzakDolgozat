@@ -46,12 +46,9 @@
     }
 }
 @media screen and (max-width:600px){
-    
     td, th{
         padding: 0px;
     }
-   
-
 }
 @media screen and (max-width:400px){
     nav li{

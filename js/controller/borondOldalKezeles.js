@@ -82,7 +82,7 @@ $(function () {
 
     const szuloElem = $(".adatFeltolt");
     const sablonElem = $(".termek");
-    
+
     function termeketFelvesz(adatok) {
         console.log(adatok.length);
         $(".adatFeltolt").empty();
@@ -110,10 +110,26 @@ $(function () {
     }
 
     function lapozas(adatok) {
+
         let szam = adatok.length / 10;
         let maradek = adatok.length % 10;
         let emeles = 1;
 
+        $(window).on('resize', function () {
+            var width = $(this);
+            if (width.width() < 650) {
+                $('.lapoz').css("display", "grid");
+                $(".lapoz").css("grid-template-columns", "repeat(" + 8 + ", 1fr)");
+            }
+            if (width.width() < 1300 && width.width() > 650) {
+                $('.lapoz').css("display", "grid");
+                $(".lapoz").css("grid-template-columns", "repeat(" + 12 + ", 1fr)");
+            }
+            if (width.width() > 1300) {
+                $('.lapoz').css("display", "grid");
+                $(".lapoz").css("grid-template-columns", "repeat(" + 23 + ", 1fr)");
+            }
+        });
         if (maradek > 0) {
             emeles = 2;
         }
@@ -122,21 +138,23 @@ $(function () {
             $(".lapoz").append("<div class=lapozElem><button class=" + i + ">" + i + "</button></div>");
         }
 
-        $('.lapozElem').eq(0).css("background-color", "white");
-        $('.lapozElem').eq(0).css("color", "brown");
+        $('.lapozElem').children('button').eq(0).css("background-color", "white");
+        $('.lapozElem').children('button').eq(0).css("color", "brown");
 
         $('.lapozElem').on('click', function () {
-            let id = this.children.class;
+            let id = $(this).children('button').attr("class");
             indexLapozas = (id * 10) - 10;
             termeketFelvesz(termekek);
 
         });
         $(".lapozElem").click(function () {
-            let id = this.id;
-            $('.lapozElem').eq(0).css("background-color", "brown");
-            $('.lapozElem').eq(0).css("color", "white");
-            $('.lapozElem').eq(id - 1).css("background-color", "white");
-            $('.lapozElem').eq(id - 1).css("color", "brown");
+
+            let id = $(this).children('button').attr("class");
+            var gombIndex = "." + id;
+            $('.lapozElem').children('button').css("background-color", "brown");
+            $('.lapozElem').children('button').css("color", "white");
+            $('.lapozElem').children(gombIndex).css("background-color", "white");
+            $('.lapozElem').children(gombIndex).css("color", "brown");
         });
     }
 

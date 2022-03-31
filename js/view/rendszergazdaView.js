@@ -30,10 +30,6 @@ class RendszergazdaRendeles {
             }
             tablazat += "</tr>";
             for (var index = 0; index < rendelesek.length; index++) {
-                if (rendelesek[index].kiszallito !== "") {
-
-
-                }
                 tablazat += "<tr>";
                 for (var i = 1; i < oszlopok.length; i += 2) {
                     for (var item in rendelesek[index]) {
@@ -42,51 +38,38 @@ class RendszergazdaRendeles {
                         }
                     }
                 }
-
-
-                $("#kivalasztott").show();
                 tablazat += "<td><button class=kivalasztGomb id=" + index + ">Kiválasztás</button></td>";
-
                 tablazat += "</tr>";
             }
             tablazat += "</table>";
 
         } else {
-            tablazat += "<p>Nincs rendelés</p>";
+            tablazat = "<p>Nincs rendelés</p>";
         }
         $("#rendelesek").html(tablazat);
         let kivalasztasKiir = "";
 
         kivalasztasKiir += "<div id=kivalasztott>";
         kivalasztasKiir += "<p id=kivRendszam>Kiválasztott rendszám:</p>";
-        kivalasztasKiir += "<button class=osszeCsomag>Összecsomagolásra vár!</button>";
-        kivalasztasKiir += "<button class=futarraVar>Futárra vár!</button>";
-        kivalasztasKiir += "<button class=kiszallitva>Kiszállítva!</button>";
-        kivalasztasKiir += "<button class=torlesRendeles>Sikertelen szállítás/ rendelés törlése!</button>";
-        kivalasztasKiir += "</div>";
-
-
-        $(".osszeCsomag").attr("disabled", true);
-        $(".futarraVar").attr("disabled", true);
-        $(".kiszallitva").attr("disabled", true);
-        $(".torles").attr("disabled", true);
+        kivalasztasKiir += "<div class=rendelesGombok><button class=osszeCsomag disabled>Összecsomagolásra vár!</button>";
+        kivalasztasKiir += "<button class=futarraVar disabled>Futárra vár!</button>";
+        kivalasztasKiir += "<button class=kiszallitva disabled>Kiszállítva!</button>";
+        kivalasztasKiir += "<button class=torlesRendeles disabled>Sikertelen szállítás/ rendelés törlése!</button>";
+        kivalasztasKiir += "</div></div>";
+        $("#rendelesek").append(kivalasztasKiir);
 
         let id = 0;
-        $("#rendelesek").append(kivalasztasKiir);
         $(".kivalasztGomb").on("click", (event) => {
-
-            $("#kivRendszam").html(rendelesek[id].rend_szam);
             id = event.target.id;
-            console.log(event.target.id);
             $(".osszeCsomag").attr("disabled", false);
             $(".futarraVar").attr("disabled", false);
             $(".kiszallitva").attr("disabled", false);
-            $(".torles").attr("disabled", false);
+            $(".torlesRendeles").attr("disabled", false);
             $("#kivRendszam").html("Kiválasztott rendszám: " + rendelesek[id].rend_szam);
         });
 
         $(".osszeCsomag").on("click", (event) => {
-            let esemeny = new CustomEvent("osszeCsomag", {detail: rendelesek[id].rend_szam});
+            let esemeny = new CustomEvent("csomagolasraVar", {detail: rendelesek[id].rend_szam});
             window.dispatchEvent(esemeny);
         });
         $(".futarraVar").on("click", (event) => {
@@ -98,8 +81,12 @@ class RendszergazdaRendeles {
             window.dispatchEvent(esemeny);
         });
         $(".torlesRendeles").on("click", (event) => {
-            let esemeny = new CustomEvent("torlesRendeles", {detail: rendelesek[id].rend_szam});
-            window.dispatchEvent(esemeny);
+            if (rendelesek[id].rstatusz !== "5") {
+                let esemeny = new CustomEvent("torlesRendeles", {detail: rendelesek[id].rend_szam});
+                window.dispatchEvent(esemeny);
+            } else {
+                $("#kivRendszam").html("Kiválasztott rendszám: Már törölve lett");
+            }
         });
     }
 }
@@ -111,6 +98,21 @@ class RendszergazdaBorond {
         ajax.selectAjax('../api/Select.php', adatok, data, borondokMegjelenites);
 
         let indexLapozas = 0;
+        let lapozId = 1;
+
+        $("#keresCikk").keyup(function () {
+            let szoveg = $("#keresCikk").val();
+            adatok = [];
+            let data = {
+                mit: "*",
+                tablaNeve: "Cikk",
+                honnan: "",
+                where: "where cikkszam like '%" + szoveg + "%' and cikkszam not in (select cikkszam from Rend_tetel)",
+                segedTabla: ""
+
+            };
+            ajax.selectAjax('../api/Select.php', adatok, data, borondokMegjelenites);
+        });
 
         function borondokMegjelenites(adatok) {
             console.log(adatok.length);
@@ -144,18 +146,22 @@ class RendszergazdaBorond {
                             }
                         }
                         tablazat += "<td><button class=modositas id=" + szamlalo + ">Módosítás</button></td>";
-                        tablazat += "<td><button class=torles id=" + szamlalo + ">Törlés</button></td>";
+                        tablazat += "<td><button class=torles id=" + index + ">Törlés</button></td>";
                         tablazat += "</tr>";
                     }
                     szamlalo++;
                 }
                 tablazat += "</table>";
 
-                // lapozasBorondok(adatok);
+                lapozasBorondok(adatok);
             }
 
             $("#borondok").append(tablazat);
-            $(".borondokTablazat").on('click', '.modositas', function () {
+            $(".torles").on('click', function () {
+                let esemeny = new CustomEvent("borondTorles", {detail: adatok[this.id].cikkszam});
+                window.dispatchEvent(esemeny);
+            });
+            $(".modositas").on('click', function () {
                 borondokMegjelenites(adatok);
                 $(".torles").attr('disabled', true);
                 //$(".modositas").attr('disabled', true);
@@ -195,6 +201,32 @@ class RendszergazdaBorond {
             $(".borondokTablazat tr th").on("click", (event) => {
                 let esemeny = new CustomEvent("borondRendezes", {detail: event.target.id});
                 window.dispatchEvent(esemeny);
+            });
+        }
+        function lapozasBorondok(adatok) {
+            let szam = adatok.length / 15;
+            let maradek = adatok.length % 10;
+            let emeles = 1;
+            if (maradek > 0) {
+                emeles = 2;
+            }
+            $("#borondok").append("<div class=lapoz></div>");
+            for (var i = 1; i < Math.trunc(szam) + emeles; i++) {
+                $("#borondok .lapoz").append("<button class=lapozElem id=" + i + ">" + i + "</button>");
+            }
+            $('.lapozElem').eq(lapozId - 1).css("background-color", "white");
+            $('.lapozElem').eq(lapozId - 1).css("color", "brown");
+            $('.lapozElem').on('click', function () {
+                let id = this.id;
+                indexLapozas = (id * 15) - 15;
+                borondokMegjelenites(adatok);
+            });
+            $(".lapozElem").click(function () {
+                $('.lapozElem').eq(lapozId - 1).css("background-color", "brown");
+                $('.lapozElem').eq(lapozId - 1).css("color", "white");
+                lapozId = this.id;
+                $('.lapozElem').eq(lapozId - 1).css("background-color", "white");
+                $('.lapozElem').eq(lapozId - 1).css("color", "brown");
             });
         }
     }

@@ -10,50 +10,10 @@ $(function () {
         segedTabla: ""
     };
 
-    $(window).on("osszeCsomag", (event) => {
-        let data = {
-            tablaNeve: "Rendeles",
-            ujErtekek: "rstatusz = 1",
-            where: "rend_szam = " + event.detail
-        };
-        ajax.updateAjax("../api/Update.php", data);
-
-        new RendszergazdaRendeles();
-    });
-    $(window).on("futarraVar", (event) => {
-        let data = {
-            tablaNeve: "Rendeles",
-            ujErtekek: "rstatusz = 2",
-            where: "rend_szam = " + event.detail
-        };
-        ajax.updateAjax("../api/Update.php", data);
-
-        new RendszergazdaRendeles();
-    });
-    $(window).on("kiszallitva", (event) => {
-        let data = {
-            tablaNeve: "Rendeles",
-            ujErtekek: "rstatusz = 4",
-            where: "rend_szam = " + event.detail
-        };
-        ajax.updateAjax("../api/Update.php", data);
-
-        new RendszergazdaRendeles();
-    });
-    $(window).on("torlesRendeles", (event) => {
-        let data = {
-            tablaNeve: "Rendeles",
-            ujErtekek: "rstatusz = 5",
-            where: "rend_szam = " + event.detail
-        };
-        ajax.updateAjax("../api/Update.php", data);
-
-        new RendszergazdaRendeles();
-    });
-
     new RendszergazdaBorond(data);
     $(".rendszerGazdaRendelesek").hide();
     $(".rendszerGazdaFelhasznalok").hide();
+
     $("#rendelesSzerk").on("click", function () {
         $(".rendszerGazdaBorondok").hide();
         $(".rendszerGazdaFelhasznalok").hide();
@@ -72,6 +32,47 @@ $(function () {
         $(".rendszerGazdaFelhasznalok").show();
         new RendszergazdaFelhasznalok();
     });
+
+    //rendelés opciók
+    $(window).on("csomagolasraVar", (event) => {
+        let data = {
+            tablaNeve: "Rendeles",
+            ujErtekek: "rstatusz = 1",
+            where: "rend_szam = " + event.detail
+        };
+        ajax.updateAjax("../api/Update.php", data);
+        new RendszergazdaRendeles();
+    });
+    $(window).on("futarraVar", (event) => {
+        let data = {
+            tablaNeve: "Rendeles",
+            ujErtekek: "rstatusz = 2",
+            where: "rend_szam = " + event.detail
+        };
+        ajax.updateAjax("../api/Update.php", data);
+        new RendszergazdaRendeles();
+    });
+    $(window).on("kiszallitva", (event) => {
+        let data = {
+            tablaNeve: "Rendeles",
+            ujErtekek: "rstatusz = 4",
+            where: "rend_szam = " + event.detail
+        };
+        ajax.updateAjax("../api/Update.php", data);
+        new RendszergazdaRendeles();
+    });
+    $(window).on("torlesRendeles", (event) => {
+        let data = {
+            tablaNeve: "Rendeles",
+            ujErtekek: "rstatusz = 5",
+            where: "rend_szam = " + event.detail
+        };
+        ajax.updateAjax("../api/Update.php", data);
+        new RendszergazdaRendeles();
+    });
+
+
+    //felhasználó opciók
     $(window).on("felhasznTorles", (event) => {
         let data = {
             tablaNeve: "Felhasznalok",
@@ -115,6 +116,8 @@ $(function () {
             new RendszergazdaFelhasznalok();
         }
     });
+
+    //bőrönd opciók
     $(window).on("borondVeglegesites", (event) => {
         let ujAdatok = [];
         let rendben = true;
@@ -164,47 +167,53 @@ $(function () {
         };
         new RendszergazdaBorond(data);
     });
-
-    $("#keresCikk").keyup(function () {
-        let szoveg = $("#keresCikk").val();
-        let adatok = [];
-        let data = {
-            mit: "*",
+    $(window).on("borondTorles", (event) => {
+        let data2 = {
             tablaNeve: "Cikk",
-            honnan: "",
-            where: "where cikkszam like '%" + szoveg + "%' and cikkszam not in (select cikkszam from Rend_tetel)",
-            segedTabla: ""
-
+            where: "cikkszam = '" + event.detail + "'"
         };
-        //  ajax.selectAjax('../api/Select.php', adatok, data, borondokMegjelenites);
+        ajax.deleteAjax("../api/Delete.php", data2);
+        new RendszergazdaBorond(data);
     });
 
-    function lapozasBorondok(adatok) {
-        let szam = adatok.length / 15;
-        let maradek = adatok.length % 10;
-        let emeles = 1;
-        if (maradek > 0) {
-            emeles = 2;
-        }
-        $("#borondok").append("<div class=lapoz></div>");
-        for (var i = 1; i < Math.trunc(szam) + emeles; i++) {
-            $("#borondok .lapoz").append("<button class=lapozElem id=" + i + ">" + i + "</button>");
-        }
-        $('.lapozElem').eq(lapozId - 1).css("background-color", "white");
-        $('.lapozElem').eq(lapozId - 1).css("color", "brown");
-        $('.lapozElem').on('click', function () {
-            let id = this.id;
-            indexLapozas = (id * 15) - 15;
-            borondokMegjelenites(adatok);
+    $("#ujTermek").click(function () {
+        let ertekek = "'";
+        let oszlopok = "(";
+        let kepEleres = "/";
+        let rendben = true;
+        $('.borondForm :input').each(function (index, element) {
+            let text = $("#" + element.id).val();
+            if (index !== 9) {
+                if (text !== "") {
+                    if (index > 1 && index < 4) {
+                        kepEleres += text + "-";
+                    } else if (index === 4) {
+                        kepEleres += text + "/'";
+                    }
+                    if (element.id === "keszlet") {
+                        oszlopok += element.id;
+                    } else {
+                        oszlopok += element.id + ", ";
+                    }
+                    ertekek += text + "', '";
+                } else {
+                    rendben = false;
+                }
+            }
         });
-        $(".lapozElem").click(function () {
-            $('.lapozElem').eq(lapozId - 1).css("background-color", "brown");
-            $('.lapozElem').eq(lapozId - 1).css("color", "white");
-            lapozId = this.id;
-            $('.lapozElem').eq(lapozId - 1).css("background-color", "white");
-            $('.lapozElem').eq(lapozId - 1).css("color", "brown");
-        });
-    }
+        oszlopok += ", kepElerese)";
+        ertekek += kepEleres;
+        let data2 = {
+            tablaNeve: "Cikk",
+            oszlopok: oszlopok,
+            ertekek: ertekek
+        };
+
+        if (rendben) {
+            ajax.insertAjax("../api/Insert.php", data2);
+            new RendszergazdaBorond(data);
+        }
+    });
 
 });
 

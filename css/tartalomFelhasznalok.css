@@ -31,7 +31,10 @@ table th, table td{
 #kivRendszam{
     color: black;
 }
-
+.rendelesGombok{
+    display: flex;
+    justify-content: space-evenly;
+}
 /* Rendszergazda oldal */
 .felhasznalokTablazat, .borondokTablazat{
     border-collapse: collapse;

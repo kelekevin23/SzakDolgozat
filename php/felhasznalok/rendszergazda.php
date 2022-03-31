@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
 <html lang="en">
-=======
 <?php
 include_once '../session.php';
 ?>
 <html>
->>>>>>> b9eb07037991cab4a46bf5927278e064f426cda3
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -60,7 +57,7 @@ include_once '../session.php';
                 <div></div>
                 <div id="borondok"></div>
                 <div id="ujBorondok">
-                    <form method="post">
+                    <form>
                         <fieldset class="borondForm" >
                             <legend>Új bőrönd</legend>
                             <label for="cikkszam">Cikkszám:</label>
@@ -90,10 +87,8 @@ include_once '../session.php';
                             <label for="keszlet">Készlet</label>
                             <input type="text" id="keszlet" name="keszlet" value="3">
 
-                            <label for="kepElerese">Kép elérése</label>
-                            <input type="text" id="kepElerese" name="kepElerese" value="/70-40-20-100/">
-
-                            <br><button type="submit" name="ujTermek" id="ujTermek">Bőrönd felvitele</button>
+                 
+                            <br><button id="ujTermek" onclick="return false">Bőrönd felvitele</button>
                         </fieldset>
                     </form>
                 </div>
@@ -106,67 +101,3 @@ include_once '../session.php';
     </main>
 </body>
 </html>
-<?php
-include_once '../Ab.php';
-$ab = new Ab();
-
-function test_input4($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-
-//Bőröndök
-if (isset($_POST["ujTermek"])) {
-    $ures = false;
-    $values = array();
-    foreach ($_POST as $name => $value) {
-        if ($name !== "ujTermek") {
-            $values[] = $value;
-            if ($value === "") {
-                $ures = true;
-            }
-        }
-    }
-
-    $ertekek = "";
-    $szamlalo = 0;
-    foreach ($values as $szoveg) {
-        if ($szamlalo < 9) {
-            $ertekek .= "'" . $szoveg . "', ";
-        } else if ($szamlalo === 9) {
-            $ertekek .= "'" . $szoveg . "'";
-        }
-        $szamlalo++;
-    }
-
-    if (!$ures) {
-        $ab->insert("Cikk", "(cikkszam, modell, magassag, szelesseg, melyseg, urmertek, szin, ar, keszlet, kepElerese)", $ertekek);
-    }
-}
-if (isset($_POST["dsa"])) {
-    $index = test_input4($_POST["torlesBorond"]);
-    $cikkszamTorol = test_input4($_POST["cikkszam" . $index]);
-    $ab->delete("Cikk", " cikkszam = " . $cikkszamTorol);
-}
-
-if (isset($_POST["sad"])) {
-    $ures = false;
-    $where = "";
-    $cikk = test_input4($_POST["adat0"]);
-    for ($index1 = 1; $index1 < 3; $index1++) {
-        if (test_input4($_POST["adat" . $index1]) === "") {
-            $ures = true;
-        }
-        if ($index1 === 2) {
-            $where .= test_input4($_POST["adatNev" . $index1]) . " = '" . test_input4($_POST["adat" . $index1] . "'");
-        } else {
-            $where .= test_input4($_POST["adatNev" . $index1]) . " = '" . test_input4($_POST["adat" . $index1]) . "', ";
-        }
-    }
-    if (!$ures) {
-        $ab->update("Cikk", $where, " cikkszam =  '$cikk'");
-    }
-}
-?>

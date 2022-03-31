@@ -3,9 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/SzakDolgozat/index.php</file>
-            <file>file:/C:/xampp/htdocs/SzakDolgozat/js/view/rendszergazdaView.js</file>
-            <file>file:/C:/xampp/htdocs/SzakDolgozat/js/controller/rendszergazda.js</file>
+            <file>file:/D:/Xaamp/htdocs/SzakDolgozat/php/felhasznalok/rendszergazda.php</file>
+            <file>file:/D:/Xaamp/htdocs/SzakDolgozat/js/controller/futar.js</file>
+            <file>file:/D:/Xaamp/htdocs/SzakDolgozat/js/menu.js</file>
+            <file>file:/D:/Xaamp/htdocs/SzakDolgozat/php/nav.php</file>
+            <file>file:/D:/Xaamp/htdocs/SzakDolgozat/js/view/futarView.js</file>
+            <file>file:/D:/Xaamp/htdocs/SzakDolgozat/php/form.php</file>
+            <file>file:/D:/Xaamp/htdocs/SzakDolgozat/php/felhasznalok/futar.php</file>
+            <file>file:/D:/Xaamp/htdocs/SzakDolgozat/php/felhasznalok/admin.php</file>
         </group>
     </open-files>
 </project-private>

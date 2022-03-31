@@ -13,18 +13,24 @@ include_once '../session.php';
         <script src="../../js/ajax.js"></script>
         <script src="../../js/view/adminView.js"></script>
         <script src="../../js/controller/admin.js"></script>
-        <link href="../../css/szerkezet/szerkezet.css" rel="stylesheet" type="text/css"/>
-        <link href="../../css/tartalom/tartalom.css" rel="stylesheet" type="text/css"/>
-        <link href="../../css/tartalom/tartalomFelhasznalok.css" rel="stylesheet" type="text/css"/>
-        <link href="../../css/reszponzivitas/reszponzivitas.css" rel="stylesheet" type="text/css"/>   
+        <link href="../../css/szerkezet.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/tartalom.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/tartalomFelhasznalok.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/reszponzivitas.css" rel="stylesheet" type="text/css"/>   
     </head>
     <body>
         <main>
             <div class="header-container">
                 <header>
                     <h1>B-Shop</h1>
-                    <div class="kereso-panel"></div>
+                    <div class="kereso-panel">
+                        <input type="text" placeholder="Keresés..." name="kereso" id="keresosav">
+                    </div>
                     <?php
+                    if(empty($_SESSION['fstatusz'])||$_SESSION['fstatusz']!="a"){
+                    session_destroy();
+                        header('location: ../../index.php');
+                    }
                     include_once '../udvozlo.php';
                     ?>
 

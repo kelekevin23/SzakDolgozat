@@ -36,4 +36,24 @@ $(function () {
         
         new FutarElerheto();
     });
+    $(window).on("kiszallitva", (event) => {
+        let data = {
+            tablaNeve: "Rendeles",
+            ujErtekek: "rstatusz = 4",
+            where: "rend_szam = " + event.detail
+        };
+        ajax.updateAjax("../api/Update.php", data);
+        
+        new FutarSajat(nev);
+    });
+    $(window).on("sikertelenKiszallitas", (event) => {
+        let data = {
+            tablaNeve: "Rendeles",
+            ujErtekek: "rstatusz = 5",
+            where: "rend_szam = " + event.detail
+        };
+        ajax.updateAjax("../api/Update.php", data);
+        
+        new FutarSajat(nev);
+    });
 });

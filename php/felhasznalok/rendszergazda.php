@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en">
 <?php
 include_once '../session.php';
 ?>
@@ -14,19 +15,26 @@ include_once '../session.php';
         <script src="../../js/md5.js"></script>
         <script src="../../js/view/rendszergazdaView.js"></script>
         <script src="../../js/controller/rendszergazda.js"></script>
-        <link href="../../css/szerkezet/szerkezet.css" rel="stylesheet" type="text/css"/>
-        <link href="../../css/tartalom/tartalom.css" rel="stylesheet" type="text/css"/>
-        <link href="../../css/tartalom/tartalomFelhasznalok.css" rel="stylesheet" type="text/css"/>
-        <link href="../../css/reszponzivitas/reszponzivitas.css" rel="stylesheet" type="text/css"/>  
+        <link href="../../css/szerkezet.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/tartalom.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/tartalomFelhasznalok.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/reszponzivitas.css" rel="stylesheet" type="text/css"/>  
     </head>
     <main>
         <div class="header-container">
             <header>
                 <h1>B-Shop</h1>
-                <div></div>
+                <div class="kereso-panel">
+                    <input type="text" placeholder="Keresés..." name="kereso" id="keresosav">
+                </div>
                 <?php
+                if(empty($_SESSION['fstatusz'])||$_SESSION['fstatusz']!="r"){
+                    session_destroy();
+                        header('location: ../../index.php');
+                    }
                 include_once '../udvozlo.php';
                 ?>
+
             </header>
             <nav>
                 <?php

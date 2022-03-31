@@ -14,11 +14,12 @@
         <script src="../js/controller/rendelesEllenorzes.js"></script>
         <script src="../js/controller/rendelesAdatBeszuras.js"></script>
         <script src="../js/view/bejelentkezes_regisztracio.js"></script>
-        <link href="../css/szerkezet.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/tartalom.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/szerkezetRendeles.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/tartalomRendeles.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/reszponzivitas.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/szerkezet/szerkezet.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/tartalom/tartalom.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/szerkezet/szerkezetRendeles.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/tartalom/tartalomRendeles.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/reszponzivitas/reszponzivitas.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/reszponzivitas/reszponzivitasRendeles.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body>

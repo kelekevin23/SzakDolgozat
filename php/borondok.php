@@ -12,11 +12,12 @@
         <script src="../js/controller/borondOldalKezeles.js"></script>
         <script src="../js/ajax.js"></script>
         <script src="../js/view/bejelentkezes_regisztracio.js"></script>
-        <link href="../css/szerkezet.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/tartalom.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/szerkezetBorondok.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/tartalomBorondok.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/reszponzivitas.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/szerkezet/szerkezet.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/tartalom/tartalom.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/szerkezet/szerkezetBorondok.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/tartalom/tartalomBorondok.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/reszponzivitas/reszponzivitas.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/reszponzivitas/reszponzivitasBorondok.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body>

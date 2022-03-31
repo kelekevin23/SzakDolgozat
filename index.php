@@ -10,11 +10,12 @@
         <script src="js/ajax.js"></script>
         <script src="js/view/galeria.js"></script>
         <script src="js/view/bejelentkezes_regisztracio.js"></script>
-        <link href="css/szerkezet.css" rel="stylesheet" type="text/css"/>
-        <link href="css/tartalom.css" rel="stylesheet" type="text/css"/>
-        <link href="css/szerkezetFooldal.css" rel="stylesheet" type="text/css"/>
-        <link href="css/tartalomFooldal.css" rel="stylesheet" type="text/css"/>
-        <link href="css/reszponzivitas.css" rel="stylesheet" type="text/css"/>
+        <link href="css/szerkezet/szerkezet.css" rel="stylesheet" type="text/css"/>
+        <link href="css/tartalom/tartalom.css" rel="stylesheet" type="text/css"/>
+        <link href="css/szerkezet/szerkezetFooldal.css" rel="stylesheet" type="text/css"/>
+        <link href="css/tartalom/tartalomFooldal.css" rel="stylesheet" type="text/css"/>
+        <link href="css/reszponzivitas/reszponzivitas.css" rel="stylesheet" type="text/css"/>
+        <link href="css/reszponzivitas/reszponzivitasFooldal.css" rel="stylesheet" type="text/css"/>
     </head>
     <?php
     include_once 'php/session.php';
@@ -50,7 +51,7 @@
                 include_once 'php/form.php';
                 ?>
                 <div class="kepTarolo-div">
-                    <h2>Felkapottak</h2>
+                    <h2 id="cim">Felkapottak</h2>
 
                     <div id="kepGaleria">
                         <button id="bal"><</button>

@@ -10,9 +10,10 @@
         <script src="../js/menu.js"></script>
         <script src="../js/kosar.js"></script>
         <script src="../js/view/bejelentkezes_regisztracio.js"></script>
-        <link href="../css/szerkezet.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/tartalom.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/reszponzivitas.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/szerkezet/szerkezet.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/tartalom/tartalom.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/reszponzivitas/reszponzivitas.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/reszponzivitas/reszponzivitasRendeles.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body>

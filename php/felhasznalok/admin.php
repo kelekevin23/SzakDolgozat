@@ -13,10 +13,10 @@ include_once '../session.php';
         <script src="../../js/ajax.js"></script>
         <script src="../../js/view/adminView.js"></script>
         <script src="../../js/controller/admin.js"></script>
-        <link href="../../css/szerkezet.css" rel="stylesheet" type="text/css"/>
-        <link href="../../css/tartalom.css" rel="stylesheet" type="text/css"/>
-        <link href="../../css/tartalomFelhasznalok.css" rel="stylesheet" type="text/css"/>
-        <link href="../../css/reszponzivitas.css" rel="stylesheet" type="text/css"/>   
+        <link href="../../css/szerkezet/szerkezet.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/tartalom/tartalom.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/tartalom/tartalomFelhasznalok.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/reszponzivitas/reszponzivitas.css" rel="stylesheet" type="text/css"/>   
     </head>
     <body>
         <main>

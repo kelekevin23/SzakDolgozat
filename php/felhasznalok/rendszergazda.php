@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
 <?php
 include_once '../session.php';
 ?>
@@ -15,10 +14,10 @@ include_once '../session.php';
         <script src="../../js/md5.js"></script>
         <script src="../../js/view/rendszergazdaView.js"></script>
         <script src="../../js/controller/rendszergazda.js"></script>
-        <link href="../../css/szerkezet.css" rel="stylesheet" type="text/css"/>
-        <link href="../../css/tartalom.css" rel="stylesheet" type="text/css"/>
-        <link href="../../css/tartalomFelhasznalok.css" rel="stylesheet" type="text/css"/>
-        <link href="../../css/reszponzivitas.css" rel="stylesheet" type="text/css"/>  
+        <link href="../../css/szerkezet/szerkezet.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/tartalom/tartalom.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/tartalom/tartalomFelhasznalok.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/reszponzivitas/reszponzivitas.css" rel="stylesheet" type="text/css"/>  
     </head>
     <main>
         <div class="header-container">

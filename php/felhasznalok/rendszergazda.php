@@ -1,5 +1,12 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en">
+=======
+<?php
+include_once '../session.php';
+?>
+<html>
+>>>>>>> b9eb07037991cab4a46bf5927278e064f426cda3
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,7 +31,6 @@
                     <input type="text" placeholder="Keresés..." name="kereso" id="keresosav">
                 </div>
                 <?php
-                include_once '../session.php';
                 include_once '../udvozlo.php';
                 ?>
 
@@ -54,7 +60,7 @@
                 <div></div>
                 <div id="borondok"></div>
                 <div id="ujBorondok">
-                    <form>
+                    <form method="post">
                         <fieldset class="borondForm" >
                             <legend>Új bőrönd</legend>
                             <label for="cikkszam">Cikkszám:</label>
@@ -84,7 +90,10 @@
                             <label for="keszlet">Készlet</label>
                             <input type="text" id="keszlet" name="keszlet" value="3">
 
-                            <br><button id="ujTermek">Bőrönd felvitele</button>
+                            <label for="kepElerese">Kép elérése</label>
+                            <input type="text" id="kepElerese" name="kepElerese" value="/70-40-20-100/">
+
+                            <br><button type="submit" name="ujTermek" id="ujTermek">Bőrönd felvitele</button>
                         </fieldset>
                     </form>
                 </div>
@@ -109,7 +118,7 @@ function test_input4($data) {
 }
 
 //Bőröndök
-if (isset($_POST["asd"])) {
+if (isset($_POST["ujTermek"])) {
     $ures = false;
     $values = array();
     foreach ($_POST as $name => $value) {

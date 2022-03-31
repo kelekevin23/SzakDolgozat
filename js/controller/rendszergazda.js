@@ -8,8 +8,49 @@ $(function () {
         honnan: "",
         where: "where cikkszam not in (select cikkszam from Rend_tetel)",
         segedTabla: ""
-
     };
+
+    $(window).on("osszeCsomag", (event) => {
+        let data = {
+            tablaNeve: "Rendeles",
+            ujErtekek: "rstatusz = 1",
+            where: "rend_szam = " + event.detail
+        };
+        ajax.updateAjax("../api/Update.php", data);
+
+        new RendszergazdaRendeles();
+    });
+    $(window).on("futarraVar", (event) => {
+        let data = {
+            tablaNeve: "Rendeles",
+            ujErtekek: "rstatusz = 2",
+            where: "rend_szam = " + event.detail
+        };
+        ajax.updateAjax("../api/Update.php", data);
+
+        new RendszergazdaRendeles();
+    });
+    $(window).on("kiszallitva", (event) => {
+        let data = {
+            tablaNeve: "Rendeles",
+            ujErtekek: "rstatusz = 4",
+            where: "rend_szam = " + event.detail
+        };
+        ajax.updateAjax("../api/Update.php", data);
+
+        new RendszergazdaRendeles();
+    });
+    $(window).on("torlesRendeles", (event) => {
+        let data = {
+            tablaNeve: "Rendeles",
+            ujErtekek: "rstatusz = 5",
+            where: "rend_szam = " + event.detail
+        };
+        ajax.updateAjax("../api/Update.php", data);
+
+        new RendszergazdaRendeles();
+    });
+
     new RendszergazdaBorond(data);
     $(".rendszerGazdaRendelesek").hide();
     $(".rendszerGazdaFelhasznalok").hide();
@@ -123,6 +164,7 @@ $(function () {
         };
         new RendszergazdaBorond(data);
     });
+
     $("#keresCikk").keyup(function () {
         let szoveg = $("#keresCikk").val();
         let adatok = [];
@@ -136,6 +178,7 @@ $(function () {
         };
         //  ajax.selectAjax('../api/Select.php', adatok, data, borondokMegjelenites);
     });
+
     function lapozasBorondok(adatok) {
         let szam = adatok.length / 15;
         let maradek = adatok.length % 10;
@@ -163,6 +206,5 @@ $(function () {
         });
     }
 
-})
-        ;
+});
 

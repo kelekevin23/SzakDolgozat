@@ -2,7 +2,6 @@ $(function () {
 
     const ajax = new Ajax();
     let lapozId = 1;
-
     let data = {
         mit: "*",
         tablaNeve: "Cikk",
@@ -14,19 +13,16 @@ $(function () {
     new RendszergazdaBorond(data);
     $(".rendszerGazdaRendelesek").hide();
     $(".rendszerGazdaFelhasznalok").hide();
-
     $("#rendelesSzerk").on("click", function () {
         $(".rendszerGazdaBorondok").hide();
         $(".rendszerGazdaFelhasznalok").hide();
         $(".rendszerGazdaRendelesek").show();
         new RendszergazdaRendeles();
     });
-
     $("#borondokSzerk").on("click", function () {
         $(".rendszerGazdaRendelesek").hide();
         $(".rendszerGazdaFelhasznalok").hide();
         $(".rendszerGazdaBorondok").show();
-
         new RendszergazdaBorond(data);
     });
     $("#felhasznSzerk").on("click", function () {
@@ -35,7 +31,6 @@ $(function () {
         $(".rendszerGazdaFelhasznalok").show();
         new RendszergazdaFelhasznalok();
     });
-
     $(window).on("felhasznTorles", (event) => {
         let data = {
             tablaNeve: "Felhasznalok",
@@ -79,12 +74,30 @@ $(function () {
             new RendszergazdaFelhasznalok();
         }
     });
-
-
+    $(window).on("borondVeglegesites", (event) => {
+        let ujAdatok = [];
+        let rendben = true;
+        for (var i = 0; i < 3; i++) {
+            ujAdatok.push($(".adat" + i).val());
+            if ($(".adat" + i).val() === "") {
+                rendben = false;
+            }
+        }
+        let data2 = {
+            tablaNeve: "Cikk",
+            ujErtekek:
+                    "ar = '" + ujAdatok[1] + "'," +
+                    "keszlet = '" + ujAdatok[2] + "'",
+            where: "cikkszam = '" + ujAdatok[0] + "'"
+        };
+        if (rendben) {
+            ajax.updateAjax("../api/Update.php", data2);
+            new RendszergazdaBorond(data);
+        }
+    });
     $(window).on("borondRendezes", (event) => {
         let rendez = "";
         let azon = parseInt(event.detail);
-
         if (azon === 0) {
             rendez = "order by cikkszam";
         } else if (azon === 2) {
@@ -112,7 +125,7 @@ $(function () {
     });
     $("#keresCikk").keyup(function () {
         let szoveg = $("#keresCikk").val();
-        adatok = [];
+        let adatok = [];
         let data = {
             mit: "*",
             tablaNeve: "Cikk",
@@ -121,14 +134,12 @@ $(function () {
             segedTabla: ""
 
         };
-        ajax.selectAjax('../api/Select.php', adatok, data, borondokMegjelenites);
+        //  ajax.selectAjax('../api/Select.php', adatok, data, borondokMegjelenites);
     });
-
     function lapozasBorondok(adatok) {
         let szam = adatok.length / 15;
         let maradek = adatok.length % 10;
         let emeles = 1;
-
         if (maradek > 0) {
             emeles = 2;
         }
@@ -138,12 +149,10 @@ $(function () {
         }
         $('.lapozElem').eq(lapozId - 1).css("background-color", "white");
         $('.lapozElem').eq(lapozId - 1).css("color", "brown");
-
         $('.lapozElem').on('click', function () {
             let id = this.id;
             indexLapozas = (id * 15) - 15;
             borondokMegjelenites(adatok);
-
         });
         $(".lapozElem").click(function () {
             $('.lapozElem').eq(lapozId - 1).css("background-color", "brown");
@@ -154,5 +163,6 @@ $(function () {
         });
     }
 
-});
+})
+        ;
 

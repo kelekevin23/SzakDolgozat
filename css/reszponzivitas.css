@@ -1,12 +1,17 @@
 @charset "utf-8";
 
+@media screen and (max-width:1200px){
+    #szures_form{
+        font-size: 13px; 
+    }
+}
 @media screen and (max-width:1000px){
     header{
         display: grid;
         grid-template-columns: 1fr 1fr;
         background-color: white;
-        border: 1px solid black;   
-    }   
+        border: 1px solid black;
+    }
 
     #panel{
         grid-column: 1 / 4;
@@ -25,6 +30,19 @@
     td, th{
         padding: 2px;
     }
+
+    /*borond*/
+    #szures_form{
+        font-size: 10px; 
+    }
+    .adatFeltolt{
+        font-size: 12px;
+    }
+
+    #adatok_tarolo p{
+        font-size: 12px;
+    }
+
 }
 
 @media screen and (max-width:800px){
@@ -34,7 +52,39 @@
         padding-bottom: 2px;
     }
     #belepes, #regisztracio{
-        font-size: 12px;  
+        font-size: 12px;
+    }
+
+    /*borond*/
+    #szures_form{
+        font-size: 8px;
+    }
+    #szuresGombok{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    
+    #szures-gomb{
+        font-size: 15px;
+    }
+    #szures-torol{
+        font-size: 12px;
+    }
+
+    .info{
+        padding: 0px;
+        width: 60%;
+    }
+    .info a{
+        font-size: 12px;
+    }
+
+    #adatok_tarolo{
+        padding-bottom: 10px;
+    }
+
+    #adatok_tarolo p{
+        height: 10px;
     }
 }
 @media screen and (max-width:700px){
@@ -44,10 +94,29 @@
     table{
         font-size: 10px;
     }
+
+    /*borond*/
+    #szures_form{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    input[type=radio] {
+        width: 8px;
+    }
+    input[type=checkbox] {
+        width: 8px;
+    }
+
 }
 @media screen and (max-width:600px){
     td, th{
         padding: 0px;
+    }
+
+    /*borond*/
+    .lapozElem button{
+        font-size: 8px;
     }
 }
 @media screen and (max-width:400px){
@@ -55,5 +124,10 @@
         font-size: 12px;
         padding-top: 2px;
         padding-bottom: 2px;
+    }
+
+    /*borond*/
+    .lapozElem button{
+        font-size: 6px;
     }
 }

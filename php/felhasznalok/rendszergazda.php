@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -136,13 +136,13 @@ if (isset($_POST["asd"])) {
         $ab->insert("Cikk", "(cikkszam, modell, magassag, szelesseg, melyseg, urmertek, szin, ar, keszlet, kepElerese)", $ertekek);
     }
 }
-if (isset($_POST["torlesBorond"])) {
+if (isset($_POST["dsa"])) {
     $index = test_input4($_POST["torlesBorond"]);
     $cikkszamTorol = test_input4($_POST["cikkszam" . $index]);
     $ab->delete("Cikk", " cikkszam = " . $cikkszamTorol);
 }
 
-if (isset($_POST["veglegesitesBorond"])) {
+if (isset($_POST["sad"])) {
     $ures = false;
     $where = "";
     $cikk = test_input4($_POST["adat0"]);

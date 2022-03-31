@@ -62,6 +62,8 @@
                         <input type="hidden" id="adottCikkszam" value="">
                         <input type="hidden" id="adottKeszlet" value="">
                         <input type="hidden" id="adottSzin" value="">
+                        <input type="hidden" id="adottModell" value="">
+                        <input type="hidden" id="adottEleres" value="">
                         <button id="jobb">></button>
                     </div>
                 </div>
@@ -71,6 +73,7 @@
                 <div class="galeria">
                     <h3 class="marka"></h3>
                     <a href="php/borondadatlap.php"><img src="" alt=""></a>
+       
                 </div>
             </section>
 

@@ -34,7 +34,7 @@ class RendszergazdaBorond {
             let oszlopokSzoveg = ["Cikkszám", "", "Ár", " Forint", "Készlet", " darab"];
 
             if (adatok.length !== 0) {
-                tablazat = "<form method=post><table class=borondokTablazat>";
+                tablazat = "<table class=borondokTablazat>";
                 tablazat += "<tr>";
                 for (var i = 0; i < oszlopokSzoveg.length; i += 2) {
                     tablazat += "<th id=" + i + ">" + oszlopokSzoveg[i] + "</th>";
@@ -85,9 +85,9 @@ class RendszergazdaBorond {
                 let modosit = "";
                 for (var i = 0; i < modositando.length; i++) {
                     if (i === 0) {
-                        modosit += "<td><input type=text id=" + oszlopok[i] + " name=adat" + i + " value=" + modositando[i] + " readonly></td>";
+                        modosit += "<td><input type=text id=" + oszlopok[i] + " class=adat" + i + " value=" + modositando[i] + " readonly></td>";
                     } else {
-                        modosit += "<td><input type=text id=" + oszlopok[i] + " name=adat" + i + " value=" + modositando[i] + "></td>";
+                        modosit += "<td><input type=text id=" + oszlopok[i] + " class=adat" + i + " value=" + modositando[i] + "></td>";
 
                     }
                 }
@@ -101,7 +101,7 @@ class RendszergazdaBorond {
                     borondokMegjelenites(adatok);
                 });
                 $(".veglegesites").on("click", (event) => {
-                    let esemeny = new CustomEvent("felhasznVeglegesites", {detail: modositando});
+                    let esemeny = new CustomEvent("borondVeglegesites", {detail: modositando});
                     window.dispatchEvent(esemeny);
                 });
             });

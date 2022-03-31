@@ -30,7 +30,7 @@ class Galeria {
         const jobbKep = $("#jobbkep");
 
         function kepeketFelvesz(adatok) {
-            
+
             const balElem = sablonElem.clone().appendTo(balKep);
             const foElem = sablonElem.clone().appendTo(foKep);
             const jobbElem = sablonElem.clone().appendTo(jobbKep);
@@ -103,6 +103,7 @@ class Kep {
         this.elem = elem;
 
         this.kep = this.elem.children("a").children("img");
+        //this.kep = this.elem.children("img");
         this.marka = this.elem.children(".marka");
         this.modell = this.elem.children(".modell");
 
@@ -122,10 +123,16 @@ class Kep {
 
         this.kep.on("click", () => {
             let szoveg = $("#adottCikkszam").text();
+            let modell = $("#adottModell").text();
+            let eleres = $("#adottEleres").text();
+
+
             if (szoveg !== "") {
-                obj.cikkszam = $("#adottCikkszam").text();
-                obj.keszlet = $("#adottKeszlet").text();
-                obj.szin = $("#adottSzin").text();
+                if (obj.modell === modell && obj.kepElerese === eleres) {
+                    obj.cikkszam = $("#adottCikkszam").text();
+                    obj.keszlet = $("#adottKeszlet").text();
+                    obj.szin = $("#adottSzin").text();
+                }
             }
             this.kepKattintas(obj);
         });
@@ -173,6 +180,8 @@ class Kep {
             $("#adottCikkszam").text(szin[this.id].cikkszam);
             $("#adottKeszlet").text(szin[this.id].keszlet);
             $("#adottSzin").text(szin[this.id].szin);
+            $("#adottModell").text(szin[this.id].modell);
+            $("#adottEleres").text(szin[this.id].kepElerese);
 
             szin[this.id].szin = szin[this.id].szin.replace(new RegExp(/[û]/g), "ű");
             $("#fokep img").attr("src", "kepek/" + marka.substring(0, 2) + '/' + szin[this.id].modell + szin[this.id].kepElerese + szin[this.id].szin + "1.jpg");

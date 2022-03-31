@@ -76,7 +76,7 @@ function megjelenit(rendelesek) {
     }
     $("#adottRendelesek").html(tablazat);
     let kivalasztasKiir = "";
-    
+
     kivalasztasKiir += "<div id=kivalasztott>";
     kivalasztasKiir += "<p id=kivRendszam>Kiválasztott rendszám:</p>";
     kivalasztasKiir += "<button class=magamhozVeszem>Magamhoz veszem!</button>";
@@ -100,4 +100,4 @@ function megjelenit(rendelesek) {
         window.dispatchEvent(esemeny);
     });
 
-}
+} 

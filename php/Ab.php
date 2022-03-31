@@ -1,7 +1,7 @@
 <?php
 
 class Ab {
-    private $serverName = "DESKTOP-HFFA4M4";
+    private $serverName = "DESKTOP-MARCI";
     private $connectionInfo = array("Database" => "Szakdoga_adattal", "CharacterSet" => "UTF-8");
     private $kapcsolat;
 

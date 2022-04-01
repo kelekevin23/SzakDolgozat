@@ -1,7 +1,7 @@
 $(function () {
 
     const ajax = new Ajax();
-    new FutarElerheto();
+
 
     let szoveg = $("#panel p").html();
     let nev = "";
@@ -16,14 +16,41 @@ $(function () {
         }
     }
 
+    const elerheto = new FutarElerheto();
+    const sajat = new FutarSajat(nev);
+
+    //elérhető
+    let futarElerheto = [];
+    let elerhetoData = {
+        mit: "*",
+        tablaNeve: "Rendeles",
+        honnan: " Rendeles r inner join Cim c on r.szamlcim = c.id",
+        where: "where r.rstatusz=2",
+        segedTabla: "Cim"
+    };
+    ajax.selectAjax('../api/Select.php', futarElerheto, elerhetoData, elerheto.megjelenit);
+
+
+    //saját
+    let futarSajat = [];
+    let sajatData = {
+        mit: "*",
+        tablaNeve: "Rendeles",
+        honnan: " Rendeles r inner join Cim c on r.szamlcim = c.id",
+        where: "where r.kiszallito like '" + nev + "' and rstatusz = 3",
+        segedTabla: "Cim"
+    };
+
+
     $("#elerRend").on("click", (event) => {
-        new FutarElerheto();
-        $("#kivalasztott").hide();
+        futarElerheto = [];
+        ajax.selectAjax('../api/Select.php', futarElerheto, elerhetoData, elerheto.megjelenit);
     });
 
     $("#sajatRend").on("click", (event) => {
-        new FutarSajat(nev);
-        $("#kivalasztott").hide();
+        futarSajat = [];
+        ajax.selectAjax('../api/Select.php', futarSajat, sajatData, sajat.megjelenit);
+
     });
 
     $(window).on("atVetel", (event) => {
@@ -33,8 +60,8 @@ $(function () {
             where: "rend_szam = " + event.detail
         };
         ajax.updateAjax("../api/Update.php", data);
-        
-        new FutarElerheto();
+        futarElerheto = [];
+        ajax.selectAjax('../api/Select.php', futarElerheto, elerhetoData, elerheto.megjelenit);
     });
     $(window).on("kiszallitva", (event) => {
         let data = {
@@ -43,8 +70,8 @@ $(function () {
             where: "rend_szam = " + event.detail
         };
         ajax.updateAjax("../api/Update.php", data);
-        
-        new FutarSajat(nev);
+        futarSajat = [];
+        ajax.selectAjax('../api/Select.php', futarSajat, sajatData, sajat.megjelenit);
     });
     $(window).on("sikertelenKiszallitas", (event) => {
         let data = {
@@ -53,7 +80,7 @@ $(function () {
             where: "rend_szam = " + event.detail
         };
         ajax.updateAjax("../api/Update.php", data);
-        
-        new FutarSajat(nev);
+        futarSajat = [];
+        ajax.selectAjax('../api/Select.php', futarSajat, sajatData, sajat.megjelenit);
     });
 });

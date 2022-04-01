@@ -112,7 +112,6 @@ class Kosar {
             this.kosarTomb = [];
             let adathalmaz = JSON.stringify(this.kosarTomb);
             localStorage.setItem("kosar", adathalmaz);
-
             this.megjelenit();
         });
 

@@ -1,15 +1,5 @@
 class RendszergazdaRendeles {
     constructor() {
-        const ajax = new Ajax();
-        let adatok = [];
-        let data = {
-            mit: "*",
-            tablaNeve: "Rendeles",
-            honnan: " Rendeles r inner join Cim c on r.szamlcim = c.id",
-            where: "order by rstatusz",
-            segedTabla: "Cim"
-        };
-        ajax.selectAjax('../api/Select.php', adatok, data, this.rendelesMegjelenites);
     }
     rendelesMegjelenites(rendelesek) {
         let tablazat = "";
@@ -90,29 +80,13 @@ class RendszergazdaRendeles {
         });
     }
 }
+
 class RendszergazdaBorond {
     constructor(data) {
-
-        const ajax = new Ajax();
-        let adatok = [];
-        ajax.selectAjax('../api/Select.php', adatok, data, borondokMegjelenites);
-
         let indexLapozas = 0;
         let lapozId = 1;
-
-        $("#keresCikk").keyup(function () {
-            let szoveg = $("#keresCikk").val();
-            adatok = [];
-            let data = {
-                mit: "*",
-                tablaNeve: "Cikk",
-                honnan: "",
-                where: "where cikkszam like '%" + szoveg + "%' and cikkszam not in (select cikkszam from Rend_tetel)",
-                segedTabla: ""
-
-            };
-            ajax.selectAjax('../api/Select.php', adatok, data, borondokMegjelenites);
-        });
+        borondokMegjelenites(data);
+        
 
         function borondokMegjelenites(adatok) {
             console.log(adatok.length);
@@ -232,21 +206,10 @@ class RendszergazdaBorond {
     }
 }
 
-
 class RendszergazdaFelhasznalok {
-    constructor() {
-        const ajax = new Ajax();
-        let adatok = [];
-        let data = {
-            mit: "*",
-            tablaNeve: "Felhasznalok",
-            honnan: "",
-            where: "",
-            segedTabla: ""
-        };
-        ajax.selectAjax('../api/Select.php', adatok, data, felhasznalokMegjelenites);
-
-
+    constructor(data) {
+        felhasznalokMegjelenites(data);
+        
         function felhasznalokMegjelenites(adatok) {
             let tablazat = "";
             let oszlopok = [

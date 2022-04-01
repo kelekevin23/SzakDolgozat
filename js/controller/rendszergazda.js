@@ -1,16 +1,48 @@
 $(function () {
 
     const ajax = new Ajax();
-    let lapozId = 1;
-    let data = {
+
+    let rendeles = new RendszergazdaRendeles();
+    //rendelések
+
+    let rendelesAdatok = [];
+    let rendelesData = {
+        mit: "*",
+        tablaNeve: "Rendeles",
+        honnan: " Rendeles r inner join Cim c on r.szamlcim = c.id",
+        where: "order by rstatusz",
+        segedTabla: "Cim"
+    };
+
+    //bőröndök
+    let borondAdatok = [];
+    let borondData = {
         mit: "*",
         tablaNeve: "Cikk",
         honnan: "",
         where: "where cikkszam not in (select cikkszam from Rend_tetel)",
         segedTabla: ""
     };
+    ajax.selectAjax('../api/Select.php', borondAdatok, borondData, adatAtvitelBorond);
+    function adatAtvitelBorond(borondok) {
+        //console.log(borondok);
+        new RendszergazdaBorond(borondok);
+    }
 
-    new RendszergazdaBorond(data);
+    //felhasználók
+    let felhasznAdatok = [];
+    let felhasznData = {
+        mit: "*",
+        tablaNeve: "Felhasznalok",
+        honnan: "",
+        where: "",
+        segedTabla: ""
+    };
+    function adatAtvitelFelhasznalok(adatok) {
+        new RendszergazdaFelhasznalok(adatok);
+    }
+
+
     $(".rendszerGazdaRendelesek").hide();
     $(".rendszerGazdaFelhasznalok").hide();
 
@@ -18,19 +50,38 @@ $(function () {
         $(".rendszerGazdaBorondok").hide();
         $(".rendszerGazdaFelhasznalok").hide();
         $(".rendszerGazdaRendelesek").show();
-        new RendszergazdaRendeles();
+        rendelesAdatok = [];
+        ajax.selectAjax('../api/Select.php', rendelesAdatok, rendelesData, rendeles.rendelesMegjelenites);
     });
     $("#borondokSzerk").on("click", function () {
         $(".rendszerGazdaRendelesek").hide();
         $(".rendszerGazdaFelhasznalok").hide();
         $(".rendszerGazdaBorondok").show();
-        new RendszergazdaBorond(data);
+        borondAdatok = [];
+        ajax.selectAjax('../api/Select.php', borondAdatok, borondData, adatAtvitelBorond);
+
     });
     $("#felhasznSzerk").on("click", function () {
         $(".rendszerGazdaRendelesek").hide();
         $(".rendszerGazdaBorondok").hide();
         $(".rendszerGazdaFelhasznalok").show();
-        new RendszergazdaFelhasznalok();
+        felhasznAdatok = [];
+        ajax.selectAjax('../api/Select.php', felhasznAdatok, felhasznData, adatAtvitelFelhasznalok);
+    });
+
+    $("#keresCikk").keyup(function () {
+        let szoveg = $("#keresCikk").val();
+
+        let data = {
+            mit: "*",
+            tablaNeve: "Cikk",
+            honnan: "",
+            where: "where cikkszam like '%" + szoveg + "%' and cikkszam not in (select cikkszam from Rend_tetel)",
+            segedTabla: ""
+
+        };
+        borondAdatok = [];
+        ajax.selectAjax('../api/Select.php', borondAdatok, data, adatAtvitelBorond);
     });
 
     //rendelés opciók
@@ -41,7 +92,8 @@ $(function () {
             where: "rend_szam = " + event.detail
         };
         ajax.updateAjax("../api/Update.php", data);
-        new RendszergazdaRendeles();
+        rendelesAdatok = [];
+        ajax.selectAjax('../api/Select.php', rendelesAdatok, rendelesData, rendeles.rendelesMegjelenites);
     });
     $(window).on("futarraVar", (event) => {
         let data = {
@@ -50,7 +102,8 @@ $(function () {
             where: "rend_szam = " + event.detail
         };
         ajax.updateAjax("../api/Update.php", data);
-        new RendszergazdaRendeles();
+        rendelesAdatok = [];
+        ajax.selectAjax('../api/Select.php', rendelesAdatok, rendelesData, rendeles.rendelesMegjelenites);
     });
     $(window).on("kiszallitva", (event) => {
         let data = {
@@ -59,7 +112,8 @@ $(function () {
             where: "rend_szam = " + event.detail
         };
         ajax.updateAjax("../api/Update.php", data);
-        new RendszergazdaRendeles();
+        rendelesAdatok = [];
+        ajax.selectAjax('../api/Select.php', rendelesAdatok, rendelesData, rendeles.rendelesMegjelenites);
     });
     $(window).on("torlesRendeles", (event) => {
         let data = {
@@ -68,7 +122,8 @@ $(function () {
             where: "rend_szam = " + event.detail
         };
         ajax.updateAjax("../api/Update.php", data);
-        new RendszergazdaRendeles();
+        rendelesAdatok = [];
+        ajax.selectAjax('../api/Select.php', rendelesAdatok, rendelesData, rendeles.rendelesMegjelenites);
     });
 
 
@@ -79,7 +134,8 @@ $(function () {
             where: "felhasznalonev = '" + event.detail.felhasznalonev + "'"
         };
         ajax.deleteAjax("../api/Delete.php", data);
-        new RendszergazdaFelhasznalok();
+        felhasznAdatok = [];
+        ajax.selectAjax('../api/Select.php', felhasznAdatok, felhasznData, adatAtvitelFelhasznalok);
     });
     $(window).on("felhasznVeglegesites", (event) => {
         let ujAdatok = [];
@@ -113,7 +169,8 @@ $(function () {
         };
         if (rendben) {
             ajax.updateAjax("../api/Update.php", data);
-            new RendszergazdaFelhasznalok();
+            felhasznAdatok = [];
+            ajax.selectAjax('../api/Select.php', felhasznAdatok, felhasznData, adatAtvitelFelhasznalok);
         }
     });
 
@@ -136,7 +193,8 @@ $(function () {
         };
         if (rendben) {
             ajax.updateAjax("../api/Update.php", data2);
-            new RendszergazdaBorond(data);
+            borondAdatok = [];
+            ajax.selectAjax('../api/Select.php', borondAdatok, borondData, adatAtvitelBorond);
         }
     });
     $(window).on("borondRendezes", (event) => {
@@ -165,7 +223,8 @@ $(function () {
             segedTabla: ""
 
         };
-        new RendszergazdaBorond(data);
+        borondAdatok = [];
+        ajax.selectAjax('../api/Select.php', borondAdatok, data, adatAtvitelBorond);
     });
     $(window).on("borondTorles", (event) => {
         let data2 = {
@@ -173,7 +232,8 @@ $(function () {
             where: "cikkszam = '" + event.detail + "'"
         };
         ajax.deleteAjax("../api/Delete.php", data2);
-        new RendszergazdaBorond(data);
+        borondAdatok = [];
+        ajax.selectAjax('../api/Select.php', borondAdatok, borondData, adatAtvitelBorond);
     });
 
     $("#ujTermek").click(function () {
@@ -211,7 +271,8 @@ $(function () {
 
         if (rendben) {
             ajax.insertAjax("../api/Insert.php", data2);
-            new RendszergazdaBorond(data);
+            borondAdatok = [];
+            ajax.selectAjax('../api/Select.php', borondAdatok, borondData, adatAtvitelBorond);
         }
     });
 

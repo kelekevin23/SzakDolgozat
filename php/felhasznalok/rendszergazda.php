@@ -24,9 +24,7 @@ include_once '../session.php';
         <div class="header-container">
             <header>
                 <h1>B-Shop</h1>
-                <div class="kereso-panel">
-                    <input type="text" placeholder="Keresés..." name="kereso" id="keresosav">
-                </div>
+                <div></div>
                 <?php
                 if(empty($_SESSION['fstatusz'])||$_SESSION['fstatusz']!="r"){
                     session_destroy();

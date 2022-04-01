@@ -103,9 +103,7 @@ class Kep {
         this.elem = elem;
 
         this.kep = this.elem.children("a").children("img");
-        //this.kep = this.elem.children("img");
         this.marka = this.elem.children(".marka");
-        this.modell = this.elem.children(".modell");
 
         this.obj = obj;
         this.kepBeallit(this.obj);
@@ -119,7 +117,6 @@ class Kep {
 
     kepBeallit(obj) {
         this.marka.html(obj.marka);
-        this.modell.html(obj.modell);
 
         this.kep.on("click", () => {
             let szoveg = $("#adottCikkszam").text();

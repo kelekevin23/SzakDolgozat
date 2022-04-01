@@ -1,21 +1,9 @@
 class AdminBeszerzes {
     constructor() {
-
-        const ajax = new Ajax();
-        let beszerzes = [];
-        let data = {
-            mit: "*",
-            tablaNeve: "Beszerzes",
-            honnan: "",
-            where: "",
-            segedTabla: ""
-        };
-        ajax.selectAjax('../api/Select.php', beszerzes, data, this.megjelenit);
-
-
     }
 
     megjelenit(beszerzes) {
+        console.log(beszerzes);
         let tablazat = "<p>Jelenleg nincs visszaküldött bőrönd!</p>";
         if (beszerzes.length !== 0) {
             tablazat = "<table class=beszerzesekTablazat>";
@@ -40,19 +28,7 @@ class AdminBeszerzes {
     }
 }
 class AdminRendeles {
-    constructor() {
-        const ajax = new Ajax();
-
-        let rendelesek = [];
-        let data = {
-            mit: "*",
-            tablaNeve: "Rendeles",
-            honnan: "Rendeles r inner join Cim c on r.szamlcim = c.id",
-            where: "where r.rstatusz=1",
-            segedTabla: "Cim"
-        };
-        ajax.selectAjax('../api/Select.php', rendelesek, data, this.megjelenit);
-
+    constructor() { 
     }
 
     megjelenit(rendelesek) {

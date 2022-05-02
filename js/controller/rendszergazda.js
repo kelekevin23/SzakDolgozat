@@ -3,7 +3,6 @@ $(function () {
     const ajax = new Ajax();
 
     let rendeles = new RendszergazdaRendeles();
-    
     //rendelések
     let rendelesAdatok = [];
     let rendelesData = {
@@ -23,7 +22,7 @@ $(function () {
         where: "where cikkszam not in (select cikkszam from Rend_tetel)",
         segedTabla: ""
     };
-    ajax.selectAjax('../api/Select.php', borondAdatok, borondData, adatAtvitelBorond);
+    
     
     function adatAtvitelBorond(borondok) {
         new RendszergazdaBorond(borondok);
@@ -42,36 +41,44 @@ $(function () {
         new RendszergazdaFelhasznalok(adatok);
     }
 
-
-    $(".rendszerGazdaRendelesek").hide();
-    $(".rendszerGazdaFelhasznalok").hide();
-
-    $("#rendelesSzerk").on("click", function () {
+    let statusz = localStorage.getItem("rendszerGazdaStatusz");
+    if (statusz === "rendelesek"){
         $(".rendszerGazdaBorondok").hide();
         $(".rendszerGazdaFelhasznalok").hide();
         $(".rendszerGazdaRendelesek").show();
         rendelesAdatok = [];
         ajax.selectAjax('../api/Select.php', rendelesAdatok, rendelesData, rendeles.rendelesMegjelenites);
-    });
-    $("#borondokSzerk").on("click", function () {
-        $(".rendszerGazdaRendelesek").hide();
-        $(".rendszerGazdaFelhasznalok").hide();
-        $(".rendszerGazdaBorondok").show();
-        borondAdatok = [];
-        ajax.selectAjax('../api/Select.php', borondAdatok, borondData, adatAtvitelBorond);
-
-    });
-    $("#felhasznSzerk").on("click", function () {
+    } else if (statusz === "felhasznalok"){
         $(".rendszerGazdaRendelesek").hide();
         $(".rendszerGazdaBorondok").hide();
         $(".rendszerGazdaFelhasznalok").show();
         felhasznAdatok = [];
         ajax.selectAjax('../api/Select.php', felhasznAdatok, felhasznData, adatAtvitelFelhasznalok);
+    }else{
+        $(".rendszerGazdaRendelesek").hide();
+        $(".rendszerGazdaFelhasznalok").hide();
+        $(".rendszerGazdaBorondok").show();
+        borondAdatok = [];
+        ajax.selectAjax('../api/Select.php', borondAdatok, borondData, adatAtvitelBorond);
+    }
+
+    
+
+    $("#rendelesSzerk").on("click", function () {
+        localStorage.setItem("rendszerGazdaStatusz", "rendelesek");
+        location.reload(true);
+    });
+    $("#borondokSzerk").on("click", function () {
+        localStorage.setItem("rendszerGazdaStatusz", "borondok");
+        location.reload(true);
+    });
+    $("#felhasznSzerk").on("click", function () {
+        localStorage.setItem("rendszerGazdaStatusz", "felhasznalok");
+        location.reload(true);
     });
 
     $("#keresCikk").keyup(function () {
         let szoveg = $("#keresCikk").val();
-
         let data = {
             mit: "*",
             tablaNeve: "Cikk",
@@ -92,8 +99,7 @@ $(function () {
             where: "rend_szam = " + event.detail
         };
         ajax.updateAjax("../api/Update.php", data);
-        rendelesAdatok = [];
-        ajax.selectAjax('../api/Select.php', rendelesAdatok, rendelesData, rendeles.rendelesMegjelenites);
+        location.reload(true);
     });
     $(window).on("futarraVar", (event) => {
         let data = {
@@ -102,8 +108,7 @@ $(function () {
             where: "rend_szam = " + event.detail
         };
         ajax.updateAjax("../api/Update.php", data);
-        rendelesAdatok = [];
-        ajax.selectAjax('../api/Select.php', rendelesAdatok, rendelesData, rendeles.rendelesMegjelenites);
+        location.reload(true);
     });
     $(window).on("kiszallitva", (event) => {
         let data = {
@@ -112,8 +117,7 @@ $(function () {
             where: "rend_szam = " + event.detail
         };
         ajax.updateAjax("../api/Update.php", data);
-        rendelesAdatok = [];
-        ajax.selectAjax('../api/Select.php', rendelesAdatok, rendelesData, rendeles.rendelesMegjelenites);
+        location.reload(true);
     });
     $(window).on("torlesRendeles", (event) => {
         let data = {
@@ -122,8 +126,7 @@ $(function () {
             where: "rend_szam = " + event.detail
         };
         ajax.updateAjax("../api/Update.php", data);
-        rendelesAdatok = [];
-        ajax.selectAjax('../api/Select.php', rendelesAdatok, rendelesData, rendeles.rendelesMegjelenites);
+        location.reload(true);
     });
 
 
@@ -134,8 +137,7 @@ $(function () {
             where: "felhasznalonev = '" + event.detail.felhasznalonev + "'"
         };
         ajax.deleteAjax("../api/Delete.php", data);
-        felhasznAdatok = [];
-        ajax.selectAjax('../api/Select.php', felhasznAdatok, felhasznData, adatAtvitelFelhasznalok);
+        location.reload(true);
     });
     $(window).on("felhasznVeglegesites", (event) => {
         let ujAdatok = [];
@@ -169,8 +171,7 @@ $(function () {
         };
         if (rendben) {
             ajax.updateAjax("../api/Update.php", data);
-            felhasznAdatok = [];
-            ajax.selectAjax('../api/Select.php', felhasznAdatok, felhasznData, adatAtvitelFelhasznalok);
+            location.reload(true);
         }
     });
 
@@ -193,8 +194,7 @@ $(function () {
         };
         if (rendben) {
             ajax.updateAjax("../api/Update.php", data2);
-            borondAdatok = [];
-            ajax.selectAjax('../api/Select.php', borondAdatok, borondData, adatAtvitelBorond);
+            location.reload(true);
         }
     });
     $(window).on("borondRendezes", (event) => {
@@ -232,8 +232,7 @@ $(function () {
             where: "cikkszam = '" + event.detail + "'"
         };
         ajax.deleteAjax("../api/Delete.php", data2);
-        borondAdatok = [];
-        ajax.selectAjax('../api/Select.php', borondAdatok, borondData, adatAtvitelBorond);
+        location.reload(true);
     });
 
     $("#ujTermek").click(function () {
@@ -271,8 +270,7 @@ $(function () {
 
         if (rendben) {
             ajax.insertAjax("../api/Insert.php", data2);
-            borondAdatok = [];
-            ajax.selectAjax('../api/Select.php', borondAdatok, borondData, adatAtvitelBorond);
+            location.reload(true);
         }
     });
 

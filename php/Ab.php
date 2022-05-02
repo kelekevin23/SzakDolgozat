@@ -2,7 +2,7 @@
 
 class Ab {
     private $serverName = "DESKTOP-HFFA4M4";
-    private $connectionInfo = array("Database" => "Szakdoga_adattal", "CharacterSet" => "UTF-8");
+    private $connectionInfo = array("Database" => "Szakdolgozat", "CharacterSet" => "UTF-8");
     private $kapcsolat;
 
     function getKapcsolat() {

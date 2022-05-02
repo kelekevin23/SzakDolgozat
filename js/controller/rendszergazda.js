@@ -19,7 +19,7 @@ $(function () {
         mit: "*",
         tablaNeve: "Cikk",
         honnan: "",
-        where: "where cikkszam not in (select cikkszam from Rend_tetel)",
+        where: "order by cikkszam",
         segedTabla: ""
     };
     
@@ -83,7 +83,7 @@ $(function () {
             mit: "*",
             tablaNeve: "Cikk",
             honnan: "",
-            where: "where cikkszam like '%" + szoveg + "%' and cikkszam not in (select cikkszam from Rend_tetel)",
+            where: "where cikkszam like '%" + szoveg + "%'",
             segedTabla: ""
 
         };

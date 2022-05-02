@@ -30,7 +30,7 @@ class Ajax {
             url: eleresiUt,
             data: data,
             success: function (result) {
-                console.log(result);
+                console.log("Sikeres adatfelvitel");
             },
             error: function () {
                 console.log("Sikertelen adatfeltöltés");
@@ -44,7 +44,7 @@ class Ajax {
             url: eleresiUt,
             data: data,
             success: function (result) {
-                console.log(result);
+                console.log("Sikeres adatfrissítés");
             },
             error: function () {
                 console.log("Sikertelen adatfrissítés");
@@ -58,7 +58,7 @@ class Ajax {
             url: eleresiUt,
             data: data,
             success: function (result) {
-                console.log(result);
+                console.log("Sikeres adattörlés");
             },
             error: function () {
                 console.log("Sikertelen adattörlés");

@@ -61,6 +61,8 @@ class Rendeles {
 
         $("#rendVeglegesites").on("click", function () {
             new RendelesAdatBeszuras();
+            localStorage.removeItem("kosar");
+            localStorage.removeItem("rendeleshez");
         });
 
     }

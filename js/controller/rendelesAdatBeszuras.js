@@ -155,7 +155,7 @@ class RendelesAdatBeszuras {
                 ertekek += ", '" + ujId + "'";
             }
             adatFeltolt("Rendeles", oszlopok, ertekek);
-
+            
             for (var i = 0; i < rendelesTomb.length; i++) {
                 adatFeltolt("Rend_tetel", "(rend_szam, cikkszam, darabszam)", "'" + rendelesId + "', '" + rendelesTomb[i].cikkszam + "', '" + rendelesTomb[i].darab + "'");
                 let data2 = {

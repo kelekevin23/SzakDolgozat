@@ -76,7 +76,14 @@ class Kosar {
             let adathalmaz = JSON.stringify(this.rendelesbeTomb);
             localStorage.setItem("rendeleshez", adathalmaz);
 
-            let eleres = "../kepek/" + this.kosarTomb[index].marka.substring(0, 2) + "/" + this.kosarTomb[index].adat.modell + this.kosarTomb[index].adat.kepElerese + this.kosarTomb[index].adat.szin + "1.jpg";
+            let jelenlegiSzin = this.kosarTomb[index].adat.szin;
+            jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[űúü]/g), "u");
+            jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[őóö]/g), "o");
+            jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[í]/g), "i");
+            jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[á]/g), "a");
+            jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[é]/g), "e");
+
+            let eleres = "../kepek/" + this.kosarTomb[index].marka.substring(0, 2) + "/" + this.kosarTomb[index].adat.modell + this.kosarTomb[index].adat.kepElerese + jelenlegiSzin + "1.jpg";
             tablazat += "<td><a href='" + eleres + "' ><button class=kepetMutat id=" + index + ">Kép mutatása</button></a></td>";
             tablazat += "<td><button class=torolGombok id=" + index + ">X</button></td></tr>";
 

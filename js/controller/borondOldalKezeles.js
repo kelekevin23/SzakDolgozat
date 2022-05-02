@@ -28,6 +28,7 @@ $(function () {
 
     let keresett = localStorage.getItem("kereses");
     if (keresett !== null) {
+        $("#keresosav").val(keresett);
         kereses(keresett);
     } else {
         ajax.selectAjax('api/Select.php', termekek, data2, termeketFelvesz);
@@ -110,7 +111,7 @@ $(function () {
     }
 
     function allit(adatok) {
-
+       
         let szam = adatok.length / 10;
         let maradek = 0;
 
@@ -140,10 +141,9 @@ $(function () {
             $('.lapoz').css("display", "grid");
             $(".lapoz").css("grid-template-columns", "repeat(" + kozepso + ", 1fr)");
             $(".lapoz").css("text-align", "center");
-            $(".lapozElem").css("padding", "5px");
+            $('.lapozElem').css("padding", "5px");
         }
         if ($(window).width() > 1300) {
-            $(".lapozElem").css("padding", "0px");
             $('.lapoz').css("display", "grid");
             $(".lapoz").css("grid-template-columns", "repeat(" + felso + ", 1fr)");
             $('.lapoz').css("display", "flex");

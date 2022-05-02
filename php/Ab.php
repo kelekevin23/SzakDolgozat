@@ -1,7 +1,7 @@
 <?php
 
 class Ab {
-    private $serverName = "WIN10X64HUN61\SQLEXPRESS";
+    private $serverName = "DESKTOP-HFFA4M4";
     private $connectionInfo = array("Database" => "Szakdoga_adattal", "CharacterSet" => "UTF-8");
     private $kapcsolat;
 
@@ -14,7 +14,6 @@ class Ab {
     }
 
     public function kapcsolatBezar() {
-        //$this->kapcsolat->close();
         sqlsrv_close($this->kapcsolat);
     }
 

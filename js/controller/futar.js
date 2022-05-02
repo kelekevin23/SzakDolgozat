@@ -50,7 +50,6 @@ $(function () {
     $("#sajatRend").on("click", (event) => {
         futarSajat = [];
         ajax.selectAjax('../api/Select.php', futarSajat, sajatData, sajat.megjelenit);
-
     });
 
     $(window).on("atVetel", (event) => {

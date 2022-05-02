@@ -34,8 +34,15 @@ class Borond {
         this.termekMelyseg.html(obj.melyseg + " cm");
         this.termekUrmertek.html(obj.urmertek + " L");
         this.termekAr.html(obj.ar + " Forint");
-        obj.szin = obj.szin.replace(new RegExp(/[û]/g), "ű");
-        this.termekKep.attr("src", "../kepek/" + obj.marka.substring(0, 2) + '/' + obj.modell + obj.kepElerese + obj.szin + "1.jpg");
+
+        let jelenlegiSzin = obj.szin;
+        jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[űúü]/g), "u");
+        jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[őóö]/g), "o");
+        jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[í]/g), "i");
+        jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[á]/g), "a");
+        jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[é]/g), "e");
+
+        this.termekKep.attr("src", "../kepek/" + obj.marka.substring(0, 2) + '/' + obj.modell + obj.kepElerese + jelenlegiSzin + "1.jpg");
     }
 }
 
@@ -55,12 +62,18 @@ class BorondAdatlapKep {
     }
     termekBeallit(obj, index) {
         this.index = index;
-        obj.szin = obj.szin.replace(new RegExp(/[û]/g), "ű");
 
         let markaTomb = localStorage.getItem("adatlap_marka");
         let marka = JSON.parse(markaTomb);
 
-        this.termekKep.attr("src", "../kepek/" + marka.substring(0, 2) + '/' + obj.modell + obj.kepElerese + obj.szin + index + ".jpg");
+        let jelenlegiSzin = obj.szin;
+        jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[űúü]/g), "u");
+        jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[őóö]/g), "o");
+        jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[í]/g), "i");
+        jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[á]/g), "a");
+        jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[é]/g), "e");
+        
+        this.termekKep.attr("src", "../kepek/" + marka.substring(0, 2) + '/' + obj.modell + obj.kepElerese + jelenlegiSzin + index + ".jpg");
     }
     kattintasTrigger() {
         let esemeny = new CustomEvent("kepKattintas", {detail: {data: this.index, data2: this.obj}});
@@ -126,7 +139,7 @@ class BorondAdatlap {
                 console.log(darab);
                 localStorage.setItem("aktualisDarab", darab);
                 localStorage.setItem("aktualisMarka", marka);
-            } else{
+            } else {
                 localStorage.removeItem("aktualisDarab");
             }
         });

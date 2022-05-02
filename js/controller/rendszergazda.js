@@ -3,8 +3,8 @@ $(function () {
     const ajax = new Ajax();
 
     let rendeles = new RendszergazdaRendeles();
+    
     //rendelések
-
     let rendelesAdatok = [];
     let rendelesData = {
         mit: "*",
@@ -24,8 +24,8 @@ $(function () {
         segedTabla: ""
     };
     ajax.selectAjax('../api/Select.php', borondAdatok, borondData, adatAtvitelBorond);
+    
     function adatAtvitelBorond(borondok) {
-        //console.log(borondok);
         new RendszergazdaBorond(borondok);
     }
 

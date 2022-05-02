@@ -53,7 +53,7 @@ $(function () {
 
         let data2 = {
             tablaNeve: "Beszerzes",
-            where: "id like " + event.detail.id
+            where: "id = " + event.detail.id
         };
         ajax.deleteAjax("../api/Delete.php", data2);
         beszerzesek = [];

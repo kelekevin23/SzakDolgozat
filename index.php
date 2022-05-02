@@ -33,6 +33,10 @@
                     </div>
 
                     <?php
+                    if (!empty($_SESSION['fstatusz']) && $_SESSION['fstatusz'] != "k") {
+                        session_destroy();
+                        header('location: index.php');
+                    }
                     include_once 'php/udvozlo.php';
                     ?>
 

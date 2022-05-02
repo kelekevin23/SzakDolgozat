@@ -134,8 +134,15 @@ class Kep {
             this.kepKattintas(obj);
         });
 
-        obj.szin = obj.szin.replace(new RegExp(/[û]/g), "ű");
-        this.kep.attr("src", "kepek/" + obj.marka.substring(0, 2) + '/' + obj.modell + obj.kepElerese + obj.szin + "1.jpg");
+        let jelenlegiSzin = obj.szin;
+        jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[űúü]/g), "u");
+        jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[őóö]/g), "o");
+        jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[í]/g), "i");
+        jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[á]/g), "a");
+        jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[é]/g), "e");
+
+
+        this.kep.attr("src", "kepek/" + obj.marka.substring(0, 2) + '/' + obj.modell + obj.kepElerese + jelenlegiSzin + "1.jpg");
 
     }
 
@@ -160,19 +167,16 @@ class Kep {
             segedTabla: "Szin"
         };
         ajax.selectAjax('php/api/Select.php', szinek, data, this.szineketMegjelenit);
-
-
-
-
     }
+
     szineketMegjelenit(szin) {
         for (var i = 0; i < szin.length; i++) {
             $(".szinek").append("<button class=gombok id=" + i + "></button>");
             $(".szinek button").eq(i).css("background-color", szin[i].szinKod);
         }
 
-        let marka = $(".galeria .marka").eq(1).text();
 
+        let marka = $(".galeria .marka").eq(1).text();
         $(".gombok").on("click", function () {
             $("#adottCikkszam").text(szin[this.id].cikkszam);
             $("#adottKeszlet").text(szin[this.id].keszlet);
@@ -180,8 +184,15 @@ class Kep {
             $("#adottModell").text(szin[this.id].modell);
             $("#adottEleres").text(szin[this.id].kepElerese);
 
-            szin[this.id].szin = szin[this.id].szin.replace(new RegExp(/[û]/g), "ű");
-            $("#fokep img").attr("src", "kepek/" + marka.substring(0, 2) + '/' + szin[this.id].modell + szin[this.id].kepElerese + szin[this.id].szin + "1.jpg");
+            let jelenlegiSzin = szin[this.id].szin;
+            jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[űúü]/g), "u");
+            jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[őóö]/g), "o");
+            jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[í]/g), "i");
+            jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[á]/g), "a");
+            jelenlegiSzin = jelenlegiSzin.replace(new RegExp(/[é]/g), "e");
+
+            $("#fokep img").attr("src", "kepek/" + marka.substring(0, 2) + '/' + szin[this.id].modell + szin[this.id].kepElerese + jelenlegiSzin + "1.jpg");
         });
     }
+
 }

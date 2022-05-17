@@ -71,6 +71,7 @@ $(function () {
         ajax.updateAjax("../api/Update.php", data);
         futarSajat = [];
         ajax.selectAjax('../api/Select.php', futarSajat, sajatData, sajat.megjelenit);
+        location.reload(true);
     });
     $(window).on("sikertelenKiszallitas", (event) => {
         let data = {
@@ -81,5 +82,6 @@ $(function () {
         ajax.updateAjax("../api/Update.php", data);
         futarSajat = [];
         ajax.selectAjax('../api/Select.php', futarSajat, sajatData, sajat.megjelenit);
+        location.reload(true);
     });
 });

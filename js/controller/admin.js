@@ -40,7 +40,7 @@ $(function () {
         $(".borondBeszerzes").show();
         beszerzesek = [];
         ajax.selectAjax('../api/Select.php', beszerzesek, BeszerzesData, beszerzes.megjelenit);
-
+        location.reload(true);
     });
 
     $(window).on("jovahagyas", (event) => {
@@ -58,6 +58,7 @@ $(function () {
         ajax.deleteAjax("../api/Delete.php", data2);
         beszerzesek = [];
         ajax.selectAjax('../api/Select.php', beszerzesek, BeszerzesData, beszerzes.megjelenit);
+        location.reload(true);
     });
 
     $(window).on("csomagol", (event) => {
@@ -69,6 +70,7 @@ $(function () {
         ajax.updateAjax("../api/Update.php", data);
         rendelesek = [];
         ajax.selectAjax('../api/Select.php', rendelesek, rendelesData, rendeles.megjelenit);
+        location.reload(true);
     });
 
 
